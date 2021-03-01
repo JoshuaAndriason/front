@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Signin from './screens/Signin';
+import LoginScreen from './screens/LoginScreen';
 import HeaderScreen from './screens/HeaderScreen'
 
 export default function App(props) {
@@ -8,7 +8,7 @@ export default function App(props) {
 <>
 <HeaderScreen/>
     <View style={styles.container}>
-   <Signin/>
+   <LoginScreen/>
     </View>
     </>
   );
