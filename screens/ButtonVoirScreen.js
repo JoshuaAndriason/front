@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
 
-export default function ButtonValiderScreen() {
+export default function ButtonVoirScreen(props) {
   
     return (
         <TouchableOpacity
         style={styles.button}
-        onPress={()=>console.log('Click')} >
-        <Text>Valider</Text>
+        onPress={()=>console.log('click')} >
+        <Text>Voir</Text>
       </TouchableOpacity>
 
     )};
@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
       alignItems: "center",
       backgroundColor: "#AADEC0",
       padding: 10,
-      width: '40%'
+      width: '20%',
+      borderRadius: 20
      }
   
   });

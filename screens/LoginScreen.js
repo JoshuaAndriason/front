@@ -44,8 +44,9 @@ export default function LoginScreen(props) {
      <TouchableOpacity
           style={styles.button}
           onPress={()=>console.log(email, name, room)}>
-          <Text>Valider</Text>
+          <Text style={{color: 'white'}}>Valider</Text>
         </TouchableOpacity>
+      
  
 </View>
    
@@ -66,8 +67,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
-    width: '40%'
-   }
+    width: '40%' }
 
 });
 
