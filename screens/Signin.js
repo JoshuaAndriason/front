@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
    justifyContent: 'center',
     width: '100%',
     flexDirection: 'column'
+  }
 });
 
 const styles1 = StyleSheet.create({
