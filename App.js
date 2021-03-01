@@ -1,24 +1,14 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
-import AcceuilScreen from './screens/AcceuilScreen';
-import HeaderScreen from './screens/HeaderScreen';
+import { StyleSheet, View } from 'react-native';
+import Signin from './screens/Signin';
+import HeaderScreen from './screens/HeaderScreen'
 
-
-
-
-
-
-
-export default function App() {
+export default function App(props) {
   return (
 <>
-
-
-
 <HeaderScreen/>
     <View style={styles.container}>
-    
-      <AcceuilScreen/>
+   <Signin/>
     </View>
     </>
   );
