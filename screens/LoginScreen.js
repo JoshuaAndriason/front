@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Input, Button, Text, Image} from 'react-native-elements';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {Input, Text, Image} from 'react-native-elements';
+
 
 
 export default function LoginScreen(props) {
@@ -22,7 +23,7 @@ export default function LoginScreen(props) {
     
     <Text h4>CONNEXION</Text>
 
-      <Text style={{marginTop:50}}>Adresse e-mail</Text>
+      <Text style={{marginTop:20}}>Adresse e-mail</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
        onChangeText={(value) => setEmail(value)}
@@ -40,12 +41,12 @@ export default function LoginScreen(props) {
        onChangeText={(value) => setRoom(value)}
        value={room}
      />
-    
-     <Button
-  title="Valider"
-  type="outline"
-  onPress={()=>console.log(email, name, room)}
-/>
+     <TouchableOpacity
+          style={styles.button}
+          onPress={()=>console.log(email, name, room)}>
+          <Text>Valider</Text>
+        </TouchableOpacity>
+ 
 </View>
    
   );
@@ -61,6 +62,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     textAlign: 'center'
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#AADEC0",
+    padding: 10,
+    width: '40%'
+   }
 
 });
 
