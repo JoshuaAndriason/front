@@ -11,13 +11,15 @@ function Signin(props) {
   return (
    
     <View style={styles.container}>
+    
+
 
         <View style= {{width : '100%'}}>
          <Image source={{url: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg'}}
          style ={{ width : '100%', height: 200, padding: 0, objectFit: 'fill' }}
          />
     </View>
-    <View style={styles1.container}>
+    <View style={styles.imagecontainer}>
     <Text h4
     containerStyle = {{marginBottom: 70}}
    >CONNEXION</Text>
@@ -61,6 +63,13 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'column'
   },
+  imageContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+   justifyContent: 'center',
+    width: '100%',
+    flexDirection: 'column'
 });
 
 const styles1 = StyleSheet.create({
@@ -68,9 +77,10 @@ const styles1 = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'flex-end',
+     justifyContent: 'center',
       width: '100%',
       flexDirection: 'column'
+    
     },
   });
 export default Signin;
