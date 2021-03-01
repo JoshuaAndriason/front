@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View,Button} from 'react-native';
+import {View,Button,StyleSheet} from 'react-native';
 import { Text } from 'react-native-elements';
 
 
@@ -8,18 +8,14 @@ function AcceuilScreen(props) {
     
     return (
    <View>
-  <Text>Vous êtes bien arrivé à Paris : </Text>
-   <Text>là où l’esprit reste vif, prêt à se laisser 
+  <Text style={styles.textCenter}>Vous êtes bien arrivé à Paris :
+là où l’esprit reste vif, prêt à se laisser 
    surprendre et surtout à se laisser voguer. </Text>
    
-   <Text h3>Bienvenue dans notre hôtel… </Text>
+   <Text style={styles.textBold}>Bienvenue dans notre hôtel… </Text>
    
-   <Text> Commencez dès maintenant en vous connectant 
+   <Text style={styles.textBold}>Commencez dès maintenant en vous connectant 
    à notre appli qui vous servira tout au long de votre séjour !</Text>
-   <Text h1>Heading 1</Text>
-<Text h2>Heading 2</Text>
-<Text h3>Heading 3</Text>
-<Text h4>Heading 4</Text>
 
    <Button title="Go page A"/>
 
@@ -30,3 +26,11 @@ function AcceuilScreen(props) {
 
   
 export default AcceuilScreen
+
+const styles =StyleSheet.create({
+  textBold:{
+    marginTop: 40,fontWeight:'bold',textAlign:'center'
+  },textCenter:{
+    textAlign:'center'
+  }
+})
