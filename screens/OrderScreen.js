@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
 
 
-export default function LoginScreen(props) {
+export default function OrderScreen(props) {
 
   const list = [
     {
@@ -20,6 +20,8 @@ export default function LoginScreen(props) {
   
   return (
    
+<ScrollView>
+
     <View style={styles.container}>
     
     <HomeImage/>
@@ -36,7 +38,7 @@ export default function LoginScreen(props) {
 
       {
     list.map((item, i) => (
-      <ListItem style={styles.list} key={i} bottomDivider onPress={() => {props.navigation.navigate('Order')}}>
+      <ListItem style={styles.list} key={i} bottomDivider>
         <Icon name={item.icon} />
         <ListItem.Content>
           <ListItem.Title>{item.title}</ListItem.Title>
@@ -49,7 +51,9 @@ export default function LoginScreen(props) {
  <Text style={{marginTop:20}} >Total TTC : 83,00€</Text>
 
 </View>
-   
+
+</ScrollView>
+
   );
 }
 

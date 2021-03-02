@@ -13,7 +13,7 @@ export default function ChatScreen(props) {
     <View style={styles.container}>
     
    
- 
+ <Text>CHAT SCREEN</Text>
 </View>
    
   );

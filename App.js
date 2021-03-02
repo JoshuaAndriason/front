@@ -10,55 +10,56 @@ import LoginScreen from './screens/LoginScreen'
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
+import MorningNewsScreen from './screens/MorningNewsScreen'
+import ArticleNews from './screens/ArticleNews'
 import OrderScreen from './screens/OrderScreen'
+import ServiceScreen from './screens/ServiceScreen'
+import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
-
-
-
+import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import idArticle from './reducers/idArticle';
+const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-
 const BottomNavigator = () => {
   return (
+
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-
-          if (route.name == 'Home') {
-            iconName = 'home';
-          } else if(route.name == 'Chat'){
-            iconName = 'envelope';
-          } else if (route.name == 'Account') {
-            iconName = 'user';
-          }
+      if (route.name == 'Home') {
+        iconName = 'home';
+      } else if(route.name == 'Chat'){
+        iconName = 'envelope';
+      } else if (route.name == 'Account') {
+        iconName = 'user';
+      }
   
-          return <FontAwesome name={iconName} size={25} color={color} />;
-        },
-        })}
-      tabBarOptions={{
-        activeTintColor: '#e4605e',
-        inactiveTintColor: '#FFFFFF',
-        style: {
-          backgroundColor: '#AADEC0',
-        }
-      }}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
-
-    </Tab.Navigator>
+      return <FontAwesome name={iconName} size={25} color={color} />;
+    },
+    })}
+  tabBarOptions={{
+    activeTintColor: '#e4605e',
+    inactiveTintColor: '#FFFFFF',
+    style: {
+      backgroundColor: '#AADEC0',
+    }
+  }}
+>
+  <Tab.Screen name="Home" component={HomeScreen} />
+  <Tab.Screen name="Chat" component={ChatScreen} />
+  <Tab.Screen name="Account" component={AccountScreen} />
+ 
+</Tab.Navigator>
+  
   );
 }
-
-
-
-
-
 export default function App(props) {
   return (
+    <Provider store={store}>
 <>
 <HeaderScreen/>
    <NavigationContainer >
@@ -66,17 +67,19 @@ export default function App(props) {
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} />
        <Stack.Screen name="Signin" component={LoginScreen} />
        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+       <Stack.Screen name="Article" component={ArticleNews} />
        <Stack.Screen name="Order" component={OrderScreen} />
-
+       <Stack.Screen name="morningNews" component={MorningNewsScreen} />
+       <Stack.Screen name="Event" component={EventScreen} />
+       <Stack.Screen name="Service" component={ServiceScreen} />
+       <Stack.Screen name="Restauration" component={RestaurationScreen} />
+       <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
      </Stack.Navigator>
    </NavigationContainer>
-
-
-
     </>
+    </Provider>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
