@@ -1,25 +1,62 @@
 import React from 'react';
-import {View,StyleSheet,Image} from 'react-native';
-
-import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {Input, Text} from 'react-native-elements';
+import {Input, Text, Button} from 'react-native-elements';
+import HomeImage from '../components/HomeImage'
 
 
-export default function HeaderScreen(){
+
+export default function RestaurationScreen(props) {
     return(
-        <View style={{marginTop: Constant.statusBarHeight,height:60,backgroundColor:"#AADEC0",flexDirection:"row",justifyContent:'space-between',alignItems:'center'}}>
-        <View ><MaterialCommunityIcons name="menu" size={24} color="white" /></View>
-        <View  ><Image
-      source={{ uri:  'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590242/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/LOGO_DEUX_ILES_RVB_hk4avh.png'}}
-      style={{ width: 92, height: 50, }}
-    />
+        <View style={styles.container}>
+        <HomeImage/>
+    <TouchableOpacity
+        style={styles.button}
+        onPress={()=>console.log('{props.navigation.navigate()}')}>
+        <Text style={styles.text}>Petit Déjeuner</Text>
+ </TouchableOpacity>
+
+        <TouchableOpacity
+style={styles.button}
+onPress={()=>console.log('{props.navigation.navigate()}')}>
+<Text style={styles.text}>Dîner</Text>
+        </TouchableOpacity>
+
+    <TouchableOpacity
+          style={styles.button}
+          onPress={()=>console.log('{props.navigation.navigate()}')}>
+          <Text style={styles.text}>Snack</Text>
+   </TouchableOpacity>
+
+   <TouchableOpacity
+          style={styles.button}
+          onPress={()=>console.log('{props.navigation.navigate()}')}>
+          <Text style={styles.text}>Célébrations Personnelles</Text>
+   </TouchableOpacity>
+
+
     </View>
-        <View style={{}}><FontAwesome name="user-circle" size={24} color="white" /></View>
-    
-    </View>
 
-
-
-    )
-}
+    )};
+    const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          width: '100%',
+          flexDirection: 'column',
+          textAlign: 'left'
+        },
+        button: {
+          borderColor : "#AADEC0",
+            borderWidth:0.5,
+          padding: 10,
+          width: '90%',
+          marginBottom : 20
+    },
+          text: { color: 'black',
+          fontSize:18,
+          textAlign: 'left'
+        },
+         
+      });
