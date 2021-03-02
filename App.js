@@ -11,6 +11,8 @@ import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
 import OrderScreen from './screens/OrderScreen'
+import RestaurationScreen from './screens/RestaurationScreen'
+
 
 
 const Stack = createStackNavigator();
