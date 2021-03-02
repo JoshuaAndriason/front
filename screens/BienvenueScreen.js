@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View,StyleSheet,Button,Image,TouchableOpacity} from 'react-native';
 import { Text } from 'react-native-elements';
-
+import HomeImage from '../components/HomeImage'
 
 function BienvenueScreen(props) {
     return (

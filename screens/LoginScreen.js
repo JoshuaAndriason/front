@@ -16,7 +16,8 @@ export default function LoginScreen(props) {
     
     <HomeImage/>
     <Text h4>CONNEXION</Text>
-
+   
+ 
       <Text style={{marginTop:20}} >Adresse e-mail</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
@@ -30,7 +31,7 @@ export default function LoginScreen(props) {
        value={name}
      />
       <Text>N° de chambre</Text>
-     <Input textAlign='center'keyboardType='numeric'
+     <Input textAlign='center' keyboardType='numeric'
       containerStyle = {{marginBottom: 5, width: '55%'}}
        onChangeText={(value) => setRoom(value)}
        value={room}
