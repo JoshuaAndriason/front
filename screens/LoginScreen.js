@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {Input, Text} from 'react-native-elements';
+import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
+import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import ButtonValider from '../components/ButtonValider';
 
 
 export default function LoginScreen(props) {
@@ -15,11 +15,9 @@ export default function LoginScreen(props) {
     <View style={styles.container}>
     
     <HomeImage/>
-
-       
-    
     <Text h4>CONNEXION</Text>
-
+   
+ 
       <Text style={{marginTop:20}} >Adresse e-mail</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
@@ -33,18 +31,16 @@ export default function LoginScreen(props) {
        value={name}
      />
       <Text>N° de chambre</Text>
-     <Input textAlign='center'keyboardType='numeric'
+     <Input textAlign='center' keyboardType='numeric'
       containerStyle = {{marginBottom: 5, width: '55%'}}
        onChangeText={(value) => setRoom(value)}
        value={room}
      />
-     <TouchableOpacity
-          style={styles.button}
-          onPress={()=>console.log(email, name, room)}>
-          <Text style={{color: 'white'}}>Valider</Text>
-        </TouchableOpacity>
-      
- 
+    <TouchableOpacity
+        style={styles.button}
+        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
+        <Text>Valider</Text>
+      </TouchableOpacity>
 </View>
    
   );
