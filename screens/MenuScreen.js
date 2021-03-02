@@ -41,6 +41,7 @@ type="clear"/>
 type="clear"/> 
 <Text style={{marginTop:-5}}>En Chambre</Text>
 </View>
+
 <View style={{flexDirection:'row', justifyContent:'flex-end'}}>
 
 <Input justifyContent='left' placeholder='Heure'
