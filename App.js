@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
 import LoginScreen from './screens/LoginScreen'
+import ButtonValider from './components/ButtonValider';
 
 const Stack = createStackNavigator();
 

@@ -23,7 +23,7 @@ export default function LoginScreen(props) {
     
     <Text h4>CONNEXION</Text>
 
-      <Text style={{marginTop:20}}>Adresse e-mail</Text>
+      <Text style={{marginTop:20}} >Adresse e-mail</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
        onChangeText={(value) => setEmail(value)}
@@ -36,7 +36,7 @@ export default function LoginScreen(props) {
        value={name}
      />
       <Text>N° de chambre</Text>
-     <Input textAlign='center'
+     <Input textAlign='center'keyboardType='numeric'
       containerStyle = {{marginBottom: 5, width: '55%'}}
        onChangeText={(value) => setRoom(value)}
        value={room}
