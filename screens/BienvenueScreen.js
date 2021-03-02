@@ -3,7 +3,7 @@ import {View,StyleSheet,Button,Image} from 'react-native';
 import { Text } from 'react-native-elements';
 
 
-function AcceuilScreen(props) {
+function BienvenueScreen(props) {
 
     
     return (
@@ -36,7 +36,7 @@ là où l’esprit reste vif, prêt à se laisser
 
 
   
-export default AcceuilScreen
+export default BienvenueScreen
 
 const styles =StyleSheet.create({
   textBold:{
