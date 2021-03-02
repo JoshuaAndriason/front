@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Signin from './screens/Signin';
-import HeaderScreen from './screens/HeaderScreen';
+import LoginScreen from './screens/LoginScreen';
+import HeaderScreen from './screens/HeaderScreen'
+import ButtonValiderScreen from './screens/ButtonValiderScreen';
 
 
 export default function App(props) {
@@ -9,7 +10,7 @@ export default function App(props) {
 <>
 <HeaderScreen/>
     <View style={styles.container}>
-   <Signin/>
+   <LoginScreen/>
     </View>
     </>
   );
