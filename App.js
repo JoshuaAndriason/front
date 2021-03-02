@@ -10,6 +10,16 @@ import LoginScreen from './screens/LoginScreen'
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
+import morningNews from './screens/morningNews'
+import ArticleNews from './screens/ArticleNews'
+
+
+import {createStore, combineReducers} from 'redux';
+
+import {Provider} from 'react-redux';
+import idArticle from './reducers/idArticle';
+
+const store = createStore(combineReducers({idArticle}));
 
 
 const Stack = createStackNavigator();
@@ -18,6 +28,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   return (
+    
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
@@ -25,7 +36,7 @@ const BottomNavigator = () => {
 
           if (route.name == 'Home') {
             iconName = 'home';
-          } else if(route.name == 'Chat'){
+          } else if(route.name == 'News'){
             iconName = 'envelope';
           } else if (route.name == 'Account') {
             iconName = 'user';
@@ -43,10 +54,11 @@ const BottomNavigator = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
+      <Tab.Screen name="News" component={morningNews} />
       <Tab.Screen name="Account" component={AccountScreen} />
-
+     
     </Tab.Navigator>
+  
   );
 }
 
@@ -56,6 +68,7 @@ const BottomNavigator = () => {
 
 export default function App(props) {
   return (
+    <Provider store={store}>
 <>
 <HeaderScreen/>
    <NavigationContainer >
@@ -63,13 +76,14 @@ export default function App(props) {
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} />
        <Stack.Screen name="Signin" component={LoginScreen} />
        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-
+       <Stack.Screen name="Article" component={ArticleNews} />
      </Stack.Navigator>
    </NavigationContainer>
 
 
 
     </>
+    </Provider>
   );
 }
 
