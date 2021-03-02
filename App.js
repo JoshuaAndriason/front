@@ -12,11 +12,12 @@ import LoginScreen from './screens/LoginScreen'
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
-import morningNews from './screens/morningNews'
+import MorningNewsScreen from './screens/MorningNewsScreen'
 import ArticleNews from './screens/ArticleNews'
 import OrderScreen from './screens/OrderScreen'
 import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
+import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 
 import {createStore, combineReducers} from 'redux';
@@ -78,9 +79,11 @@ export default function App(props) {
        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
        <Stack.Screen name="Article" component={ArticleNews} />
        <Stack.Screen name="Order" component={OrderScreen} />
-       <Stack.Screen name="morningNews" component={morningNews} />
+       <Stack.Screen name="morningNews" component={MorningNewsScreen} />
        <Stack.Screen name="Event" component={EventScreen} />
        <Stack.Screen name="Service" component={ServiceScreen} />
+       <Stack.Screen name="Restauration" component={RestaurationScreen} />
+       <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>
