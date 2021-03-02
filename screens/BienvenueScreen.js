@@ -11,7 +11,7 @@ function BienvenueScreen(props) {
   <Text style={styles.textCenter}>Vous êtes bien arrivé à Paris :
 là où l’esprit reste vif, prêt à se laisser 
    surprendre et surtout à se laisser voguer. </Text>
-   
+   ma
    <Text style={styles.textBold}>Bienvenue dans notre hôtel… </Text>
    
    <Text style={styles.textBold}>Commencez dès maintenant en vous connectant 

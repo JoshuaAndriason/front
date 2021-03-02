@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
 
-export default function ButtonVoirScreen(props) {
+export default function ButtonVoirScreen() {
   
     return (
         <TouchableOpacity

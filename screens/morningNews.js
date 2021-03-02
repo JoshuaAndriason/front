@@ -1,8 +1,27 @@
 import React from 'react';
-import {View,StyleSheet,Image} from 'react-native';
-import { FontAwesome } from '@expo/vector-icons'; 
-import  Constant  from 'expo-constants'; 
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { StyleSheet, View } from 'react-native';
+import Signin from './screens/Signin';
+import HeaderScreen from './screens/HeaderScreen'
 
+
+export default function morningNews(props) {
+  return (
+<>
+<HeaderScreen/>
+    <View style={styles.container}>
+   <Signin/>
+    </View>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 
