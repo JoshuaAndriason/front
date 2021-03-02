@@ -11,6 +11,9 @@ import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
 import OrderScreen from './screens/OrderScreen'
+import Question1 from './screens/Question1'
+import Question2 from './screens/Question2'
+import Question3 from './screens/Question3'
 
 
 const Stack = createStackNavigator();
@@ -44,7 +47,7 @@ const BottomNavigator = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
+      <Tab.Screen name="Chat" component={Question1} />
       <Tab.Screen name="Account" component={AccountScreen} />
 
     </Tab.Navigator>

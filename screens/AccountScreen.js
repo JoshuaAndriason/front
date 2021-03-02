@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
@@ -27,10 +27,12 @@ export default function AccountScreen(props) {
 
   return (
    
-    <View style={styles.container}>
+<ScrollView>
+
+<View style={styles.container}>
     
     <HomeImage/>
-    
+
     <Text h4>Bonjour Frederic !</Text>
 
       <Text style={{marginTop:20}} >Date de séjour : Du 16/04/2021 au 19/04/2021</Text>
@@ -53,9 +55,10 @@ export default function AccountScreen(props) {
       </ListItem>
     ))
   }
- 
+
 </View>
-   
+</ScrollView>
+
   );
 }
 
