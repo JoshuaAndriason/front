@@ -5,7 +5,7 @@ import HomeImage from '../components/HomeImage'
 
 
 
-export default function LoginScreen(props) {
+export default function AccountScreen(props) {
 
   const list = [
     {
@@ -33,17 +33,17 @@ export default function LoginScreen(props) {
     
     <Text h4>Bonjour Frederic !</Text>
 
-      <Text style={{marginTop:40}} >Date de séjour : Du 16/04/2021 au 19/04/2021</Text>
+      <Text style={{marginTop:20}} >Date de séjour : Du 16/04/2021 au 19/04/2021</Text>
  
       <Text style={{marginTop:10}}>Numéro de chambre : 405</Text>
 
       <Text style={{marginTop:10, marginBottom:40}}>Centre d'intérets : Restauration (F&B)</Text>
 
-      <Text style={{marginBottom:40}} h4>Voir mes commandes</Text>
+      <Text style={{marginBottom:20}} h4>Voir mes commandes</Text>
 
       {
     list.map((item, i) => (
-      <ListItem style={styles.list} key={i} bottomDivider>
+      <ListItem style={styles.list} key={i} bottomDivider onPress={() => {props.navigation.navigate('Order')}}>
         <Icon name={item.icon} />
         <ListItem.Content>
           <ListItem.Title>{item.title}</ListItem.Title>

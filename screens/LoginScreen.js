@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity, Button} from 'react-native';
-import {Input, Text} from 'react-native-elements';
+import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
+import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import ButtonValider from '../components/ButtonValider';
 
 
 export default function LoginScreen(props) {
@@ -15,9 +15,6 @@ export default function LoginScreen(props) {
     <View style={styles.container}>
     
     <HomeImage/>
-
-       
-    
     <Text h4>CONNEXION</Text>
 
       <Text style={{marginTop:20}} >Adresse e-mail</Text>
@@ -38,20 +35,11 @@ export default function LoginScreen(props) {
        onChangeText={(value) => setRoom(value)}
        value={room}
      />
-     <TouchableOpacity
-          style={styles.button}
-          onPress={()=>console.log(email, name, room)}>
-          <Text style={{color: 'white'}}>Valider</Text>
-        </TouchableOpacity>
-      
-    
-        <Button
-            color='#AADEC0'
-            title="C'est parti"
-            type="solid"
-            onPress={() => {props.navigation.navigate('Account')}}
-        />
- 
+    <TouchableOpacity
+        style={styles.button}
+        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
+        <Text>Valider</Text>
+      </TouchableOpacity>
 </View>
    
   );

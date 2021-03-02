@@ -9,51 +9,45 @@ export default function LoginScreen(props) {
 
   const list = [
     {
-      title: 'Commande du 16/04/2021 à 21h37',
-      subtitle : 'Cmd N° k87b65',
-      icon: 'av-timer'
+      title: '1 Bouteille de Champagne Ruinard (75cl)',
+      subtitle : 'Prix unitaire : 70,00€',
     },
     {
-      title: 'Commande du 16/04/2021 à 23h59',
-      subtitle : 'Cmd N° 16f9H7',
-      icon: 'av-timer'
-    },
-    {
-      title: 'Commande du 17/04/2021 à 18h26',
-      subtitle : 'Cmd N° 8j09kl',
-      icon: 'av-timer'
+      title: '1 Petit-déjeuner continental',
+      subtitle : 'Prix unitaire : 13,00€',
     },
   ]
-
+  
   return (
    
     <View style={styles.container}>
     
     <HomeImage/>
     
-    <Text h4>Bonjour Frederic !</Text>
+    <Text h4>À propos de votre commande</Text>
 
-      <Text style={{marginTop:40}} >Date de séjour : Du 16/04/2021 au 19/04/2021</Text>
+      <Text style={{marginTop:20}} >Date de commande : 16/04/2021</Text>
  
-      <Text style={{marginTop:10}}>Numéro de chambre : 405</Text>
+      <Text style={{marginTop:10}}>Heure de commande : 21h37</Text>
 
-      <Text style={{marginTop:10, marginBottom:40}}>Centre d'intérets : Restauration (F&B)</Text>
+      <Text style={{marginTop:10, marginBottom:40}}>Numéro de commande : k87b65</Text>
 
-      <Text style={{marginBottom:40}} h4>Voir mes commandes</Text>
+      <Text style={{marginBottom:20}} h4>Détail de votre commande</Text>
 
       {
     list.map((item, i) => (
-      <ListItem style={styles.list} key={i} bottomDivider>
+      <ListItem style={styles.list} key={i} bottomDivider onPress={() => {props.navigation.navigate('Order')}}>
         <Icon name={item.icon} />
         <ListItem.Content>
           <ListItem.Title>{item.title}</ListItem.Title>
           <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
         </ListItem.Content>
-        <ListItem.Chevron />
       </ListItem>
     ))
   }
  
+ <Text style={{marginTop:20}} >Total TTC : 83,00€</Text>
+
 </View>
    
   );
@@ -79,7 +73,3 @@ const styles = StyleSheet.create({
       width: '100%',
     },
 });
-
-
-
-
