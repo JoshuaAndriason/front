@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import HeaderScreen from './screens/HeaderScreen'
-import ButtonValiderScreen from './screens/ButtonValiderScreen';
 
 
 export default function App(props) {
