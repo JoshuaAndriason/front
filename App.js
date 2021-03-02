@@ -6,6 +6,7 @@ import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
 import LoginScreen from './screens/LoginScreen'
 import ButtonValider from './components/ButtonValider';
+import morningNews from "./screens/morningNews";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,8 @@ export default function App(props) {
      <Stack.Navigator screenOptions={{headerShown: false}}>
        <Stack.Screen name="Home" component={BienvenueScreen} />
        <Stack.Screen name="Signin" component={LoginScreen} />
+       {/* A supprimer avant */}
+       <Stack.Screen name="News" component={morningNews} />
      </Stack.Navigator>
    </NavigationContainer>
 

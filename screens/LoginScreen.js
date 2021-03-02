@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Button} from 'react-native';
 import {Input, Text} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
@@ -44,7 +44,13 @@ export default function LoginScreen(props) {
           <Text style={{color: 'white'}}>Valider</Text>
         </TouchableOpacity>
       
- 
+             {/* A supprimer avant */}
+        <Button
+            color='#AADEC0'
+            title="C'est parti"
+            type="solid"
+            onPress={() => {props.navigation.navigate('News')}}
+        />
 </View>
    
   );
