@@ -6,6 +6,7 @@ import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
 import LoginScreen from './screens/LoginScreen'
 import ButtonValider from './components/ButtonValider';
+import HomeScreen from './screens/HomeScrenn';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App(props) {
        <Stack.Screen name="Signin" component={LoginScreen} />
      </Stack.Navigator>
    </NavigationContainer>
+
 
 
 
