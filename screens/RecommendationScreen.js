@@ -44,9 +44,27 @@ export default function RecommendationScreen(props) {
         <View style={styles.block}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => console.log('{props.navigation.navigate()}')}>
+            onPress={() => setIsFlaneriesVisible(!isFlaneriesVisible)}>
             <Text style={styles.text}>Flâneries</Text>
           </TouchableOpacity>
+          {isFlaneriesVisible ? 
+            <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+
+              <TouchableOpacity
+                style={styles.list}
+        >
+                <Text style={styles.text}>La Coupole</Text>
+                <TouchableOpacity style={styles.button} onPress={()=>props.navigation.navigate("")}><Text style={{color: "white"}}>Voir</Text></TouchableOpacity>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.list}
+                onPress={() => console.log('{props.navigation.navigate()}')}>
+                <Text style={styles.text}>Flâneries 1</Text>
+              </TouchableOpacity>
+            </View> 
+            : null
+            }
         </View>
       </ScrollView>
     </View>
