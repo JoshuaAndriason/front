@@ -3,7 +3,6 @@ import {View, StyleSheet, TouchableOpacity, TextInput, ScrollView} from 'react-n
 import {Text, Button, Input, Overlay, ListItem, Avatar}  from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Accordion, List } from 'antd-mobile';
 
 
 
@@ -88,8 +87,8 @@ type="clear"/>
           <TouchableOpacity
             style={styles.list}
             onPress={toggleOverlay}>
-                
-            <Text style={styles.text}>Continental (jus, boissons chaudes, vienoiseries, miel, beurre, oeufs)</Text>
+                <Text style={styles.title}>Continental</Text>
+            <Text style={styles.text}>(jus, boissons chaudes, vienoiseries, miel, beurre, oeufs)</Text>
             <Text style={{textAlign:'right'}}>25€</Text>
             
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
@@ -123,10 +122,13 @@ type="clear"/>
         <Button onPress={() => console.log(l.name)}></Button> 
         <ListItem.Content>
           <ListItem.Title>{l.name}</ListItem.Title>
+          
         </ListItem.Content>
       </ListItem>
     ))
   }
+  <Button title="Valider"
+  type="outline" onPress={() => console.log('OK')}> </Button>
             </View>
       </Overlay>
  
@@ -181,7 +183,6 @@ const styles = StyleSheet.create({
       width: '95%',
     },
     title: {
-      color: 'black',
       fontSize: 18,
       textAlign: 'left'
     },
