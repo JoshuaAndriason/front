@@ -79,7 +79,7 @@ type="clear"/>
           onPress={() => {
             console.log('restauration')
             setIsRestaurantVisible(!isRestaurantVisible)}}>
-          <Text style={styles.text}>Petit déjeuner</Text>
+          <Text style={styles.title}>Petit déjeuner</Text>
         </TouchableOpacity>
         {isRestaurantVisible ?
         <View style={{flex:1, width:"100%", alignItems: "center"}}>
@@ -88,8 +88,10 @@ type="clear"/>
           <TouchableOpacity
             style={styles.list}
             onPress={toggleOverlay}>
-            <Text style={styles.text}>Continental</Text>
-           
+                
+            <Text style={styles.text}>Continental (jus, boissons chaudes, vienoiseries, miel, beurre, oeufs)</Text>
+            <Text style={{textAlign:'right'}}>25€</Text>
+            
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <View style={styles.listOverlay}> 
             <Text>Merci de préciser votre choix:</Text>
@@ -139,7 +141,7 @@ type="clear"/>
         <TouchableOpacity
           style={styles.button}
           onPress={() => console.log('{props.navigation.navigate()}')}>
-          <Text style={styles.text}>Nos Boissons Chaudes</Text>
+          <Text style={styles.title}>Nos Boissons Chaudes</Text>
         </TouchableOpacity>
 
       </View>
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
       padding: 10,
       width: '95%',
     },
-    text: {
+    title: {
       color: 'black',
       fontSize: 18,
       textAlign: 'left'
@@ -201,5 +203,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         textAlign: 'left'
         
+    },
+    text:{ color: 'black',
+    fontSize: 10,
+    textAlign: 'left'
     }
+    
   });
