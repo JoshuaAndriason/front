@@ -17,11 +17,9 @@ import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
-import RecommendationScreen from './screens/RecommendationScreen';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
-import MenuScreen from './screens/MenuScreen'
 const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -52,7 +50,7 @@ const BottomNavigator = () => {
   }}
 >
   <Tab.Screen name="Home" component={HomeScreen} />
-  <Tab.Screen name="Chat" component={MenuScreen} />
+  <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
  
 </Tab.Navigator>
@@ -76,7 +74,6 @@ export default function App(props) {
        <Stack.Screen name="Service" component={ServiceScreen} />
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
        <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
-       <Stack.Screen name="Recommendation" component={RecommendationScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>

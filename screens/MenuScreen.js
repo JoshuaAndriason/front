@@ -8,7 +8,7 @@ import { Accordion, List } from 'antd-mobile';
 
 
 export default function MenuScreen(props) {
-    
+    const [isRestaurantVisible, setIsRestaurantVisible] = useState(false)
         const [visible, setVisible] = useState(false);
       
         const toggleOverlay = () => {
@@ -76,9 +76,12 @@ type="clear"/>
       <View style={styles.block}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log('{props.navigation.navigate()}')}>
+          onPress={() => {
+            console.log('restauration')
+            setIsRestaurantVisible(!isRestaurantVisible)}}>
           <Text style={styles.text}>Petit déjeuner</Text>
         </TouchableOpacity>
+        {isRestaurantVisible ?
         <View style={{flex:1, width:"100%", alignItems: "center"}}>
           <TouchableOpacity
             style={styles.list}
@@ -109,6 +112,8 @@ type="clear"/>
  
           </TouchableOpacity>
         </View>
+        : null
+    }
       </View>
       <View style={styles.block}>
         <TouchableOpacity
@@ -130,7 +135,6 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      borderColor: "blue",
       borderWidth: 2,
       width: '100%',
       flexDirection: 'column',
@@ -175,8 +179,6 @@ const styles = StyleSheet.create({
         },
     listOverlay:{
         backgroundColor: '#fff',
-        borderColor: "blue",
-        borderWidth: 2,
         textAlign: 'left'
         
     }

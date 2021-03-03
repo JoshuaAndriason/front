@@ -17,7 +17,7 @@ export default function RecommendationScreen(props) {
             style={styles.button}
             onPress={() => {
               console.log('restauration')
-              setIsRestaurantVisible(true)
+              setIsRestaurantVisible(!isRestaurantVisible)
             }}>
             <Text style={styles.text}>Restauration</Text>
           </TouchableOpacity>
