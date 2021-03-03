@@ -27,7 +27,10 @@ function MorningNewsScreen(props) {
       <ListItem key={i} bottomDivider>
 
         <ListItem.Content >
-          <ListItem.Title onPress={() => {props.onSubmitSource(l.id);props.navigation.navigate('Article')}}>{l.name}</ListItem.Title>
+          <ListItem.Title style = {{
+    fontWeight:'bold',
+    textDecorationLine:'underline'
+  }} onPress={() => {props.onSubmitSource(l.id);props.navigation.navigate('Article')}}>{l.name}</ListItem.Title>
           <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>

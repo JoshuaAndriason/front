@@ -6,44 +6,32 @@ import HomeImage from '../components/HomeImage'
 
 
 export default function Question1Screen(props) {
-
+var checkBoxList =["Le travail","Les balades","Une date à fêter","Profiter de l'hotêl"]
   return (
    
 
 <View style={styles.container}>
     
     <HomeImage/>
+<View style={styles.border}>
+<Text style={styles.pagination}>1/3</Text>
+    <Text style={styles.titleForm}>Commençons par vous en particulier...</Text>
 
-    <Text h4>Commençons par vous en particulier...</Text>
 
-    <Text h4 style={{marginTop:20}}>1/3</Text>
 
-    <Text h2 style={{marginTop:20, marginBottom:20}}>Venez vous à Paris pour :</Text>
+    <Text style={{marginTop:20}}>Venez vous à Paris pour :</Text>
  
-    <CheckBox style={{marginTop:15}}
-  containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='le travail'
-  // checked={this.state.checked}
-  />
+    
 
-    <CheckBox style={{marginTop:15}}
+{checkBoxList.map((e,i)=>{return(<CheckBox key={i} style={{marginTop:5}}
   containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='les balades'
-  // checked={this.state.checked}
-  />
+  title ={e}
 
-    <CheckBox style={{marginTop:15}}
-  containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='une date à fêter'
-  // checked={this.state.checked}
-  />
+  />)})}
 
-    <CheckBox style={{marginTop:15}}
-  containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='profiter de lhôtel'
-  // checked={this.state.checked}
-  />
 
+
+</View>
 <TouchableOpacity
         style={styles.button}
         onPress={() => {props.navigation.navigate('Question2')}} >
@@ -63,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
+    
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -70,11 +59,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
-    width: '40%' 
+    width: '40%' ,
+    borderRadius:5,
   },
   list: {
       width: '100%',
     },
+    border:{
+      borderColor:'#AADEC0',
+      borderWidth:1,
+      width:"90%",
+      height:'55%',
+      margin:10,
+      padding:20
+
+    },titleForm:{
+      fontSize:15,
+      fontWeight:'bold'
+    },pagination:{
+      borderColor:'#AADEC0',
+      borderBottomWidth:1,
+      marginBottom:20,
+      paddingTop:0,
+      textAlign:'right',
+      color:'#AADEC0',
+      fontWeight:'bold',
+      fontSize:16
+    }
 });
 
 
