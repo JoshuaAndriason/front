@@ -4,7 +4,7 @@ import { ListItem, Avatar } from 'react-native-elements'
 
 import {connect} from 'react-redux';
 
-function morningNews(props) {
+function MorningNewsScreen(props) {
 
   const [sourceList, setSourceList] = useState([])
 
@@ -17,6 +17,7 @@ function morningNews(props) {
 
     APIResultsLoading()
   }, [])
+  console.log(sourceList)
 
   return (
     <View >
@@ -42,7 +43,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 export default connect(
-  null,mapDispatchToProps)(morningNews)
+  null,mapDispatchToProps)(MorningNewsScreen)
 
 
 
