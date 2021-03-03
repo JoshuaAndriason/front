@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, TouchableOpacity, TextInput} from 'react-native';
-import {Text, Button, Input}  from 'react-native-elements';
+import {View, StyleSheet, TouchableOpacity, TextInput, ScrollView} from 'react-native';
+import {Text, Button, Input, Overlay, ListItem, Avatar}  from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Accordion, List } from 'antd-mobile';
@@ -8,30 +8,25 @@ import { Accordion, List } from 'antd-mobile';
 
 
 export default function MenuScreen(props) {
-   
-    const [heure, setHeure] = useState('');
-    const [email, setEmail] = useState();
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
+    
+        const [visible, setVisible] = useState(false);
+      
+        const toggleOverlay = () => {
+          setVisible(!visible);
+        };
+
+    const [heure, setHeure] = useState(':');
+
+    const list = [
+        {name: 'Croissant'},
+        {name: 'Café'},
+        {name: 'Omelette'},
+        {name: 'Oeuf au plat'}
+    ]
   
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-    };
   
-    const showMode = (currentMode) => {
-      setShow(true);
-      setMode(currentMode);
-    };
-  
-    const showTimepicker = () => {
-      showMode('time');
-      console.log(date);
-    };
     return (
- <View style= {{width : '100%'}}>
+        <View style={styles.container}>
 
 <HomeImage/>
 
@@ -46,7 +41,7 @@ export default function MenuScreen(props) {
     <Icon
       name="check-circle"
       size={25}
-      color="grey"
+      color="#AADEC0"
     />
   }
 type="clear"/> 
@@ -59,7 +54,7 @@ type="clear"/>
     <Icon
       name="check-circle"
       size={25}
-      color="grey"
+      color="#AADEC0"
     />
   }
 type="clear"/> 
@@ -69,7 +64,7 @@ type="clear"/>
  <View style={{marginLeft:100, alignItems:'center'}}>
      
 <TextInput
-      style={{ height: 30, borderColor: 'gray', borderWidth: 1, width: 80}}
+      style={{ height: 30, borderColor: '#AADEC0', borderWidth: 1, width: 80, textAlign:'center'}}
       onChangeText={e => setHeure(e)}
       value={heure}
     />
@@ -77,50 +72,112 @@ type="clear"/>
 </View>
 </View>
  
- <View style={{alignItems:'center'}}>
-<TouchableOpacity
-style={styles.button}
-onPress={()=>console.log('{props.navigation.navigate()}')}>
-<Text style={styles.text}>Dîner</Text>
+<ScrollView style={{flex:1, width:"100%"}}>
+      <View style={styles.block}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => console.log('{props.navigation.navigate()}')}>
+          <Text style={styles.text}>Petit déjeuner</Text>
+        </TouchableOpacity>
+        <View style={{flex:1, width:"100%", alignItems: "center"}}>
+          <TouchableOpacity
+            style={styles.list}
+            onPress={() => console.log('{props.navigation.navigate()}')}>
+            <Text style={styles.text}>Continental (jus de fruit...)</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={styles.list}
+            onPress={toggleOverlay}>
+            <Text style={styles.text}>Bien-être</Text>
+           
+            <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+        <View style={styles.listOverlay}> 
+            <Text>Merci de préciser votre choix:</Text>
+            {
+    list.map((l, i) => (
+      <ListItem key={i} bottomDivider>
+        <Button onPress={() => console.log(l.name)}></Button> 
+        <ListItem.Content>
+          <ListItem.Title>{l.name}</ListItem.Title>
+        </ListItem.Content>
+      </ListItem>
+    ))
+  }
+            </View>
+      </Overlay>
+ 
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.block}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => console.log('{props.navigation.navigate()}')}>
+          <Text style={styles.text}>Flâneries</Text>
         </TouchableOpacity>
 
-        <View>
-        <TouchableOpacity
-style={styles.button}
-onPress={()=>console.log('{props.navigation.navigate()}')}>
-<Text style={styles.text}>Dîner</Text>
-        </TouchableOpacity>
-        </View>
-        </View>
+      </View>
+      </ScrollView>
 
 </View>
 
   )};
 
-  const styles = StyleSheet.create({
-    texts: {
-    textAlign:'center',
-    fontSize:25,
-    paddingBottom:1
-    },
+
+const styles = StyleSheet.create({
     container: {
-          flex: 1,
-          backgroundColor: '#fff',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          width: '100%',
-          flexDirection: 'column',
-          textAlign: 'left'
-        },
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      borderColor: "blue",
+      borderWidth: 2,
+      width: '100%',
+      flexDirection: 'column',
+      textAlign: 'left'
+    },
+    block: {
+      borderColor: "red",
+      borderWidth: 2,
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      // justifyContent: 'flex-start',
+      width: '100%',
+      flexDirection: 'column',
+      textAlign: 'left',
+      height: "auto"
+    },
     button: {
-        borderColor : "#AADEC0",
-          borderWidth:0.5,
-        padding: 10,
-        width: '95%',
-       
-  },
-        text: { color: 'black',
-        fontSize:18,
+      borderColor: "#AADEC0",
+      borderWidth: 0.5,
+      padding: 10,
+      width: '95%',
+    },
+    text: {
+      color: 'black',
+      fontSize: 18,
+      textAlign: 'left'
+    },
+    list: {
+      //display: "none",
+      backgroundColor:"#AADEC0",
+      borderColor: "#AADEC0",
+      borderWidth: 0.5,
+      padding: 10,
+      width: '88%',
+      marginBottom: 5
+    }, 
+    texts: {
+        textAlign:'center',
+        fontSize:25,
+        paddingBottom:1
+        },
+    listOverlay:{
+        backgroundColor: '#fff',
+        borderColor: "blue",
+        borderWidth: 2,
         textAlign: 'left'
-      },
-})
+        
+    }
+  });
