@@ -83,16 +83,12 @@ type="clear"/>
         </TouchableOpacity>
         {isRestaurantVisible ?
         <View style={{flex:1, width:"100%", alignItems: "center"}}>
-          <TouchableOpacity
-            style={styles.list}
-            onPress={() => console.log('{props.navigation.navigate()}')}>
-            <Text style={styles.text}>Continental (jus de fruit...)</Text>
-          </TouchableOpacity>
+          
           
           <TouchableOpacity
             style={styles.list}
             onPress={toggleOverlay}>
-            <Text style={styles.text}>Bien-être</Text>
+            <Text style={styles.text}>Continental</Text>
            
             <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <View style={styles.listOverlay}> 
@@ -111,15 +107,39 @@ type="clear"/>
       </Overlay>
  
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.list}
+            onPress={toggleOverlay}>
+            <Text style={styles.text}>Parisien</Text>
+           
+            <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+        <View style={styles.listOverlay}> 
+            <Text>Merci de préciser votre choix:</Text>
+            {
+    list.map((l, i) => (
+      <ListItem key={i} bottomDivider>
+        <Button onPress={() => console.log(l.name)}></Button> 
+        <ListItem.Content>
+          <ListItem.Title>{l.name}</ListItem.Title>
+        </ListItem.Content>
+      </ListItem>
+    ))
+  }
+            </View>
+      </Overlay>
+ 
+          </TouchableOpacity>
+
         </View>
         : null
     }
       </View>
+
       <View style={styles.block}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => console.log('{props.navigation.navigate()}')}>
-          <Text style={styles.text}>Flâneries</Text>
+          <Text style={styles.text}>Nos Boissons Chaudes</Text>
         </TouchableOpacity>
 
       </View>
@@ -141,8 +161,8 @@ const styles = StyleSheet.create({
       textAlign: 'left'
     },
     block: {
-      borderColor: "red",
-      borderWidth: 2,
+     // borderColor: "red",
+     //borderWidth: 2,
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
@@ -165,12 +185,12 @@ const styles = StyleSheet.create({
     },
     list: {
       //display: "none",
-      backgroundColor:"#AADEC0",
+      backgroundColor:"#F8F3F3",
       borderColor: "#AADEC0",
       borderWidth: 0.5,
       padding: 10,
       width: '88%',
-      marginBottom: 5
+     // marginBottom: 5
     }, 
     texts: {
         textAlign:'center',
