@@ -17,6 +17,7 @@ function MorningNewsScreen(props) {
 
     APIResultsLoading()
   }, [])
+  console.log(sourceList)
 
   return (
     <View >
@@ -44,6 +45,7 @@ function mapDispatchToProps(dispatch) {
 }
 export default connect(
   null,mapDispatchToProps)(MorningNewsScreen)
+
 
 
 const styles = StyleSheet.create({

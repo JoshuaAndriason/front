@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Image,TouchableOpacity } from 'react-native';
-import { Input, Text } from 'react-native-elements';
-import HeaderScreen from './HeaderScreen'
+import React from 'react';
+import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
+
 import HomeImage from "../components/HomeImage"
 
 
@@ -9,83 +8,48 @@ import HomeImage from "../components/HomeImage"
 export default function HomeScreen(props) {
     return (
         <>
-            <View style={{ width: '100%' }}>
+            <View style={{ width: '100%', paddingRight: 10, paddingLeft: 10   }}>
                 <HomeImage url={"https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg"} />
+            </View>
 
-                <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Service')}>
-            <Text style={styles.text}>Service</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Event')}>
-        <Text style={styles.text}>Event</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('morningNews')}>
-        <Text style={styles.text}>morningNews</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Restauration')}>
-        <Text style={styles.text}>Restauration</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('RoomDirectory')}>
-        <Text style={styles.text}>RoomDirectory</Text>
- </TouchableOpacity>
+            <ScrollView style={{ width: '100%', paddingBottom: 10, paddingRight: 10, paddingLeft: 10   }}>
 
+                <View style={{ display: "flex", width: "100%", flexDirection: "row", flexWrap: "wrap"}}>
 
+                    <TouchableOpacity
+                        style={{ width: "100%"}}
+                        onPress={() => props.navigation.navigate('Service')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1543325042-c67825847491?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cmVjZXB0aW9ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height:150, marginBottom: 10 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "48.5%", marginRight: 10 }}
+                        onPress={() => props.navigation.navigate('Event')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGV2ZW50fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10, alignSelf: "flex-end" }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "48.5%" }}
+                        onPress={() => props.navigation.navigate('Recommendation')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1604595817512-b7a728795249?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXNpYW4lMjBtYXJrZXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "48.5%", marginRight: 10  }}
+                        onPress={() => props.navigation.navigate('Restauration')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1428515613728-6b4607e44363?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10}} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "48.5%" }}
+                        onPress={() => props.navigation.navigate('morningNews')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFwZXIlMjBuZXdzfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "100%"}}
+                        onPress={() => props.navigation.navigate('RoomDirectory')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height:150, marginBottom: 10, }} />
+                    </TouchableOpacity>
                 </View>
-
-                <ScrollView style={{ width: '100%' }}>
-
-
-                    <View style={{ display: "flex", width: "100%", flexDirection: "row", flexWrap: "wrap", marginRight: 10 }}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1614643738701-b3e3b4245dbc?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 150, marginBottom: 10 }}  />
-
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1485217988980-11786ced9454?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200, marginBottom: 10, marginRight: 10 }}  />
-
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1611095973763-414019e72400?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw0OXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200 }} />
-
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1614622686704-f24cdef196a0?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200, marginBottom: 10, marginRight: 10 }} />
-
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1612831200091-c08595b18e6b?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200 }} />
-
-
-                    </View>
-                </ScrollView>
-
-          
-
+            </ScrollView>
 
 
         </>
     )
 }
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      width: '100%',
-      flexDirection: 'column',
-      textAlign: 'left'
-    },
-    button: {
-      borderColor : "#AADEC0",
-        borderWidth:0.5,
-      padding: 10,
-      width: '90%',
-      marginBottom : 20
-},
-      text: { color: 'black',
-      fontSize:18,
-      textAlign: 'left'
-    },
-     
-  });

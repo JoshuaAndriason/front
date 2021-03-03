@@ -38,7 +38,7 @@ export default function LoginScreen(props) {
      />
     <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
+        onPress={() => {props.navigation.navigate('Question1')}} >
         <Text>Valider</Text>
       </TouchableOpacity>
 </View>

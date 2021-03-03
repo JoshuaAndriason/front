@@ -11,7 +11,7 @@ export default function RestaurationScreen(props) {
         <HomeImage/>
     <TouchableOpacity
         style={styles.button}
-        onPress={()=>console.log('{props.navigation.navigate()}')}>
+        onPress={()=>{props.navigation.navigate('Menu')}}>
         <Text style={styles.text}>Petit Déjeuner</Text>
  </TouchableOpacity>
 
