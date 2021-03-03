@@ -20,6 +20,7 @@ import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
+import RoomDirectoryDetailScreen from './screens/RoomDirectoryDetailScreen'
 import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
@@ -84,7 +85,6 @@ export default function App(props) {
        <Stack.Screen name="Question1" component={Question1Screen} />
        <Stack.Screen name="Question2" component={Question2Screen} />
        <Stack.Screen name="Question3" component={Question3Screen} />
-
        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
        <Stack.Screen name="Article" component={ArticleNews} />
        <Stack.Screen name="Order" component={OrderScreen} />
@@ -93,6 +93,7 @@ export default function App(props) {
        <Stack.Screen name="Service" component={ServiceScreen} />
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
        <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
+       <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
        <Stack.Screen name="Menu" component={MenuScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
      </Stack.Navigator>
