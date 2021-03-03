@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements'
-
+import HomeImage from '../components/HomeImage'
 import {connect} from 'react-redux';
 
 function MorningNewsScreen(props) {
@@ -21,6 +21,7 @@ function MorningNewsScreen(props) {
 
   return (
     <View >
+      <HomeImage/>
 {
     sourceList.map((l, i) => (
       <ListItem key={i} bottomDivider>

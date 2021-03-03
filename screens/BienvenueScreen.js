@@ -6,9 +6,9 @@ import HomeImage from '../components/HomeImage'
 function BienvenueScreen(props) {
     return (
    <View style={styles.container}>
-     
-     <View style= {{width : '100%'}}>
      <HomeImage/>
+     <View style= {{width : '100%'}}>
+     
     </View>
   <Text style={styles.textCenter}>Vous êtes bien arrivé à Paris :
 là où l’esprit reste vif, prêt à se laisser 
