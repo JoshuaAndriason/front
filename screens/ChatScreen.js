@@ -18,6 +18,13 @@ import {
 const ChatScreen = () => {
 
 
+  return (
+  
+      <View style={styles.container}>
+
+      </View>
+ 
+  );
 };
 
 export default ChatScreen;

@@ -4,8 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import {createStore, combineReducers} from 'redux';
-import {Provider} from 'react-redux';
+
 
 // IMPORT SCREEN 
 import HeaderScreen from './screens/HeaderScreen'
@@ -24,10 +23,12 @@ import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
-
-
+import RecommendationScreen from './screens/RecommendationScreen';
 
 // IMPORT REDUCER 
+import MenuScreen from './screens/MenuScreen'
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
 
 const store = createStore(combineReducers({idArticle}));
@@ -92,6 +93,8 @@ export default function App(props) {
        <Stack.Screen name="Service" component={ServiceScreen} />
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
        <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
+       <Stack.Screen name="Menu" component={MenuScreen} />
+       <Stack.Screen name="Recommendation" component={RecommendationScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>
