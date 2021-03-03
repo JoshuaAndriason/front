@@ -19,27 +19,32 @@ export default function HomeScreen(props) {
                     <TouchableOpacity
                         style={{ width: "100%"}}
                         onPress={() => props.navigation.navigate('Service')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1614643738701-b3e3b4245dbc?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height:150, marginBottom: 10, }} />
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1543325042-c67825847491?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cmVjZXB0aW9ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height:150, marginBottom: 10 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10 }}
                         onPress={() => props.navigation.navigate('Event')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1485217988980-11786ced9454?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwzN3x8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10, alignSelf: "flex-end" }} />
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGV2ZW50fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10, alignSelf: "flex-end" }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%" }}
-                        onPress={() => props.navigation.navigate('RoomDirectory')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1611095973763-414019e72400?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw0OXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                        onPress={() => props.navigation.navigate('Recommandation')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1604595817512-b7a728795249?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXNpYW4lMjBtYXJrZXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10  }}
                         onPress={() => props.navigation.navigate('Restauration')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1614622686704-f24cdef196a0?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10}} />
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1428515613728-6b4607e44363?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10}} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%" }}
                         onPress={() => props.navigation.navigate('morningNews')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1612831200091-c08595b18e6b?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFwZXIlMjBuZXdzfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ width: "100%"}}
+                        onPress={() => props.navigation.navigate('RoomDirectory')}>
+                        <Image source={{ uri: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height:150, marginBottom: 10, }} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
