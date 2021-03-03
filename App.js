@@ -20,6 +20,7 @@ import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
+import MenuScreen from './screens/MenuScreen'
 const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,7 +51,7 @@ const BottomNavigator = () => {
   }}
 >
   <Tab.Screen name="Home" component={HomeScreen} />
-  <Tab.Screen name="Chat" component={ChatScreen} />
+  <Tab.Screen name="Chat" component={MenuScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
  
 </Tab.Navigator>
