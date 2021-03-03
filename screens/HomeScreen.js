@@ -28,7 +28,7 @@ export default function HomeScreen(props) {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%" }}
-                        onPress={() => props.navigation.navigate('Recommandation')}>
+                        onPress={() => props.navigation.navigate('Recommendation')}>
                         <Image source={{ uri: "https://images.unsplash.com/photo-1604595817512-b7a728795249?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXNpYW4lMjBtYXJrZXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
                     </TouchableOpacity>
                     <TouchableOpacity

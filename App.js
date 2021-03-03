@@ -17,7 +17,7 @@ import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
-import RecommendationScreen from './screens/Recommendation';
+import RecommendationScreen from './screens/RecommendationScreen';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
