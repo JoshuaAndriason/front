@@ -17,6 +17,7 @@ import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
+import RecommendationScreen from './screens/RecommendationScreen';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
@@ -75,6 +76,7 @@ export default function App(props) {
        <Stack.Screen name="Service" component={ServiceScreen} />
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
        <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
+       <Stack.Screen name="Recommendation" component={RecommendationScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>
