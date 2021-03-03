@@ -11,34 +11,7 @@ export default function HomeScreen(props) {
         <>
             <View style={{ width: '100%' }}>
                 <HomeImage url={"https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg"} />
-
-                <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Service')}>
-            <Text style={styles.text}>Service</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Event')}>
-        <Text style={styles.text}>Event</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('morningNews')}>
-        <Text style={styles.text}>morningNews</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('Restauration')}>
-        <Text style={styles.text}>Restauration</Text>
- </TouchableOpacity>
- <TouchableOpacity
-        style={styles.button}
-        onPress={()=>props.navigation.navigate('RoomDirectory')}>
-        <Text style={styles.text}>RoomDirectory</Text>
- </TouchableOpacity>
-
-
+                
                 </View>
 
                 <ScrollView style={{ width: '100%' }}>

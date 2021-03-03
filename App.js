@@ -4,6 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+
+// IMPORT SCREEN 
 import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -17,12 +21,20 @@ import ServiceScreen from './screens/ServiceScreen'
 import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
-import {createStore, combineReducers} from 'redux';
-import {Provider} from 'react-redux';
+import Question1Screen from './screens/Question1Screen'
+import Question2Screen  from './screens/Question2Screen'
+import Question3Screen from './screens/Question3Screen'
+
+
+
+// IMPORT REDUCER 
 import idArticle from './reducers/idArticle';
+
 const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+//FUNCTION BOTTOM NAVIGATION
 const BottomNavigator = () => {
   return (
 
@@ -57,6 +69,8 @@ const BottomNavigator = () => {
   
   );
 }
+
+//FUNCTION BOTTOM NAVIGATION
 export default function App(props) {
   return (
     <Provider store={store}>
@@ -66,6 +80,10 @@ export default function App(props) {
      <Stack.Navigator screenOptions={{headerShown: false}}>
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} />
        <Stack.Screen name="Signin" component={LoginScreen} />
+       <Stack.Screen name="Question1" component={Question1Screen} />
+       <Stack.Screen name="Question2" component={Question2Screen} />
+       <Stack.Screen name="Question3" component={Question3Screen} />
+
        <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
        <Stack.Screen name="Article" component={ArticleNews} />
        <Stack.Screen name="Order" component={OrderScreen} />

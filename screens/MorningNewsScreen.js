@@ -17,6 +17,7 @@ function MorningNewsScreen(props) {
 
     APIResultsLoading()
   }, [])
+  console.log(sourceList)
 
   return (
     <View >

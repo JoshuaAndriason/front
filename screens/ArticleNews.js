@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Text,ScrollView} from 'react-native';
+import { StyleSheet, View, Text,ScrollView,Linking} from 'react-native';
 import { ListItem, Avatar,Card,Image,Button } from 'react-native-elements'
 
 import {connect} from 'react-redux';
@@ -30,14 +30,16 @@ function ArticleNews(props) {
         <Card>
   <Card.Title>{u.title}</Card.Title>
   <Card.Divider/>
-  <Card.Image source={{uri:u.urlToImage}}>
-    <Text style={{marginBottom: 10}}>
+  <Card.Image source={{uri:u.urlToImage}}></Card.Image>
+  <Card.Divider/>
+    <Text  style={{marginBottom: 10}}>
       {u.content}
     </Text>
+    <Card.Divider/>
     <Button
-      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-      title='Voir Détail' />
-  </Card.Image>
+      buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,backgroundColor:'#AADEC0'}}
+      title='Voir Détail' onPress={() => Linking.openURL(u.url)}/>
+  
 </Card>
       );
     })

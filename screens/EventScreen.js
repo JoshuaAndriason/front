@@ -8,7 +8,7 @@ import HomeImage from '../components/HomeImage'
 export default function EventScreen(props) {
     return(
         <View style={styles.container}>
-    <Text>Event SCREEN</Text>
+   
     </View>
 
     )};

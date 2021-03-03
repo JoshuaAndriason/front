@@ -42,7 +42,7 @@ export default function Question3Screen(props) {
 
 <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('Question3')}} >
+        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
         <Text>Valider</Text>
       </TouchableOpacity>
 

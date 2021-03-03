@@ -1,42 +1,57 @@
+// Example to Send WhatsApp Message from React Native App
+// https://aboutreact.com/send-whatsapp-message/
+
+// import React in our code
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {Input, Text} from 'react-native-elements';
-import HomeImage from '../components/HomeImage'
+
+// import all the components we are going to use
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Linking,
+} from 'react-native';
+
+const ChatScreen = () => {
 
 
+};
 
-export default function ChatScreen(props) {
- 
-
-  return (
-   
-    <View style={styles.container}>
-    
-   
- <Text>CHAT SCREEN</Text>
-</View>
-   
-  );
-}
+export default ChatScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: '100%',
-    flexDirection: 'column',
-    textAlign: 'center'
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#AADEC0",
+    backgroundColor: 'white',
     padding: 10,
-    width: '40%' }
-
+  },
+  titleText: {
+    fontSize: 22,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  titleTextsmall: {
+    marginVertical: 8,
+    fontSize: 16,
+  },
+  buttonStyle: {
+    justifyContent: 'center',
+    marginTop: 15,
+    padding: 10,
+    backgroundColor: '#8ad24e',
+  },
+  buttonTextStyle: {
+    color: '#fff',
+    textAlign: 'center',
+  },
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    width: '100%',
+    paddingHorizontal: 10,
+  },
 });
-
- 
-
-
