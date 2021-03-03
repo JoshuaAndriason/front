@@ -5,7 +5,7 @@ import HomeImage from '../components/HomeImage'
 
 
 
-export default function RecommendationScreen(props) {
+export default function DetailRecommendationScreen(props) {
   const [isRestaurantVisible, setIsRestaurantVisible] = useState(false)
   const [isFlaneriesVisible, setIsFlaneriesVisible] = useState(false)
   console.log("visible :", isRestaurantVisible);
