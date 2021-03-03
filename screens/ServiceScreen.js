@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text, Button,Image} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import HomeImage from '../components/HomeImage'
 
 
 
@@ -24,8 +25,10 @@ content:'Ascenseur',url:'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614
 
       
     return(
-      
+      <>
+      <HomeImage/>
       <ScrollView contentContainerStyle={{paddingTop:10}}>
+        
         <View style={styles.container}>
 
 {box.map((card,i)=>{
@@ -39,7 +42,7 @@ content:'Ascenseur',url:'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614
 }
     </View>
     </ScrollView>
-
+</>
     )};
 
     const styles = StyleSheet.create({
