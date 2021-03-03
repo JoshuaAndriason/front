@@ -12,43 +12,7 @@ export default function DetailRecommendationScreen(props) {
   return (
     <View style={styles.container}>
       <HomeImage />
-      <ScrollView style={{ flex: 1, width: "100%" }}>
-        <View style={styles.block}>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => {
-              console.log('restauration')
-              setIsRestaurantVisible(!isRestaurantVisible)
-            }}>
-            <Text style={styles.text}>Restauration</Text>
-          </TouchableOpacity>
-          {isRestaurantVisible ? 
-            <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
-
-              <TouchableOpacity
-                style={styles.list}
-        >
-                <Text style={styles.text}>Restaurant "Le Procope"</Text>
-                <TouchableOpacity style={styles.button} onPress={()=>props.navigation.navigate("DetailRecommendation")}><Text style={{color: "white"}}>Voir</Text></TouchableOpacity>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.list}
-                onPress={() => console.log('{props.navigation.navigate()}')}>
-                <Text style={styles.text}>Restaurant "La Capsule"</Text>
-              </TouchableOpacity>
-            </View> 
-            : null
-            }
-        </View>
-        <View style={styles.block}>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => console.log('{props.navigation.navigate()}')}>
-            <Text style={styles.text}>Flâneries</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      
     </View>
 
 
