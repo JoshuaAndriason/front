@@ -4,7 +4,6 @@ import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
 
-
 export default function OrderScreen(props) {
 
   const list = [
@@ -17,7 +16,7 @@ export default function OrderScreen(props) {
       subtitle : 'Prix unitaire : 13,00€',
     },
   ]
-  
+
   return (
    
 <ScrollView>
@@ -53,6 +52,20 @@ export default function OrderScreen(props) {
 </View>
 
 </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   );
 }
