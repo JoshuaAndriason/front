@@ -34,6 +34,7 @@ function MorningNewsScreen(props) {
 </View>
   );
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     onSubmitSource: function(idArticle) { 

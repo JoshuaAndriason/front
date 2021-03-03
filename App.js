@@ -20,6 +20,7 @@ import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
+
 const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

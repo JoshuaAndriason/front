@@ -51,8 +51,6 @@ export default function HomeScreen(props) {
 
                         <Image source={{ uri: "https://images.unsplash.com/photo-1611095973763-414019e72400?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw0OXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200 }} />
 
-
-
                         <Image source={{ uri: "https://images.unsplash.com/photo-1614622686704-f24cdef196a0?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1OHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200, marginBottom: 10, marginRight: 10 }} />
 
                         <Image source={{ uri: "https://images.unsplash.com/photo-1612831200091-c08595b18e6b?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '48%', height: 200 }} />
