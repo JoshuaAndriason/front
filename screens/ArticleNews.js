@@ -27,8 +27,8 @@ function ArticleNews(props) {
     articleList.map((u, i) => {
       return (
           
-        <Card>
-  <Card.Title>{u.title}</Card.Title>
+        <Card key={i}>
+  <Card.Title >{u.title}</Card.Title>
   <Card.Divider/>
   <Card.Image source={{uri:u.urlToImage}}></Card.Image>
   <Card.Divider/>
@@ -64,5 +64,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });

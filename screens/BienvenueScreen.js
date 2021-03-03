@@ -1,41 +1,23 @@
-import React, {useState} from 'react';
-import {View,StyleSheet,Button,Image,TouchableOpacity} from 'react-native';
-import { Text } from 'react-native-elements';
-import HomeImage from '../components/HomeImage'
 
-function BienvenueScreen(props) {
+import React from 'react';
+import { StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
+
+export default function BienvenueScreen(props) {
     return (
-   <View style={styles.container}>
-     
-     <View style= {{width : '100%'}}>
-     <HomeImage/>
-    </View>
-  <Text style={styles.textCenter}>Vous êtes bien arrivé à Paris :
-là où l’esprit reste vif, prêt à se laisser 
-   surprendre et surtout à se laisser voguer. </Text>
-   
-   <Text style={styles.textBold}>Bienvenue dans notre hôtel… </Text>
-   
-   <Text style={styles.textBold}>Commencez dès maintenant en vous connectant 
-   à notre appli qui vous servira tout au long de votre séjour !</Text>
 
+      <ImageBackground source={{uri: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg'}} style={styles.container}>
 <TouchableOpacity
         style={styles.button}
         onPress={() => {props.navigation.navigate('Signin')}}>
-        <Text>C'est Parti !!</Text>
+        <Text>BIENVENUE</Text>
       </TouchableOpacity>
-
-   </View>
+    </ImageBackground>
   );
-}
-
-
-  
-export default BienvenueScreen
-
-const styles =StyleSheet.create({
+ }
+ 
+ const styles =StyleSheet.create({
   textBold:{
-    marginTop: 20,fontWeight:'bold',textAlign:'center',marginBottom:20
+    marginTop: 100,fontWeight:'bold',textAlign:'center',marginBottom:50
   },textCenter:{
     textAlign:'center'
   }, container: {
@@ -46,7 +28,9 @@ const styles =StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     color:'white',
-    padding: 10,
+    padding: 15,
+    borderColor: 'black',
+    borderWidth: 2,
     width: '40%'
    }
 })
