@@ -2,15 +2,18 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-import { RadioButton } from 'react-native-paper';
 
 
 
 export default function EventScreen(props) {
-var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois","A voir selon le déroulement de ma journée"]
-const [checked, setChecked] = useState('');
 
   const [visible, setVisible] = useState(false);
+  const [checked, setChecked]= useState("");
+
+
+  var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois","A voir selon le déroulement de ma journée"]
+
+
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -24,16 +27,19 @@ const [checked, setChecked] = useState('');
     <HomeImage/>
 <View style={styles.border}>
 <Text h1>Thé de soirée - offert</Text>
-<Text style={{marginTop:20}}>Profitez du Céromnial du Thé proposé tous les soirs, de 21h à 23h dans le Lobby Biblothèque</Text>
-    <RadioButton
-    value='inRoom'
-    status={checked === 'inRoom' ? 'checked' : 'unchecked'}
-    onPress={() => setChecked('inRoom')}
-    />
 
-{checkBoxList.map((e,i)=>{return(<CheckBox key={i} style={{marginTop:5}}
-  containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ={e}
+
+    <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
+ 
+    
+
+    {checkBoxList.map((option,i) => {
+      return(
+      <CheckBox key={i} style={{marginTop:5}}
+    containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
+    title ={option}
+    checked = {checked === option ? true : false }
+    onPress = {() => setChecked(option)}
 
   />)})}
 
