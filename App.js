@@ -96,6 +96,7 @@ export default function App(props) {
        <Stack.Screen name="Menu" component={MenuScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
        <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
+
      </Stack.Navigator>
    </NavigationContainer>
     </>
