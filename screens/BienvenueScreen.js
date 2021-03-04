@@ -13,7 +13,25 @@ export default function BienvenueScreen(props) {
         onPress={() => {props.navigation.navigate('Signin')}}>
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {props.navigation.navigate('Signin')}}>
+        <Text>Connexion</Text>
+      </TouchableOpacity>
+ 
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {props.navigation.navigate('Signin')}}>
+        <Text>Inscription</Text>
+      </TouchableOpacity>
+
+
+
+
     </ImageBackground>
+
+
   );
  }
  
