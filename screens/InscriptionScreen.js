@@ -9,9 +9,7 @@ export default function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
-    const [isInscription,setIsInscription] = useState(false);
-    const [isConnexion,setIsConnexion] = useState(false);
-
+    const [isInscription,setIsInscription] = useState(true);
 
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
@@ -37,35 +35,46 @@ export default function InscriptionScreen(props) {
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
+    }}
 
-
-
-      var handleSubmitSignin = async () => {
+    var handleSubmitSignin = async () => {
  
-        const data = await fetch('http://172.17.1.187:3000/sign-in', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
-        })
-        const body = await data.json()
-        if(body.result == true){
-          setUserExists(true)
-        }  else {
-          setErrorsSignin(body.error)
-        }
+      const data = await fetch('http://172.17.1.187:3000/sign-in', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
+      })
+  
+      const body = await data.json()
+  console.log('baod',body)
+
+      if(body.result == true){
+        
+        setUserExists(true)
+        
+      }  else {
+        setErrorsSignin(body.error)
       }
+    }
       if(userExists){
         props.navigation.navigate("BottomNavigator")
       }
-      var tabErrorsSignin = listErrorsSignin.map((error,i) => {
-        return(<Text>{error}</Text>)
-      })
-      }
-    }
+    
   return (
     <View style={styles.container}>
     
     <HomeImage/>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => {setIsInscription(true)}} >
+      <Text>Inscription</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => {setIsInscription(false)}} >
+      <Text>Connexion</Text>
+    </TouchableOpacity>
+
     {isInscription?<><Text h4>Inscription</Text>
     
     
@@ -93,41 +102,34 @@ export default function InscriptionScreen(props) {
       <Text>Valider</Text>
     </TouchableOpacity>
 
-<Text>{listErrorsSignup}</Text></> : null}
-
-
-{isConnexion?<><Text h4>Inscription</Text>
+<Text>{listErrorsSignup}</Text></> : <><Text h4>Connexion</Text>
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
    <Input textAlign='center'
     containerStyle = {{marginBottom: 5, width: '55%'}}
-     onChangeText={(value) => setEmailSignUp(value)}
-     value={emailSignUp}
+     onChangeText={(value) => setSignInEmail(value)}
+     value={signInEmail}
    />
      <Text>Nom</Text>
    <Input textAlign='center'
     containerStyle = {{marginBottom: 5, width: '55%'}}
-     onChangeText={(value) => setLastNameSignUp(value)}
-     value={lastNameSignUp}
+     onChangeText={(value) => setSignInName(value)}
+     value={signInName}
    />
     <Text>N° de chambre</Text>
    <Input textAlign='center' keyboardType='numeric'
     containerStyle = {{marginBottom: 5, width: '55%'}}
-     onChangeText={(value) => setRoomNumberSignUp(value)}
-     value={roomNumberSignUp}
+     onChangeText={(value) => setSignInRoom(value)}
+     value={signInRoom}
    />
   <TouchableOpacity
       style={styles.button}
-      onPress={() => {handleSubmitSignup()}} >
+      onPress={() => {handleSubmitSignin()}} >
       <Text>Valider</Text>
     </TouchableOpacity>
 
-<Text>{listErrorsSignup}</Text></> : null}
-
-
-
-
+<Text>{listErrorsSignup}</Text></>}
 
     
 </View>
