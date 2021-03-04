@@ -4,7 +4,6 @@ import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import ButtonValider from '../components/ButtonValider';
 
-
 export default function LoginScreen(props) {
     const [email, setEmail] = useState();
     const [name, setName] = useState();
@@ -38,7 +37,7 @@ export default function LoginScreen(props) {
      />
     <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('Question1')}} >
+        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
         <Text>Valider</Text>
       </TouchableOpacity>
 </View>

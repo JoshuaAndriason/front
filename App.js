@@ -25,6 +25,7 @@ import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
 import RecommendationScreen from './screens/RecommendationScreen';
+import InscriptionScreen from './screens/InscriptionScreen';
 
 // IMPORT REDUCER 
 import MenuScreen from './screens/MenuScreen'
@@ -97,6 +98,7 @@ export default function App(props) {
        <Stack.Screen name="Menu" component={MenuScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
        <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
+       <Stack.Screen name="Inscription" component={InscriptionScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>
