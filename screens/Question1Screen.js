@@ -3,11 +3,30 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
-
 var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
 
-export default function Question1Screen(props) {
+function setMotivation(answer) {
+  const motivation;
 
+  switch (answer) {
+    case "Le travail":
+      motivation = "work";
+      break;
+    case "Les balades":
+      motivation = "stroll";
+      break;
+    case "Une date à fêter":
+      motivation = "celebration"
+      break;
+    case "Profiter de l'hôtel":
+      motivation = "hotel"
+  }
+}
+
+
+export default function Question1Screen(props) {
+  const [checked, setChecked] = useState('');
+  console.log("option:", checked);
   return (
     <View style={styles.container}>
 
@@ -18,11 +37,16 @@ export default function Question1Screen(props) {
         <Text style={{ marginTop: 20 }}>Venez vous à Paris pour :</Text>
         {checkBoxList.map((option, i) => {
           return (
-            <CheckBox 
-              key={i} 
+            <CheckBox
+              key={i}
               style={{ marginTop: 5 }}
-              ontainerStyle={{ backgroundColor: 'transparent', borderColor: 'transparent', width: '50%' }}
+              containerStyle={{ backgroundColor: 'transparent', borderColor: 'transparent', width: '50%' }}
               title={option}
+              checked={checked === option ? true : false}
+              onPress={() => {
+                setChecked(option)
+                setMotivation(option)
+              }}
             />
           )
         })}
