@@ -25,11 +25,8 @@
     "react": "16.13.1",
     "react-datepicker": "^3.6.0",
     "react-dom": "16.13.1",
-<<<<<<< HEAD
     "react-hooks-useform": "^0.1.86",
-=======
     "react-hook-form": "^6.15.4",
->>>>>>> 6059f260095b36dad1d315cd46bd73aad0698b07
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-communications": "^2.2.1",
     "react-native-elements": "^3.2.0",
