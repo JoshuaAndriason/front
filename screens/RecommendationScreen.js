@@ -22,14 +22,14 @@ export default function RecommendationScreen(props) {
             }}>
             <Text style={styles.text}>Restauration</Text>
           </TouchableOpacity>
-          {isRestaurantVisible ? 
+          {isRestaurantVisible ?
             <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
 
               <TouchableOpacity
                 style={styles.list}
-        >
+              >
                 <Text style={styles.text}>Restaurant "Le Procope"</Text>
-                <TouchableOpacity style={styles.button} onPress={()=>props.navigation.navigate("DetailRecommendation")}><Text style={{color: "white"}}>Voir</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("DetailRecommendation")}><Text style={{ color: "white" }}>Voir</Text></TouchableOpacity>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -37,9 +37,9 @@ export default function RecommendationScreen(props) {
                 onPress={() => console.log('{props.navigation.navigate()}')}>
                 <Text style={styles.text}>Restaurant "La Capsule"</Text>
               </TouchableOpacity>
-            </View> 
+            </View>
             : null
-            }
+          }
         </View>
         <View style={styles.block}>
           <TouchableOpacity
@@ -47,14 +47,14 @@ export default function RecommendationScreen(props) {
             onPress={() => setIsFlaneriesVisible(!isFlaneriesVisible)}>
             <Text style={styles.text}>Flâneries</Text>
           </TouchableOpacity>
-          {isFlaneriesVisible ? 
+          {isFlaneriesVisible ?
             <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
 
               <TouchableOpacity
                 style={styles.list}
-        >
+              >
                 <Text style={styles.text}>La Coupole</Text>
-                <TouchableOpacity style={styles.button} onPress={()=>props.navigation.navigate("")}><Text style={{color: "white"}}>Voir</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("")}><Text style={{ color: "white" }}>Voir</Text></TouchableOpacity>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -62,9 +62,9 @@ export default function RecommendationScreen(props) {
                 onPress={() => console.log('{props.navigation.navigate()}')}>
                 <Text style={styles.text}>Flâneries 1</Text>
               </TouchableOpacity>
-            </View> 
+            </View>
             : null
-            }
+          }
         </View>
       </ScrollView>
     </View>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: 'space-between'
-  }, 
+  },
   button: {
     borderColor: "#6EBA8E",
     backgroundColor: "#6EBA8E",

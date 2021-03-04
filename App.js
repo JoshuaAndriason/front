@@ -25,10 +25,10 @@ import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
 import RecommendationScreen from './screens/RecommendationScreen';
+import MenuScreen from './screens/MenuScreen'
 import InscriptionScreen from './screens/InscriptionScreen';
 
 // IMPORT REDUCER 
-import MenuScreen from './screens/MenuScreen'
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
