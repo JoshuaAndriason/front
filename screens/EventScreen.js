@@ -12,10 +12,21 @@ export default function EventScreen(props) {
   const [isComing, setIsComing]= useState(false)
 
 
+  var handleSubmit = () => {
+    //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
+    const data = await fetch('http://172.17.1.187:3000/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `isComing=${isComing}`
+    })
+    const body = await data.json()
+  }
+
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
 function setAnswer(answer) {
   console.log(answer, "kf,fjf");
+
 
   if (answer === "Oui, je viens") {
     setIsComing(true)
@@ -25,8 +36,10 @@ function setAnswer(answer) {
     setIsComing(false)
 }
 
+// const toggle overlay affiche message de conf et fait la requete en meme temps//
   const toggleOverlay = () => {
     setVisible(!visible);
+    handleSubmit()
   };
 
   return (

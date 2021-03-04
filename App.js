@@ -9,7 +9,10 @@ import { FontAwesome } from '@expo/vector-icons';
 // IMPORT SCREEN 
 import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9cdc4664f433fe9ea527b38e1345272642ea93c7
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
