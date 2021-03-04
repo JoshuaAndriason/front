@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-import {connect} from 'react-redux';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
@@ -14,10 +13,14 @@ export function InscriptionScreen(props) {
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
     const [signInRoom, setSignInRoom] = useState('')
+    const [localToken, setLocalToken] = useState('')
+
 
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
+   
+
 
     useEffect(() => {
       AsyncStorage.getItem('pseudo', (err, value) => {
@@ -37,7 +40,7 @@ export function InscriptionScreen(props) {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
       })
-  
+
       const body = await data.json()
      console.log(body)
      if(body.result == true){
@@ -46,18 +49,23 @@ export function InscriptionScreen(props) {
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
-    }}
+
+
+      
+    } 
+    setLocalToken(body.token)
+    AsyncStorage.setItem('token',localToken)}
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.187:3000/sign-in', {
+      const data = await fetch('http://172.17.1.186:3000/sign-in', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
       })
   
       const body = await data.json()
-  console.log('baod',body)
+
 
       if(body.result == true){
         props.addToken(body.token)
@@ -69,6 +77,10 @@ export function InscriptionScreen(props) {
       if(userExists){
         props.navigation.navigate("BottomNavigator")
       }
+
+
+
+     
     
   return (
     <View style={styles.container}>

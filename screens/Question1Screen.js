@@ -6,7 +6,11 @@ import HomeImage from '../components/HomeImage'
 var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
 
 function setMotivation(answer) {
+<<<<<<< HEAD
 let motivation
+=======
+  let motivation;
+>>>>>>> 76f97a74600dd12b223508735500bb0858d35bec
 
   switch (answer) {
     case "Le travail":
