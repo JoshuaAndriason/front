@@ -31,7 +31,7 @@ import MenuScreen from './screens/MenuScreen'
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
-
+import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
 const store = createStore(combineReducers({idArticle}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -96,6 +96,7 @@ export default function App(props) {
        <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
        <Stack.Screen name="Menu" component={MenuScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
+       <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>

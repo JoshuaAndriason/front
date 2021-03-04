@@ -6,34 +6,32 @@ import HomeImage from '../components/HomeImage'
 
 
 export default function Question2Screen(props) {
-
+var checkBoxList =["Cest prévu !","Non, merci."]
   return (
    
 
 <View style={styles.container}>
     
     <HomeImage/>
+<View style={styles.border}>
+<Text style={styles.pagination}>2/3</Text>
+    <Text style={styles.titleForm}>Envie de bien commencer la journée ?</Text>
 
-    <Text h4>Commençons par vous en particulier...</Text>
 
-    <Text h4 style={{marginTop:20}}>2/3</Text>
 
-    <Text h2 style={{marginTop:20, marginBottom:20}}>Envie de bien commencer la journée ?</Text>
+    <Text style={{marginTop:20}}>Que direz-vous d'un petit-déjeuner Parisien ? Très sélectif et soigneusement préparer sur un plateau, servi soit dans l'athmosphère typique de la cave voûtée ou dans l'intimité de votre chambre.</Text>
  
-    <Text style={styles.textCenter}>Que direz-vous d'un petit-déjeuner Parisien ? Très sélectif et soigneusement préparer sur un plateau, servi soit dans l'athmosphère typique de la cave voûtée ou dans l'intimité de votre chambre.</Text>
+    
 
-    <CheckBox style={{marginTop:15}}
+{checkBoxList.map((e,i)=>{return(<CheckBox key={i} style={{marginTop:5}}
   containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='Cest prévu !'
-  // checked={this.state.checked}
-  />
+  title ={e}
 
-    <CheckBox style={{marginTop:15}}
-  containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
-  title ='Non, merci.'
-  // checked={this.state.checked}
-  />
+  />)})}
 
+
+
+</View>
 <TouchableOpacity
         style={styles.button}
         onPress={() => {props.navigation.navigate('Question3')}} >
@@ -53,6 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
+    
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -60,11 +59,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
-    width: '40%' 
+    width: '40%' ,
+    borderRadius:5,
   },
   list: {
       width: '100%',
     },
+    border:{
+      borderColor:'#AADEC0',
+      borderWidth:1,
+      width:"90%",
+      height:'55%',
+      margin:10,
+      padding:20
+
+    },titleForm:{
+      fontSize:15,
+      fontWeight:'bold'
+    },pagination:{
+      borderColor:'#AADEC0',
+      borderBottomWidth:1,
+      marginBottom:20,
+      paddingTop:0,
+      textAlign:'right',
+      color:'#AADEC0',
+      fontWeight:'bold',
+      fontSize:16
+    }
 });
 
 
