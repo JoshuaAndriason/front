@@ -6,7 +6,7 @@ import HomeImage from '../components/HomeImage'
 var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
 
 function setMotivation(answer) {
-  const motivation;
+  let motivation;
 
   switch (answer) {
     case "Le travail":
