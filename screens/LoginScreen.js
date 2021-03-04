@@ -2,12 +2,49 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-import ButtonValider from '../components/ButtonValider';
+
 
 export default function LoginScreen(props) {
-    const [email, setEmail] = useState();
-    const [name, setName] = useState();
-    const [room, setRoom] = useState();
+    
+
+    const [signInEmail, setSignInEmail] = useState('')
+    const [signInName, setSignInName] = useState('')
+    const [signInRoom, setSignInRoom] = useState('')
+
+    const [userExists, setUserExists] = useState(false)
+
+    const [listErrorsSignin, setErrorsSignin] = useState([])
+    
+
+    var handleSubmitSignin = async () => {
+ 
+      const data = await fetch('http://172.17.1.187:3000/sign-in', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
+      })
+  
+      const body = await data.json()
+  
+      if(body.result == true){
+        
+        setUserExists(true)
+        
+      }  else {
+        setErrorsSignin(body.error)
+      }
+    }
+  
+    if(userExists){
+      props.navigation.navigate("BottomNavigator")
+    }
+  
+    var tabErrorsSignin = listErrorsSignin.map((error,i) => {
+      return(<Text>{error}</Text>)
+    })
+  
+  
+  
 
   return (
    
@@ -20,24 +57,24 @@ export default function LoginScreen(props) {
       <Text style={{marginTop:20}} >Adresse e-mail</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
-       onChangeText={(value) => setEmail(value)}
-       value={email}
+       onChangeText={(value) => setSignInEmail(value)}
+       value={signInEmail}
      />
        <Text>Nom</Text>
      <Input textAlign='center'
       containerStyle = {{marginBottom: 5, width: '55%'}}
-       onChangeText={(value) => setName(value)}
-       value={name}
+       onChangeText={(value) => setSignInName(value)}
+       value={signInName}
      />
       <Text>N° de chambre</Text>
      <Input textAlign='center' keyboardType='numeric'
       containerStyle = {{marginBottom: 5, width: '55%'}}
-       onChangeText={(value) => setRoom(value)}
-       value={room}
+       onChangeText={(value) => setSignInRoom(value)}
+       value={signInRoom}
      />
     <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('BottomNavigator')}} >
+        onPress={() => {handleSubmitSignin()}} >
         <Text>Valider</Text>
       </TouchableOpacity>
 </View>
