@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 
 
-
-export default function InscriptionScreen(props) {
+export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
@@ -18,6 +18,16 @@ export default function InscriptionScreen(props) {
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
+
+    useEffect(() => {
+      AsyncStorage.getItem('pseudo', (err, value) => {
+        if (value) {
+          setPseudo(value);
+          setPseudoIsSubmited(true);
+        }
+      });
+    }, []);
+  
 
     var handleSubmitSignup = async () => {
     
@@ -32,6 +42,7 @@ export default function InscriptionScreen(props) {
      console.log(body)
      if(body.result == true){
       setUserExists(true)
+      props.addToken(body.token)
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
@@ -49,9 +60,8 @@ export default function InscriptionScreen(props) {
   console.log('baod',body)
 
       if(body.result == true){
-        
+        props.addToken(body.token)
         setUserExists(true)
-        
       }  else {
         setErrorsSignin(body.error)
       }
@@ -136,6 +146,19 @@ export default function InscriptionScreen(props) {
    
   );
 }
+function mapDispatchToProps(dispatch){
+  return {
+    addToken: function(token){
+      dispatch({type: 'addToken', token: token})
+    }
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(InscriptionScreen)
+
 
 const styles = StyleSheet.create({
   container: {

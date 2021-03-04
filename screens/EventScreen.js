@@ -9,11 +9,21 @@ export default function EventScreen(props) {
 
   const [visible, setVisible] = useState(false);
   const [checked, setChecked]= useState("");
+  const [isComing, setIsComing]= useState(false)
 
 
-  var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois","A voir selon le déroulement de ma journée"]
+  var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
+console.log(isComing);
+function setAnswer(answer) {
+  console.log(answer, "kf,fjf");
 
+  if (answer === "Oui, je viens") {
+    setIsComing(true)
 
+  }
+  else if (answer === "Dommage ! Une prochaine fois")
+    setIsComing(false)
+}
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -39,16 +49,16 @@ export default function EventScreen(props) {
     containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
     title ={option}
     checked = {checked === option ? true : false }
-    onPress = {() => setChecked(option)}
+    onPress = {() => {
+      setChecked(option)
+      setAnswer(option)
+     }}
 
   />)})}
 
 
-
+<Button title="VALIDER" onPress={toggleOverlay} />
 </View>
-
-      <Button title="VALIDER" onPress={toggleOverlay} />
-
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>

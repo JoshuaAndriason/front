@@ -31,8 +31,9 @@ import InscriptionScreen from './screens/InscriptionScreen';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
+import token from './reducers/token'
 import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
-const store = createStore(combineReducers({idArticle}));
+const store = createStore(combineReducers({idArticle, token}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
