@@ -46,7 +46,7 @@ export default function MenuScreen(props){
               placeholder={"ex: 9:30"}
               value={values.heure}
               keyboardType={'numeric'}
-              label={}
+            
             />
             <Text>Heure</Text>
 
