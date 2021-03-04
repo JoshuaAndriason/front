@@ -4,7 +4,6 @@ import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
 
-
 export default function LoginScreen(props) {
     
 
@@ -15,20 +14,20 @@ export default function LoginScreen(props) {
     const [userExists, setUserExists] = useState(false)
 
     const [listErrorsSignin, setErrorsSignin] = useState([])
-    const [listErrorsSignup, setErrorsSignup] = useState([])
+    
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('/sign-in', {
+      const data = await fetch('http://172.17.1.187:3000/sign-in', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `emailFromFront=${signInEmail}&nameFromFront=${signInName}&roomFromFront=${signInRoom}`
+        body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
       })
   
       const body = await data.json()
   
       if(body.result == true){
-        props.addToken(body.token)
+        
         setUserExists(true)
         
       }  else {
@@ -37,16 +36,14 @@ export default function LoginScreen(props) {
     }
   
     if(userExists){
-      return <Redirect to='/HomeScreen'/>
+      props.navigation.navigate("BottomNavigator")
     }
   
     var tabErrorsSignin = listErrorsSignin.map((error,i) => {
       return(<Text>{error}</Text>)
     })
   
-    var tabErrorsSignup = listErrorsSignup.map((error,i) => {
-      return(<Text>{error}</Text>)
-    })
+  
   
 
   return (
@@ -77,7 +74,7 @@ export default function LoginScreen(props) {
      />
     <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate("BottomNavigator"); handleSubmitSignin()}} >
+        onPress={() => {handleSubmitSignin()}} >
         <Text>Valider</Text>
       </TouchableOpacity>
 </View>
