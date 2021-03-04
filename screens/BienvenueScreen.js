@@ -10,7 +10,7 @@ export default function BienvenueScreen(props) {
         
 <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('Signin')}}>
+        onPress={() => {props.navigation.navigate('Question1')}}>
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
 
