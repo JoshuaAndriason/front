@@ -20,7 +20,7 @@ export default function MenuScreen(props) {
 
         <View>
           <Formik
-            initialValues={{ heure: ":", quantity: "", croissant: "", painChololat: "", chocoChaud: "", coffee: "" }}
+            initialValues={{ heure: ":", quantity: "", croissant: "", painChocolat: "", chocoChaud: "", coffee: "" }}
 
             onSubmit={values => {
               console.log("values:" , values)
@@ -58,17 +58,17 @@ export default function MenuScreen(props) {
                   <View>
                     <Text>En chambre</Text>
                     <RadioButton
-                      value='InRoom'
-                      status={checked === 'first' ? 'checked' : 'unchecked'}
-                      onPress={() => setChecked('first')}
+                      value='inRoom'
+                      status={checked === 'inRoom' ? 'checked' : 'unchecked'}
+                      onPress={() => setChecked('inRoom')}
 
                     />
 
                     <Text>Sur place</Text>
                     <RadioButton
                       value='onSite'
-                      status={checked === 'second' ? 'checked' : 'unchecked'}
-                      onPress={() => setChecked('second')}
+                      status={checked === 'onSite' ? 'checked' : 'unchecked'}
+                      onPress={() => setChecked('onSite')}
 
                     />
 
@@ -105,7 +105,7 @@ export default function MenuScreen(props) {
                       onChangeText={handleChange("painChocolat")}
                       placeholder={"ex: 1"}
                       keyboardType={'numeric'}
-                      value={values.painChololat}
+                      value={values.painChocolat}
 
 
                     />
