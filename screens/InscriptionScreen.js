@@ -18,7 +18,7 @@ export default function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch('http://172.17.1.187:3000/sign-up', {
+      const data = await fetch('http://172.17.1.186:3000/sign-up', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -28,6 +28,7 @@ export default function InscriptionScreen(props) {
      console.log(body)
      if(body.result == true){
       setUserExists(true)
+      props.addToken(body.token)
       } else {
       setErrorsSignup(body.error)
       }
