@@ -1,8 +1,21 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 export default function BienvenueScreen(props) {
+const [isExist,setIsExist] = useState(false)
+  AsyncStorage.getItem("token", function(error, data) {
+    console.log("data",data);
+    setIsExist(true)
+   });
+
+   
+
+
+
     return (
 
       
@@ -10,7 +23,7 @@ export default function BienvenueScreen(props) {
         
 <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('Question1')}}>
+        onPress={() => {setIsExist?props.navigation.navigate('BottomNavigator'):props.navigation.navigate('Inscription')}}>
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
 

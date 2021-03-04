@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function InscriptionScreen(props) {
@@ -14,20 +14,22 @@ export default function InscriptionScreen(props) {
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
     const [signInRoom, setSignInRoom] = useState('')
+    const [localToken, setLocalToken] = useState('')
+
 
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
+   
+
 
     var handleSubmitSignup = async () => {
-    
-    
       const data = await fetch('http://172.17.1.187:3000/sign-up', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
       })
-  
+
       const body = await data.json()
      console.log(body)
      if(body.result == true){
@@ -35,7 +37,12 @@ export default function InscriptionScreen(props) {
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
-    }}
+
+
+      
+    } 
+    setLocalToken(body.token)
+    AsyncStorage.setItem('token',localToken)}
 
     var handleSubmitSignin = async () => {
  
@@ -46,7 +53,7 @@ export default function InscriptionScreen(props) {
       })
   
       const body = await data.json()
-  console.log('baod',body)
+
 
       if(body.result == true){
         
@@ -59,6 +66,10 @@ export default function InscriptionScreen(props) {
       if(userExists){
         props.navigation.navigate("BottomNavigator")
       }
+
+
+
+     
     
   return (
     <View style={styles.container}>
