@@ -5,3 +5,4 @@ export default function(idRoomDirectory = '', action) {
         return idRoomDirectory;
     }
 }
+console.log(idRoomDirectory)
