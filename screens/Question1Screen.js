@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+
+import IPadress from "../url"
 
 var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
 
@@ -25,8 +27,37 @@ function setMotivation(answer) {
 
 
 export default function Question1Screen(props) {
+  var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
   const [checked, setChecked] = useState('');
-  console.log("option:", checked);
+
+
+
+  async function  handleSubmit(){
+    console.log("answer:", checked);
+    //Set the value of user's motivation
+   let motivation;
+    switch (checked) {
+      case "Le travail":
+         motivation = "work"
+        break;
+      case "Les balades":
+         motivation = "stroll"
+        break;
+      case "Une date à fêter":
+        motivation = "celebration"
+        break;
+      case "Profiter de l'hôtel":
+         motivation = "hotel"
+    }
+
+    await fetch(`http://${IPadress}:3000/questionnary/motivation/${motivation}`)
+    .then(res => res.json())
+    .then(data => console.log("data", data))
+    
+  }
+
+  
+
   return (
     <View style={styles.container}>
 
@@ -45,7 +76,6 @@ export default function Question1Screen(props) {
               checked={checked === option ? true : false}
               onPress={() => {
                 setChecked(option)
-                setMotivation(option)
               }}
             />
           )
@@ -53,7 +83,10 @@ export default function Question1Screen(props) {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => { props.navigation.navigate('Question2') }} >
+        onPress={() => { 
+            handleSubmit()
+          props.navigation.navigate('Question2')
+           }} >
         <Text>Suivant</Text>
       </TouchableOpacity>
 

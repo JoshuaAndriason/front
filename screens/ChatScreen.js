@@ -1,10 +1,5 @@
-// Example to Send WhatsApp Message from React Native App
-// https://aboutreact.com/send-whatsapp-message/
-
-// import React in our code
 import React, {useState} from 'react';
 
-// import all the components we are going to use
 import {
   SafeAreaView,
   StyleSheet,

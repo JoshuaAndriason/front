@@ -18,7 +18,7 @@ import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 import RoomDirectoryDetailScreen from './screens/RoomDirectoryDetailScreen'
-import RoomDirectoryBadgeScreen from './screens/RoomDirectoryDetailScreen'
+import RoomDirectoryBadgeScreen from './screens/RoomDirectoryBadgeScreen'
 import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
@@ -32,7 +32,9 @@ import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
 import token from './reducers/token'
 import letterRoomDirectory from './reducers/letterRoomDirectory';
-const store = createStore(combineReducers({idArticle, token,letterRoomDirectory}));
+import badgeRoomDirectory from './reducers/badgeRoomDirectory';
+
+const store = createStore(combineReducers({idArticle, token,letterRoomDirectory, badgeRoomDirectory}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 //FUNCTION BOTTOM NAVIGATION

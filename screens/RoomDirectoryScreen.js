@@ -4,6 +4,9 @@ import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from '
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import {connect} from 'react-redux';
+import IPadress from "../url"
+
+
 function RoomDirectoryScreen(props) {
   const list = [
     {
@@ -85,42 +88,46 @@ function RoomDirectoryScreen(props) {
       title: 'Z',
     },
   ]
+
+    
+  const badge = [
+    {
+      badge: 'ACCUEIL',
+    },
+    {
+      badge: 'DEPART',
+    },
+    {
+      badge: 'HONESTYBAR',
+    },
+    {
+      badge: 'PRESSING',
+    },
+    {
+      badge: 'WIFI',
+    }
+  ]
   return(
 <View style={styles.container}>
 
 <HomeImage/>
 
-<Text style={{marginBottom:10}} h4>Notre hôtel de A à Z</Text>
+<Text style={{marginBottom:20}} h4>Notre hôtel de A à Z</Text>
 
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
-    <Text>ACCUEIL</Text>
-  </TouchableOpacity>
 
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
-    <Text>DÉPART</Text>
-  </TouchableOpacity>
+<View style={styles.badge}>
+{
+          badge.map((item, i) => (
+      <TouchableOpacity
+        style={styles.button} key={i}
+        onPress={() => {props.onSubmitBadge(item.badge);props.navigation.navigate('RoomDirectoryBadge')}}>
+        <Text>{item.badge}</Text>
+      </TouchableOpacity>
+      ))
+    }
+</View>
 
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
-    <Text>HONESTY BAR</Text>
-  </TouchableOpacity>
 
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
-    <Text>PRESSING</Text>
-  </TouchableOpacity>
-
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
-    <Text>WIFI</Text>
-  </TouchableOpacity>
   <ScrollView style={{width: '100%'}}>
           {
           list.map((item, i) => (
@@ -140,6 +147,9 @@ function RoomDirectoryScreen(props) {
     return {
       onSubmitLetter: function(letter) { 
         dispatch( {type: 'saveLetter', letterRoomDirectory: letter }) 
+      },onSubmitBadge: function(badge) { 
+        console.log(badge, "fred")
+        dispatch( {type: 'saveBadge', badgeRoomDirectory: badge }) 
       }
     }
   }
@@ -165,9 +175,11 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#AADEC0",
-    borderRadius:5,
-    padding: 10,
-    width: '30%' 
+    borderRadius:50,
+    marginBottom: 5,
+    marginLeft: 5,
+    width: '30%',
+    textAlign: "center", 
   },
   list: {
       width: '100%',
@@ -178,4 +190,8 @@ const styles = StyleSheet.create({
   ScrollView: {
     width: '100%',
     },
+    badge : {
+      width: '100%',
+
+    }
 });

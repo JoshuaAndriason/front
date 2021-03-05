@@ -1,14 +1,15 @@
-
 import React, { useState } from 'react';
 import { StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {connect} from 'react-redux'
 
 
 
-export default function BienvenueScreen(props) {
+function BienvenueScreen(props) {
 const [isExist,setIsExist] = useState(false)
   AsyncStorage.getItem("token", function(error, data) {
     console.log("data",data);
+    props.addToken(data);
     setIsExist(true)
    });
 
@@ -24,17 +25,31 @@ const [isExist,setIsExist] = useState(false)
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('Inscription')}}>
-        <Text>Inscription</Text>
-      </TouchableOpacity>
 
-    </ImageBackground>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('Inscription')}}>
+    <Text>Inscription</Text>
+  </TouchableOpacity>
 
+</ImageBackground>
   );
  }
+
+ function mapDispatchToProps(dispatch){
+  return {
+    addToken: function(token){
+      dispatch({type: 'addToken', token: token})
+    }
+  }
+}
  
+export default connect(
+  null,
+  mapDispatchToProps
+)(BienvenueScreen)
+
+
  const styles =StyleSheet.create({
   textBold:{
     marginTop: 100,fontWeight:'bold',textAlign:'center',marginBottom:50
