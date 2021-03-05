@@ -3,9 +3,9 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {connect} from 'react-redux';
 
-
-export default function InscriptionScreen(props) {
+export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
@@ -24,8 +24,20 @@ export default function InscriptionScreen(props) {
    
 
 
+    useEffect(() => {
+      AsyncStorage.getItem('pseudo', (err, value) => {
+        if (value) {
+          setPseudo(value);
+          setPseudoIsSubmited(true);
+        }
+      });
+    }, []);
+  
+
     var handleSubmitSignup = async () => {
-      const data = await fetch('http://172.17.1.187:3000/sign-up', {
+    
+    
+      const data = await fetch('http://172.17.1.186:3000/sign-up', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -35,6 +47,7 @@ export default function InscriptionScreen(props) {
      console.log(body)
      if(body.result == true){
       setUserExists(true)
+      props.addToken(body.token)
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
@@ -44,7 +57,7 @@ export default function InscriptionScreen(props) {
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.187:3000/sign-in', {
+      const data = await fetch('http://172.17.1.186:3000/sign-in', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
@@ -54,9 +67,8 @@ export default function InscriptionScreen(props) {
 
 
       if(body.result == true){
-        
+        props.addToken(body.token)
         setUserExists(true)
-        
       }  else {
         setErrorsSignin(body.error)
       }
@@ -160,6 +172,19 @@ console.log(isInscription)
    
   );
 }
+function mapDispatchToProps(dispatch){
+  return {
+    addToken: function(token){
+      dispatch({type: 'addToken', token: token})
+    }
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(InscriptionScreen)
+
 
 const styles = StyleSheet.create({
   container: {
