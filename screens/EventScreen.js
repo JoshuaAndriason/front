@@ -3,30 +3,27 @@ import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
-
-
 export default function EventScreen(props) {
 
   const [visible, setVisible] = useState(false);
   const [checked, setChecked]= useState("");
   const [isComing, setIsComing]= useState(false)
 
-
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
-    const data = await fetch('http://192.168.0.18:3000/', {
+    console.log("ahhhhhh");
+    const data = fetch('http://172.17.1.187:3000/isComing', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `isComing=${isComing}`
     })
-    const body = await data.json()
+    // const body = await data.json()
   }
 
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
 function setAnswer(answer) {
   console.log(answer, "kf,fjf");
-
 
   if (answer === "Oui, je viens") {
     setIsComing(true)
@@ -54,7 +51,7 @@ function setAnswer(answer) {
 
     <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
  
-    
+
 
     {checkBoxList.map((option,i) => {
       return(
@@ -82,6 +79,7 @@ function setAnswer(answer) {
 </View>
 
 
+
   );
 }
 
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-    
+
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -114,17 +112,18 @@ const styles = StyleSheet.create({
       margin:10,
       padding:20
 
-    },titleForm:{
-      fontSize:15,
-      fontWeight:'bold'
-    },pagination:{
-      borderColor:'#AADEC0',
-      borderBottomWidth:1,
-      marginBottom:20,
-      paddingTop:0,
-      textAlign:'right',
-      color:'#AADEC0',
-      fontWeight:'bold',
-      fontSize:16
-    }
+},titleForm:{
+  fontSize:15,
+  fontWeight:'bold'
+},pagination:{
+  borderColor:'#AADEC0',
+  borderBottomWidth:1,
+  marginBottom:20,
+  paddingTop:0,
+  textAlign:'right',
+  color:'#AADEC0',
+  fontWeight:'bold',
+  fontSize:16
+}
 });
+

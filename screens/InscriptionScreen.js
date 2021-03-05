@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
-
 
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
     const [isInscription,setIsInscription] = useState(true);
+    const [isConnexion,setIsConnexion] = useState(true);
 
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
@@ -46,7 +47,9 @@ export function InscriptionScreen(props) {
       props.navigation.navigate('BottomNavigator');
       } else {
       setErrorsSignup(body.error)
-    }}
+    } 
+    setLocalToken(body.token)
+    AsyncStorage.setItem('token',localToken)}
 
     var handleSubmitSignin = async () => {
  
@@ -69,23 +72,42 @@ export function InscriptionScreen(props) {
       if(userExists){
         props.navigation.navigate("BottomNavigator")
       }
+
+
+if(isInscription){
+  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
+}else{
+  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
+}
+console.log(isInscription)
+
+     
     
   return (
     <View style={styles.container}>
     
     <HomeImage/>
-    <TouchableOpacity
-      style={styles.button}
+   
+    <View>
+    <View style={{ flexDirection: 'row',borderColor:'black'}}>
+      <TouchableOpacity
+      style={backgroundColor}
       onPress={() => {setIsInscription(true)}} >
-      <Text>Inscription</Text>
+      <Text style={styles.textLogin}>Inscription</Text>
     </TouchableOpacity>
+    
     <TouchableOpacity
-      style={styles.button}
+      style={styles.onglet}
       onPress={() => {setIsInscription(false)}} >
-      <Text>Connexion</Text>
+      <Text style={styles.textLogin}>Connexion</Text>
     </TouchableOpacity>
+    </View>
+     
+      </View> 
 
-    {isInscription?<><Text h4>Inscription</Text>
+      
+ 
+    {isInscription?<><Text style={styles.textLogin}>Inscription</Text>
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
@@ -112,7 +134,7 @@ export function InscriptionScreen(props) {
       <Text>Valider</Text>
     </TouchableOpacity>
 
-<Text>{listErrorsSignup}</Text></> : <><Text h4>Connexion</Text>
+<Text>{listErrorsSignup}</Text></> : <><Text style={styles.textLogin}>Connexion</Text>
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
@@ -174,5 +196,38 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
-    width: '40%' }
+    width: '40%' 
+  },box:{
+    width:'40%',
+    padding:5,
+    margin:3,
+     borderWidth: 2,
+      borderColor:'#AADEC0'
+  },inner:{
+      alignItems: 'center',
+      justifyContent:'center'
+
+  },text:{
+    padding:5,
+      alignItems: 'center',
+      alignContent:'center',
+      justifyContent:'center',
+      margin:10,
+  },onglet:{
+      alignItems: "center",
+      padding: 10,
+      width: '50%',
+      fontWeight: 'bold',
+      marginBottom: 20,
+      borderColor: '#AADEC0',
+      borderBottomWidth: 2,
+   },textLogin:{
+    fontSize:18,
+    fontWeight:'bold'
+  },title:{
+    color:'#AADEC0',
+    fontSize:18,
+    fontWeight:'bold'
+  }
+   
 });

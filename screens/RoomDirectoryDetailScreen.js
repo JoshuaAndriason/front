@@ -1,23 +1,65 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
-import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from 'react-native-elements';
+import {Input, Text,Card} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 
 
+export function RoomDirectoryDetailScreen(props) {
+    const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
+       useEffect(  () => { var room = async() =>{
+        var rawResponse = await fetch(`http://172.17.1.187:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
+        var response = await rawResponse.json();
+       setDetailRoomDirectory(response.filterRoomDirectory)
+        
+       }
 
-export default function RoomDirectoryDetailScreen(props) {
-    
+  room()       
+
+}, []);
+
+console.log('fggg',detailRoomDirectory)
+
+
   return(
-
-
-
 <View style={styles.container}>
-<Text>ECRAN ROOM DIRECTORY DETAIL</Text>
+<HomeImage/>
+<ScrollView style={{marginTop: 15}}>
+
+
+
+
+  {
+    detailRoomDirectory.map((u, i) => {
+      return (
+          
+        <Card key={i}>
+  <Card.Title >{u.itemName}</Card.Title>
+  <Card.Divider/>
+    <Text  style={{marginBottom: 10}}>
+      {u.description}
+    </Text>
+    <Card.Divider/>
+   
+  
+</Card>
+      );
+    })
+  }
+
+</ScrollView>
 </View>
 
 );
 }
+
+function mapStateToProps(state){
+  return {letterRoomDirectory:state.letterRoomDirectory}
+}  export default connect(
+  mapStateToProps, 
+
+)(RoomDirectoryDetailScreen);
 
 const styles = StyleSheet.create({
   container: {
