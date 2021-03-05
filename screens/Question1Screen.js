@@ -3,37 +3,12 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
-<<<<<<< HEAD
 import IPadress from "../url"
-
-=======
-var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
-
-function setMotivation(answer) {
-  let motivation;
-
-  switch (answer) {
-    case "Le travail":
-      motivation = "work";
-      break;
-    case "Les balades":
-      motivation = "stroll";
-      break;
-    case "Une date à fêter":
-      motivation = "celebration"
-      break;
-    case "Profiter de l'hôtel":
-      motivation = "hotel"
-  }
-}
->>>>>>> 9ca4239bab5394bf7e84e920c8f9df1bcd5a014f
 
 
 export default function Question1Screen(props) {
   var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
   const [checked, setChecked] = useState('');
-
-
 
   async function  handleSubmit(){
     console.log("answer:", checked);

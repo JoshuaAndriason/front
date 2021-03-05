@@ -5,6 +5,8 @@ import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
 
+import IPadress from "../url"
+
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
@@ -37,7 +39,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch('http://172.17.1.115:3000/sign-up', {
+      const data = await fetch(`http://${IPadress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -57,7 +59,7 @@ export function InscriptionScreen(props) {
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.115:3000/sign-in', {
+      const data = await fetch(`http://${IPadress}:3000/sign-in`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`

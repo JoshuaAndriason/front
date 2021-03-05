@@ -3,10 +3,35 @@ import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 
+import IPadress from "../url"
 
 
 export default function Question2Screen(props) {
-  var checkBoxList = ["Gourmand de toutes propositions culinaires", "promenades", "Tranquilité souhaitée pendant mon séjour"]
+  var checkBoxList = ["Gourmand de toutes propositions culinaires", "Découvrir la ville", "Tranquilité souhaitée pendant mon séjour"]
+  const [checked, setChecked] = useState('');
+
+
+  async function  handleSubmit(){
+    console.log("answer:", checked);
+    //Set the value of user's motivation
+   let interest;
+    switch (checked) {
+      case "Gourmand de toutes propositions culinaires":
+         interest = "restauration"
+        break;
+      case "Découvrir la ville":
+         interest = "exploration"
+        break;
+      case "Tranquilité souhaitée pendant mon séjour":
+        return
+    }
+
+    await fetch(`http://${IPadress}:3000/questionnary/interest/${interest}`)
+    .then(res => res.json())
+    .then(data => console.log("data", data))
+    
+  }
+
   return (
 
 
@@ -26,10 +51,15 @@ export default function Question2Screen(props) {
 
 
 
-        {checkBoxList.map((e, i) => {
+        {checkBoxList.map((option, i) => {
           return (<CheckBox key={i} style={{ marginTop: 5, width: '100%' }}
             containerStyle={{ backgroundColor: 'transparent', borderColor: 'transparent', width: '100%' }}
-            title={e}
+            title={option}
+            checked={checked === option ? true : false}
+            onPress={() => {
+              setChecked(option)
+            }}
+
 
           />)
         })}
@@ -39,7 +69,10 @@ export default function Question2Screen(props) {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => { props.navigation.navigate('BottomNavigator') }} >
+        onPress={() => { 
+          handleSubmit()
+          // props.navigation.navigate('BottomNavigator') 
+          }} >
         <Text>Confirmer</Text>
       </TouchableOpacity>
 
