@@ -3,6 +3,7 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import IPadress from "../url"
 import {connect} from 'react-redux';
 
 import IPadress from "../url"
@@ -44,7 +45,7 @@ export function InscriptionScreen(props) {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
       })
-
+console.log(IPadress)
       const body = await data.json()
      console.log(body)
      if(body.result == true){
@@ -77,7 +78,8 @@ export function InscriptionScreen(props) {
       }
     }
      
-var backGroundInscription
+var backGroundInscription =''
+var backGroundConnexion =''
     if(isInscription){
      backGroundInscription = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
      backGroundConnexion ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
-
+import IPadress from "../url"
 import HomeImage from "../components/HomeImage"
 
 

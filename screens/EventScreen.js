@@ -3,7 +3,7 @@ import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import {connect} from 'react-redux';
-
+import IPadress from "../url"
 
 export function EventScreen(props) {
 
@@ -14,7 +14,7 @@ export function EventScreen(props) {
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
     console.log("ahhhhhh");
-    const data = fetch('http://172.17.1.115:3000/isComing', {
+    const data = fetch(`http://${IPadress}:3000/isComing`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `isComing=${isComing}&token=${props.token}`

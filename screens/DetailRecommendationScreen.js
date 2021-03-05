@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView,Image } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import IPadress from "../url"
 
 
 export default function DetailRecommendationScreen(props) {

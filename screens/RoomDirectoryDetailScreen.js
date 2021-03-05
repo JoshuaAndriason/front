@@ -3,13 +3,14 @@ import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text,Card} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
+import IPadress from "../url"
 import {connect} from 'react-redux';
 
 
 export function RoomDirectoryDetailScreen(props) {
     const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
        useEffect(  () => { var room = async() =>{
-        var rawResponse = await fetch(`http://172.17.1.187:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
+        var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
         var response = await rawResponse.json();
        setDetailRoomDirectory(response.filterRoomDirectory)
        }
@@ -24,10 +25,6 @@ console.log('fggg',detailRoomDirectory)
 <View style={styles.container}>
 <HomeImage/>
 <ScrollView style={{marginTop: 15}}>
-
-
-
-
   {
     detailRoomDirectory.map((u, i) => {
       return (
@@ -39,8 +36,6 @@ console.log('fggg',detailRoomDirectory)
       {u.description}
     </Text>
     <Card.Divider/>
-   
-  
 </Card>
       );
     })
