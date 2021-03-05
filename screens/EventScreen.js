@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 
-export default function EventScreen(props) {
+
+export function EventScreen(props) {
 
   const [visible, setVisible] = useState(false);
   const [checked, setChecked]= useState("");
@@ -12,13 +14,15 @@ export default function EventScreen(props) {
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
     console.log("ahhhhhh");
-    const data = fetch('http://172.17.1.187:3000/isComing', {
+    const data = fetch('http://172.17.1.115:3000/isComing', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `isComing=${isComing}`
+      body: `isComing=${isComing}&token=${props.token}`
     })
     // const body = await data.json()
   }
+
+  console.log(props.token, "token")
 
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
@@ -82,6 +86,14 @@ function setAnswer(answer) {
 
   );
 }
+
+function mapStateToProps(state){
+  return {token:state.token}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(EventScreen);
 
 const styles = StyleSheet.create({
   container: {
