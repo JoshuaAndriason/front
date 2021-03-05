@@ -9,7 +9,6 @@ import { FontAwesome } from '@expo/vector-icons';
 // IMPORT SCREEN 
 import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
-import LoginScreen from './screens/LoginScreen'
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
@@ -82,7 +81,6 @@ export default function App(props) {
    <NavigationContainer >
      <Stack.Navigator screenOptions={{headerShown: false}}>
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} />
-       <Stack.Screen name="Signin" component={LoginScreen} />
        <Stack.Screen name="Question1" component={Question1Screen} />
        <Stack.Screen name="Question2" component={Question2Screen} />
        <Stack.Screen name="Question3" component={Question3Screen} />
