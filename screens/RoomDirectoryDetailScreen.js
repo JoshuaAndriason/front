@@ -12,9 +12,7 @@ export function RoomDirectoryDetailScreen(props) {
         var rawResponse = await fetch(`http://172.17.1.187:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
         var response = await rawResponse.json();
        setDetailRoomDirectory(response.filterRoomDirectory)
-        
        }
-
   room()       
 
 }, []);

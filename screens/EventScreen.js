@@ -50,7 +50,7 @@ function setAnswer(answer) {
     
     <HomeImage/>
 <View style={styles.border}>
-<Text h1>Thé de soirée - offert</Text>
+<Text style={styles.text}>Thé de soirée - offert</Text>
 
 
     <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
@@ -60,7 +60,7 @@ function setAnswer(answer) {
     {checkBoxList.map((option,i) => {
       return(
       <CheckBox key={i} style={{marginTop:5}}
-    containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
+    containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '100%'}}
     title ={option}
     checked = {checked === option ? true : false }
     onPress = {() => {
@@ -81,6 +81,9 @@ function setAnswer(answer) {
       </Overlay>
 
 </View>
+
+
+
 
 
 
@@ -136,6 +139,10 @@ const styles = StyleSheet.create({
   color:'#AADEC0',
   fontWeight:'bold',
   fontSize:16
+},text:{
+  fontSize:25,
+  fontWeight:'bold',
+  textAlign:'center',
 }
 });
 
