@@ -4,6 +4,7 @@ import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from '
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import {connect} from 'react-redux';
+import IPadress from "../url"
 
 
 function RoomDirectoryScreen(props) {

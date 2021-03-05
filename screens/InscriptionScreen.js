@@ -3,6 +3,7 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import IPadress from "../url"
 import {connect} from 'react-redux';
 
 export function InscriptionScreen(props) {
@@ -33,7 +34,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch('http://172.17.1.186:3000/sign-up', {
+      const data = await fetch(`http://${IPadress}/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -42,7 +43,7 @@ export function InscriptionScreen(props) {
       const body = await data.json()
      console.log(body)
      if(body.result == true){
-      setUserExists(true)
+    
       props.addToken(body.token)
       props.navigation.navigate('BottomNavigator');
       } else {
@@ -64,22 +65,23 @@ export function InscriptionScreen(props) {
 
       if(body.result == true){
         props.addToken(body.token)
-        setUserExists(true)
+        props.navigation.navigate("BottomNavigator")
+
       }  else {
         setErrorsSignin(body.error)
       }
     }
-      if(userExists){
-        props.navigation.navigate("BottomNavigator")
-      }
-
-
-if(isInscription){
-  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
-}else{
-  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
-}
-console.log(isInscription)
+     
+var backGroundInscription =''
+var backGroundConnexion =''
+    if(isInscription){
+     backGroundInscription = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
+     backGroundConnexion ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
+    }else{
+      backGroundConnexion = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
+      backGroundInscription ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
+    }
+console.log('isInscription',isInscription)
 
      
     
@@ -91,13 +93,13 @@ console.log(isInscription)
     <View>
     <View style={{ flexDirection: 'row',borderColor:'black'}}>
       <TouchableOpacity
-      style={backgroundColor}
+      style={ backGroundInscription}
       onPress={() => {setIsInscription(true)}} >
       <Text style={styles.textLogin}>Inscription</Text>
     </TouchableOpacity>
     
     <TouchableOpacity
-      style={styles.onglet}
+      style={backGroundConnexion}
       onPress={() => {setIsInscription(false)}} >
       <Text style={styles.textLogin}>Connexion</Text>
     </TouchableOpacity>

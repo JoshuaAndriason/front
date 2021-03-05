@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import IPadress from "../url"
 
 export default function OrderScreen(props) {
 
