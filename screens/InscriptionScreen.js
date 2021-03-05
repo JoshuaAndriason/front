@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
@@ -16,20 +16,24 @@ export function InscriptionScreen(props) {
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
     const [signInRoom, setSignInRoom] = useState('')
+    const [localToken, setLocalToken] = useState('')
+
 
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
+   
+
 
     useEffect(() => {
-    AsyncStorage.getItem('pseudo', (err, value) => {
-      if (value) {
-        setPseudo(value);
-        setPseudoIsSubmited(true);
-      }
-    });
-  }, []);
-
+      AsyncStorage.getItem('pseudo', (err, value) => {
+        if (value) {
+          setPseudo(value);
+          setPseudoIsSubmited(true);
+        }
+      });
+    }, []);
+  
 
     var handleSubmitSignup = async () => {
     
@@ -39,7 +43,7 @@ export function InscriptionScreen(props) {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
       })
-  
+console.log(IPadress)
       const body = await data.json()
      console.log(body)
      if(body.result == true){
@@ -61,7 +65,7 @@ export function InscriptionScreen(props) {
       })
   
       const body = await data.json()
-  console.log('baod',body)
+
 
       if(body.result == true){
         props.addToken(body.token)
