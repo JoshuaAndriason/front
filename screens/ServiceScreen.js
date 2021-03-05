@@ -35,7 +35,9 @@ content:'Ascenseur',url:'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614
   return(<View key={i} style={styles.box}>
     <View style={styles.inner}>
     <Image source={{ uri: card.url }} style={{ width: 60, height: 60 }}></Image>
-    <View style={styles.text}><Text>{card.content}</Text></View>
+    <View style={styles.text}>
+      <Text>{card.content}</Text>
+      </View>
     </View>
     </View>)
 })

@@ -26,13 +26,17 @@ import Question3Screen from './screens/Question3Screen'
 import RecommendationScreen from './screens/RecommendationScreen';
 import MenuScreen from './screens/MenuScreen'
 import InscriptionScreen from './screens/InscriptionScreen';
+import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
 
 // IMPORT REDUCER 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
-import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
-const store = createStore(combineReducers({idArticle}));
+import token from './reducers/token'
+import letterRoomDirectory from './reducers/letterRoomDirectory';
+
+
+const store = createStore(combineReducers({idArticle, token,letterRoomDirectory}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 

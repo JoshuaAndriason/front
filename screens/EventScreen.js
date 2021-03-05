@@ -2,15 +2,27 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 
 
-
-export default function EventScreen(props) {
+export function EventScreen(props) {
 
   const [visible, setVisible] = useState(false);
   const [checked, setChecked]= useState("");
   const [isComing, setIsComing]= useState(false)
 
+  var handleSubmit = async () => {
+    //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
+    console.log("ahhhhhh");
+    const data = fetch('http://172.17.1.115:3000/isComing', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `isComing=${isComing}&token=${props.token}`
+    })
+    // const body = await data.json()
+  }
+
+  console.log(props.token, "token")
 
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
@@ -25,8 +37,10 @@ function setAnswer(answer) {
     setIsComing(false)
 }
 
+// const toggle overlay affiche message de conf et fait la requete en meme temps//
   const toggleOverlay = () => {
     setVisible(!visible);
+    handleSubmit()
   };
 
   return (
@@ -36,17 +50,17 @@ function setAnswer(answer) {
     
     <HomeImage/>
 <View style={styles.border}>
-<Text h1>Thé de soirée - offert</Text>
+<Text style={styles.text}>Thé de soirée - offert</Text>
 
 
     <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
  
-    
+
 
     {checkBoxList.map((option,i) => {
       return(
       <CheckBox key={i} style={{marginTop:5}}
-    containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '50%'}}
+    containerStyle ={{backgroundColor: 'transparent', borderColor: 'transparent', width: '100%'}}
     title ={option}
     checked = {checked === option ? true : false }
     onPress = {() => {
@@ -69,8 +83,20 @@ function setAnswer(answer) {
 </View>
 
 
+
+
+
+
   );
 }
+
+function mapStateToProps(state){
+  return {token:state.token}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(EventScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +105,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-    
+
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -101,17 +127,22 @@ const styles = StyleSheet.create({
       margin:10,
       padding:20
 
-    },titleForm:{
-      fontSize:15,
-      fontWeight:'bold'
-    },pagination:{
-      borderColor:'#AADEC0',
-      borderBottomWidth:1,
-      marginBottom:20,
-      paddingTop:0,
-      textAlign:'right',
-      color:'#AADEC0',
-      fontWeight:'bold',
-      fontSize:16
-    }
+},titleForm:{
+  fontSize:15,
+  fontWeight:'bold'
+},pagination:{
+  borderColor:'#AADEC0',
+  borderBottomWidth:1,
+  marginBottom:20,
+  paddingTop:0,
+  textAlign:'right',
+  color:'#AADEC0',
+  fontWeight:'bold',
+  fontSize:16
+},text:{
+  fontSize:25,
+  fontWeight:'bold',
+  textAlign:'center',
+}
 });
+
