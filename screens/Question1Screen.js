@@ -2,15 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-<<<<<<< HEAD
 import { connect } from 'react-redux';
 import IPadress from "../url"
 
-=======
 
-import IPadress from "../url"
-
-var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
 
 function setMotivation(answer) {
   let motivation;
@@ -30,7 +25,6 @@ function setMotivation(answer) {
   }
 }
 
->>>>>>> d1d494f7214bd8354a1ac18b5c004d04741eafcc
 
 export function Question1Screen(props) {
   console.log("token", props.token);

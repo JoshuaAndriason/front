@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-<<<<<<< HEAD
-
-=======
->>>>>>> d1d494f7214bd8354a1ac18b5c004d04741eafcc
 import IPadress from "../url"
 
 
