@@ -7,9 +7,6 @@ import {connect} from 'react-redux';
 
 
 function RoomDirectoryScreen(props) {
-
-
-  
   const list = [
     {
       title: 'A',
@@ -135,7 +132,7 @@ function RoomDirectoryScreen(props) {
           {
           list.map((item, i) => (
           <ListItem style={styles.list} key={i} bottomDivider 
-            onPress={() => {props.findClickLetter(item.title)}}>
+            onPress={() => {props.onSubmitLetter(item.title);props.navigation.navigate('RoomDirectoryDetail')}}>
 
               <ListItem.Content>
                 <ListItem.Title>{item.title}</ListItem.Title>
@@ -148,30 +145,18 @@ function RoomDirectoryScreen(props) {
 </View>
   )}
 
-var saveRoomDirectoryId = []
 
-function mapDispatchToProps(dispatch) {
-  return {
-    findClickLetter: function (clickLettertitle) {
-      console.log("letter:" , clickLettertitle);
-      dispatch({type: saveRoomDirectoryId, title: clickLettertitle})
+
+  function mapDispatchToProps(dispatch) {
+    return {
+      onSubmitLetter: function(letter) { 
+        dispatch( {type: 'saveLetter', letterRoomDirectory: letter }) 
+      }
     }
   }
-}
-
-
-
-{/* Export */}
-export default connect(
-  null, 
-  mapDispatchToProps
-)(RoomDirectoryScreen);
-
-
-
-
-
-
+  export default connect(
+    null,mapDispatchToProps)(RoomDirectoryScreen)
+  
 
 const styles = StyleSheet.create({
   container: {

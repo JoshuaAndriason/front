@@ -9,10 +9,6 @@ import { FontAwesome } from '@expo/vector-icons';
 // IMPORT SCREEN 
 import HeaderScreen from './screens/HeaderScreen'
 import BienvenueScreen from './screens/BienvenueScreen'
-<<<<<<< HEAD
-=======
-
->>>>>>> 9cdc4664f433fe9ea527b38e1345272642ea93c7
 import HomeScreen from './screens/HomeScreen'
 import AccountScreen from './screens/AccountScreen'
 import ChatScreen from './screens/ChatScreen'
@@ -35,8 +31,10 @@ import InscriptionScreen from './screens/InscriptionScreen';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
+import letterRoomDirectory from './reducers/letterRoomDirectory';
+
 import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
-const store = createStore(combineReducers({idArticle}));
+const store = createStore(combineReducers({idArticle,letterRoomDirectory}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
