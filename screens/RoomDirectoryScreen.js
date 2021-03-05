@@ -4,12 +4,7 @@ import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from '
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import {connect} from 'react-redux';
-
-
 function RoomDirectoryScreen(props) {
-
-
-  
   const list = [
     {
       title: 'A',
@@ -90,86 +85,67 @@ function RoomDirectoryScreen(props) {
       title: 'Z',
     },
   ]
-
   return(
-
-
 <View style={styles.container}>
 
 <HomeImage/>
 
 <Text style={{marginBottom:10}} h4>Notre hôtel de A à Z</Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>ACCUEIL</Text>
-      </TouchableOpacity>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    <Text>ACCUEIL</Text>
+  </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>DÉPART</Text>
-      </TouchableOpacity>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    <Text>DÉPART</Text>
+  </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>HONESTY BAR</Text>
-      </TouchableOpacity>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    <Text>HONESTY BAR</Text>
+  </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>PRESSING</Text>
-      </TouchableOpacity>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    <Text>PRESSING</Text>
+  </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>WIFI</Text>
-      </TouchableOpacity>
-
-
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    <Text>WIFI</Text>
+  </TouchableOpacity>
   <ScrollView style={{width: '100%'}}>
           {
           list.map((item, i) => (
           <ListItem style={styles.list} key={i} bottomDivider 
-            onPress={() => {props.findClickLetter(item.title)}}>
-              
-
-              <ListItem.Content>
-                <ListItem.Title>{item.title}</ListItem.Title>
-              </ListItem.Content>
-              <ListItem.Chevron />
-            </ListItem>
-          ))
-        }
+            onPress={() => {props.onSubmitLetter(item.title);props.navigation.navigate('RoomDirectoryDetail')}}>
+          <ListItem.Content>
+            <ListItem.Title>{item.title}</ListItem.Title>
+          </ListItem.Content>
+          <ListItem.Chevron />
+        </ListItem>
+      ))
+    }
   </ScrollView>
 </View>
   )}
-
-var saveRoomDirectoryId = []
-
-function mapDispatchToProps(dispatch) {
-  return {
-    findClickLetter: function (idRoomDirectoryLetter) {
-      dispatch({type: "saveRoomDirectoryId", idRoomDirectoryLetter: idRoomDirectoryLetter})
+  function mapDispatchToProps(dispatch) {
+    return {
+      onSubmitLetter: function(letter) { 
+        dispatch( {type: 'saveLetter', letterRoomDirectory: letter }) 
+      }
     }
   }
-}
-
-
-
-{/* Export */}
-export default connect(
-  null, 
-  mapDispatchToProps
-)(RoomDirectoryScreen);
-
-
-
-
+  export default connect(
+    null,mapDispatchToProps)(RoomDirectoryScreen)
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
