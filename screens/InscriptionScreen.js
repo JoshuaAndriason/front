@@ -46,7 +46,7 @@ export function InscriptionScreen(props) {
       const body = await data.json()
      console.log(body)
      if(body.result == true){
-      setUserExists(true)
+    
       props.addToken(body.token)
       props.navigation.navigate('BottomNavigator');
       } else {
@@ -68,22 +68,22 @@ export function InscriptionScreen(props) {
 
       if(body.result == true){
         props.addToken(body.token)
-        setUserExists(true)
+        props.navigation.navigate("BottomNavigator")
+
       }  else {
         setErrorsSignin(body.error)
       }
     }
-      if(userExists){
-        props.navigation.navigate("BottomNavigator")
-      }
-
-
-if(isInscription){
-  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
-}else{
-  var backgroundColor={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
-}
-console.log(isInscription)
+     
+var backGroundInscription
+    if(isInscription){
+     backGroundInscription = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
+     backGroundConnexion ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
+    }else{
+      backGroundConnexion = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
+      backGroundInscription ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
+    }
+console.log('isInscription',isInscription)
 
      
     
@@ -95,14 +95,14 @@ console.log(isInscription)
     <View>
     <View style={{ flexDirection: 'row',borderColor:'black'}}>
       <TouchableOpacity
-      style={{ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}}
-      onPress={() => {}} >
+      style={ backGroundInscription}
+      onPress={() => {setIsInscription(true)}} >
       <Text style={styles.textLogin}>Inscription</Text>
     </TouchableOpacity>
     
     <TouchableOpacity
-      style={styles.onglet}
-      onPress={() => {}} >
+      style={backGroundConnexion}
+      onPress={() => {setIsInscription(false)}} >
       <Text style={styles.textLogin}>Connexion</Text>
     </TouchableOpacity>
     </View>
