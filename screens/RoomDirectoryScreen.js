@@ -94,31 +94,31 @@ function RoomDirectoryScreen(props) {
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
     <Text>ACCUEIL</Text>
   </TouchableOpacity>
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
     <Text>DÉPART</Text>
   </TouchableOpacity>
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
     <Text>HONESTY BAR</Text>
   </TouchableOpacity>
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
     <Text>PRESSING</Text>
   </TouchableOpacity>
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
+    onPress={() => {props.onSubmitBadge(item.title);props.navigation.navigate('RoomDirectoryBadge')}}>
     <Text>WIFI</Text>
   </TouchableOpacity>
   <ScrollView style={{width: '100%'}}>
@@ -143,9 +143,15 @@ function RoomDirectoryScreen(props) {
       }
     }
   }
+
+
   export default connect(
     null,mapDispatchToProps)(RoomDirectoryScreen)
   
+
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

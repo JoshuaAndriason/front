@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 export function RoomDirectoryDetailScreen(props) {
     const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
        useEffect(  () => { var room = async() =>{
-        var rawResponse = await fetch(http://172.17.1.187:3000/roomDirectoryDetail/${props.letterRoomDirectory})
+        var rawResponse = await fetch(`http://172.17.1.100:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
         var response = await rawResponse.json();
        setDetailRoomDirectory(response.filterRoomDirectory)
        }

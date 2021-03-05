@@ -18,6 +18,7 @@ import EventScreen from './screens/EventScreen'
 import RestaurationScreen from './screens/RestaurationScreen'
 import RoomDirectoryScreen from './screens/RoomDirectoryScreen'
 import RoomDirectoryDetailScreen from './screens/RoomDirectoryDetailScreen'
+import RoomDirectoryBadgeScreen from './screens/RoomDirectoryDetailScreen'
 import Question1Screen from './screens/Question1Screen'
 import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
@@ -89,6 +90,7 @@ export default function App(props) {
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
        <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
        <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
+       <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
        <Stack.Screen name="Menu" component={MenuScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
        <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
