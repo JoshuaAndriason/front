@@ -26,9 +26,18 @@ export default function Question2Screen(props) {
         return
     }
 
-    await fetch(`http://${IPadress}:3000/questionnary/interest/${interest}`)
-    .then(res => res.json())
-    .then(data => console.log("data", data))
+    await fetch(`http://${IPadress}:3000/questionnary/interest`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `interest=${interest}&token=${props.token}`
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     
   }
 

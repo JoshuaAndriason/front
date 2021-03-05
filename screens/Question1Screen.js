@@ -2,39 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
-
+import { connect } from 'react-redux';
 import IPadress from "../url"
 
 
-export default function Question1Screen(props) {
+export function Question1Screen(props) {
+  console.log("token", props.token);
   var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
   const [checked, setChecked] = useState('');
 
-  async function  handleSubmit(){
+  async function handleSubmit() {
     console.log("answer:", checked);
     //Set the value of user's motivation
-   let motivation;
+    let motivation;
     switch (checked) {
       case "Le travail":
-         motivation = "work"
+        motivation = "work"
         break;
       case "Les balades":
-         motivation = "stroll"
+        motivation = "stroll"
         break;
       case "Une date à fêter":
         motivation = "celebration"
         break;
       case "Profiter de l'hôtel":
-         motivation = "hotel"
+        motivation = "hotel"
     }
 
-    await fetch(`http://${IPadress}:3000/questionnary/motivation/${motivation}`)
-    .then(res => res.json())
-    .then(data => console.log("data", data))
-    
+
+
+    await fetch(`http://${IPadress}:3000/questionnary/motivation/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `motivation=${motivation}&token=${props.token}`
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
-  
+
 
   return (
     <View style={styles.container}>
@@ -61,10 +72,10 @@ export default function Question1Screen(props) {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => { 
-            handleSubmit()
+        onPress={() => {
+          handleSubmit()
           props.navigation.navigate('Question2')
-           }} >
+        }} >
         <Text>Suivant</Text>
       </TouchableOpacity>
 
@@ -73,6 +84,15 @@ export default function Question1Screen(props) {
 
   );
 }
+
+function mapStateToProps(state) {
+  return { token: state.token }
+} export default connect(
+  mapStateToProps,
+  null,
+
+)(Question1Screen);
+
 
 const styles = StyleSheet.create({
   container: {
