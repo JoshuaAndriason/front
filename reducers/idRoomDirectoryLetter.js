@@ -1,8 +1,7 @@
-export default function(idRoomDirectory = '', action) {
+export default function(idRoomDirectoryLetter = '', action) {
     if(action.type == 'saveRoomDirectoryId') {
-        return action.idRoomDirectory;
+        return action.idRoomDirectoryLetter;
     } else {
-        return idRoomDirectory;
+        return idRoomDirectoryLetter;
     }
 }
-console.log(idRoomDirectory)

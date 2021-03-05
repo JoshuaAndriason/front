@@ -32,8 +32,9 @@ import MenuScreen from './screens/MenuScreen'
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import idArticle from './reducers/idArticle';
+import idRoomDirectoryLetter from './reducers/idRoomDirectoryLetter';
 import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
-const store = createStore(combineReducers({idArticle}));
+const store = createStore(combineReducers({idArticle, idRoomDirectoryLetter}));
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 

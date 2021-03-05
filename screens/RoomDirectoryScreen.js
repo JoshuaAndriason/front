@@ -136,6 +136,7 @@ function RoomDirectoryScreen(props) {
           list.map((item, i) => (
           <ListItem style={styles.list} key={i} bottomDivider 
             onPress={() => {props.findClickLetter(item.title)}}>
+              
 
               <ListItem.Content>
                 <ListItem.Title>{item.title}</ListItem.Title>
@@ -152,9 +153,8 @@ var saveRoomDirectoryId = []
 
 function mapDispatchToProps(dispatch) {
   return {
-    findClickLetter: function (clickLettertitle) {
-      console.log("letter:" , clickLettertitle);
-      dispatch({type: saveRoomDirectoryId, title: clickLettertitle})
+    findClickLetter: function (idRoomDirectoryLetter) {
+      dispatch({type: "saveRoomDirectoryId", idRoomDirectoryLetter: idRoomDirectoryLetter})
     }
   }
 }
@@ -166,9 +166,6 @@ export default connect(
   null, 
   mapDispatchToProps
 )(RoomDirectoryScreen);
-
-
-
 
 
 
