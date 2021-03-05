@@ -3,6 +3,7 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {connect} from 'react-redux';
 
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
