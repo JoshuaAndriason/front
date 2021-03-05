@@ -15,7 +15,7 @@ export default function EventScreen(props) {
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
     console.log("ahhhhhh");
-    const data = fetch('http://172.17.1.115:3000/event/isComing', {
+    const data = fetch('http://172.17.1.115:3000/isComing', {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `isComing=${isComing}`
