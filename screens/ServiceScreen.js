@@ -3,7 +3,7 @@ import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text, Button,Image} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
-
+import IPadress from "../url"
 
 
 

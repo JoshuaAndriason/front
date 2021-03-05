@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { RadioButton } from 'react-native-paper';
 import HomeImage from '../components/HomeImage';
 import { ScrollView } from 'react-native-gesture-handler';
+import IPadress from "../url"
 
 
 export default function MenuScreen(props) {

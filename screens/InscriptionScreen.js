@@ -3,6 +3,7 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import IPadress from "../url"
 import {connect} from 'react-redux';
 
 export function InscriptionScreen(props) {
@@ -37,7 +38,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch('http://172.17.1.115:3000/sign-up', {
+      const data = await fetch(`http://${IPadress}/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -57,7 +58,7 @@ export function InscriptionScreen(props) {
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.115:3000/sign-in', {
+      const data = await fetch('http://172.17.1.187:3000/sign-in', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
@@ -75,7 +76,8 @@ export function InscriptionScreen(props) {
       }
     }
      
-var backGroundInscription
+var backGroundInscription =''
+var backGroundConnexion =''
     if(isInscription){
      backGroundInscription = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
      backGroundConnexion ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}

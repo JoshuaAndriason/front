@@ -1,5 +1,6 @@
 import React from 'react';
 import {View,StyleSheet,Image} from 'react-native';
+import IPadress from "../url"
 
 import { FontAwesome } from '@expo/vector-icons'; 
 import  Constant  from 'expo-constants'; 
