@@ -95,7 +95,10 @@ function RoomDirectoryScreen(props) {
 
 <HomeImage/>
 
-<Text style={{marginBottom:10}} h4>Notre hôtel de A à Z</Text>
+<Text style={{marginBottom:20}} h4>Notre hôtel de A à Z</Text>
+
+
+<View style={styles.badge}>
 
       <TouchableOpacity
         style={styles.button}
@@ -114,7 +117,9 @@ function RoomDirectoryScreen(props) {
         onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
         <Text>HONESTY BAR</Text>
       </TouchableOpacity>
+</View>
 
+  <View style={styles.badge}>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
@@ -126,7 +131,7 @@ function RoomDirectoryScreen(props) {
         onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
         <Text>WIFI</Text>
       </TouchableOpacity>
-
+      </View>
 
   <ScrollView style={{width: '100%'}}>
           {
@@ -171,9 +176,11 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     backgroundColor: "#AADEC0",
-    borderRadius:5,
-    padding: 10,
-    width: '30%' 
+    borderRadius:50,
+    marginBottom: 5,
+    marginLeft: 5,
+    width: '30%',
+    textAlign: "center", 
   },
   list: {
       width: '100%',
@@ -184,4 +191,7 @@ const styles = StyleSheet.create({
   ScrollView: {
     width: '100%',
     },
+    badge : {
+      flexDirection: 'row'
+    }
 });

@@ -1,37 +1,35 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function BienvenueScreen(props) {
-    return (
+const [isExist,setIsExist] = useState(false)
+  AsyncStorage.getItem("token", function(error, data) {
+    console.log("data",data);
+    setIsExist(true)
+   });
 
-      
-      <ImageBackground source={{uri: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg'}} style={styles.container}>
-        
+   
+
+return (
+
+  
+  <ImageBackground source={{uri: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg'}} style={styles.container}>
+    
 <TouchableOpacity
         style={styles.button}
-        onPress={() => {props.navigation.navigate('Question1')}}>
+        onPress={() => {setIsExist?props.navigation.navigate('BottomNavigator'):props.navigation.navigate('Inscription')}}>
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('Signin')}}>
-        <Text>Connexion</Text>
-      </TouchableOpacity>
- 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('Inscription')}}>
-        <Text>Inscription</Text>
-      </TouchableOpacity>
 
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('Inscription')}}>
+    <Text>Inscription</Text>
+  </TouchableOpacity>
 
-
-
-    </ImageBackground>
-
-
+</ImageBackground>
   );
  }
  
