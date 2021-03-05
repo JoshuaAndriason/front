@@ -37,7 +37,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch('http://172.17.1.186:3000/sign-up', {
+      const data = await fetch('http://172.17.1.187:3000/sign-up', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -57,7 +57,7 @@ export function InscriptionScreen(props) {
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.186:3000/sign-in', {
+      const data = await fetch('http://172.17.1.187:3000/sign-in', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
@@ -95,14 +95,14 @@ console.log(isInscription)
     <View>
     <View style={{ flexDirection: 'row',borderColor:'black'}}>
       <TouchableOpacity
-      style={backgroundColor}
-      onPress={() => {setIsInscription(true)}} >
+      style={{ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}}
+      onPress={() => {}} >
       <Text style={styles.textLogin}>Inscription</Text>
     </TouchableOpacity>
     
     <TouchableOpacity
       style={styles.onglet}
-      onPress={() => {setIsInscription(false)}} >
+      onPress={() => {}} >
       <Text style={styles.textLogin}>Connexion</Text>
     </TouchableOpacity>
     </View>
