@@ -38,7 +38,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
     
     
-      const data = await fetch(`http://${IPadress}/sign-up`, {
+      const data = await fetch(`http://${IPadress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
@@ -58,7 +58,7 @@ export function InscriptionScreen(props) {
 
     var handleSubmitSignin = async () => {
  
-      const data = await fetch('http://172.17.1.187:3000/sign-in', {
+      const data = await fetch(`http://${IPadress}:3000/sign-in`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
