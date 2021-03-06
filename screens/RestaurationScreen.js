@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -10,7 +10,29 @@ import IPadress from "../url"
 export default function RestaurationScreen(props) {
   const [isBreakfast, setIsBreakfast] = useState(false)
   const [isDiner, setIsDiner] = useState(false)
-  console.log("visible :", isBreakfast);
+  const [menus, setMenus] = useState([])
+  console.log("visible :", isBreakfast, menus);
+
+
+  
+  useEffect(() => {
+    console.log("hello");
+    async function getAllMenus(){
+      console.log("ttgetAllMenus");
+      const response = await fetch("http://192.168.1.67:3000/restauration/menus")
+      const data = await response.json()
+      console.log('====================================');
+      console.log("data:", data);
+      console.log('====================================');
+      
+    }
+    getAllMenus()
+   
+  }, []);
+
+ 
+
+
   return (
     <View style={styles.container}>
       <HomeImage />
