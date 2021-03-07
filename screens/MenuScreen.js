@@ -8,9 +8,11 @@ import { ScrollView } from 'react-native-gesture-handler';
 import IPadress from "../url"
 
 
-export default function MenuScreen(props) {
+export default function MenuScreen({route}) {
+  const foodID = route.params
+  
+  
   const [checked, setChecked] = useState('');
-
   return (
     <View style={styles.container}>
       <HomeImage />

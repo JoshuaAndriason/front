@@ -10,7 +10,6 @@ import IPadress from "../url"
 export default function RestaurationScreen(props) {
   const [isBreakfast, setIsBreakfast] = useState(false)
   const [isDiner, setIsDiner] = useState(false)
-  const [menus, setMenus] = useState([])
   const [breakfast, setBreakfast] = useState([])
   const [diner, setDiner] = useState([])
 
@@ -19,9 +18,9 @@ export default function RestaurationScreen(props) {
     async function getAllMenus() {
       const response = await fetch("http://192.168.1.67:3000/restauration/menus")
       const data = await response.json()
-      setMenus(data.result)
-      setBreakfast(data.result.filter(menu => menu.type == "PetitDejeuner"))
-      setDiner(data.result.filter(menu => menu.type == "Diner"))
+      const menus = data.result
+      setBreakfast(menus.filter(menu => menu.type == "PetitDejeuner"))
+      setDiner(menus.filter(menu => menu.type == "Diner"))
     }
     getAllMenus()
   }, []);
@@ -44,12 +43,12 @@ export default function RestaurationScreen(props) {
             <>
               {breakfast.map((menu, i) => {
                 return (
-                  <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+                  <View key={i} style={{ flex: 1, width: "100%", alignItems: "center" }}>
                     <TouchableOpacity
                       style={styles.list}
                     >
                       <Text style={styles.text}>{menu.nameArticle}</Text>
-                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu")}>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {fooodID : menu._id})}>
                         <Text style={{ color: "white" }}>{menu.prix} €</Text>
                       </TouchableOpacity>
                     </TouchableOpacity>
@@ -70,7 +69,7 @@ export default function RestaurationScreen(props) {
             <>
               {diner.map((menu, i) => {
                 return (
-                  <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+                  <View key={i} style={{ flex: 1, width: "100%", alignItems: "center" }}>
 
                     <TouchableOpacity
                       style={styles.list}
