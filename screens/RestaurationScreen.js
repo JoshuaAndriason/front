@@ -16,7 +16,7 @@ export default function RestaurationScreen(props) {
 
   useEffect(() => {
     async function getAllMenus() {
-      const response = await fetch("http://192.168.1.67:3000/restauration/menus")
+      const response = await fetch(`http://192.168.1.67:3000/restauration/menus`)
       const data = await response.json()
       const menus = data.result
       setBreakfast(menus.filter(menu => menu.type == "PetitDejeuner"))
@@ -48,7 +48,7 @@ export default function RestaurationScreen(props) {
                       style={styles.list}
                     >
                       <Text style={styles.text}>{menu.nameArticle}</Text>
-                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {fooodID : menu._id})}>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id})}>
                         <Text style={{ color: "white" }}>{menu.prix} €</Text>
                       </TouchableOpacity>
                     </TouchableOpacity>
