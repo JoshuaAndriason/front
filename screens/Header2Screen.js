@@ -7,7 +7,7 @@ import  Constant  from 'expo-constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Left } from 'native-base';
 
-export default function HeaderScreen(){
+export default function HeaderScreen2(){
     return(
        
        <View style={{marginTop: Constant.statusBarHeight, width: '100%', height:60,backgroundColor:"#AADEC0",flexDirection:"row",justifyContent:'center',alignItems:'center'}}>

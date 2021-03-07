@@ -19,17 +19,11 @@ const [isExist,setIsExist] = useState(false)
       
       <ImageBackground source={{uri: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg'}} style={styles.container}>
         
-<TouchableOpacity
-        style={styles.button}
-        onPress={() => {setIsExist?props.navigation.navigate('BottomNavigator'):props.navigation.navigate('Inscription')}}>
-        <Text>BIENVENUE</Text>
-      </TouchableOpacity>
-
 
   <TouchableOpacity
     style={styles.button}
     onPress={() => {props.navigation.navigate('Inscription')}}>
-    <Text>Inscription</Text>
+    <Text>Bienvenue</Text>
   </TouchableOpacity>
 
 </ImageBackground>
