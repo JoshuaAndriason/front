@@ -15,9 +15,24 @@ export default function Question2Screen(props) {
 
   if(checked === "Cest prévu !" || checked === "Peut-être." ){
     let interest = "breakfast"
-    await fetch(`http://${IPadress}:3000/questionnary/interest/${interest}`)
+
+
+  
+    await fetch(`http://${IPadress}:3000/questionnary/interest`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `interest=${interest}&token=${props.token}`
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }else{
     console.log("rien");
+    return
   }
  }
 

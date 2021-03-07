@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import IPadress from "../url"
 import {connect} from 'react-redux';
 
+
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
