@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,14 +25,14 @@ const [isExist,setIsExist] = useState(false)
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('Inscription')}}>
-        <Text>Inscription</Text>
-      </TouchableOpacity>
 
-    </ImageBackground>
+  <TouchableOpacity
+    style={styles.button}
+    onPress={() => {props.navigation.navigate('Inscription')}}>
+    <Text>Inscription</Text>
+  </TouchableOpacity>
 
+</ImageBackground>
   );
  }
 

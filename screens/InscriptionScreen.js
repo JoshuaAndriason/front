@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import IPadress from "../url"
 import {connect} from 'react-redux';
 
+
 export function InscriptionScreen(props) {
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
@@ -43,7 +44,7 @@ export function InscriptionScreen(props) {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
       })
-
+console.log(IPadress)
       const body = await data.json()
      console.log(body)
      if(body.result == true){
