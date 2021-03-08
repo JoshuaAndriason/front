@@ -55,21 +55,21 @@ const BottomNavigator = () => {
             iconName = "user";
           }
 
-          return <FontAwesome name={iconName} size={25} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: "#e4605e",
-        inactiveTintColor: "#FFFFFF",
-        style: {
-          backgroundColor: "#AADEC0",
-        },
-      }}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
-    </Tab.Navigator>
+      return <FontAwesome name={iconName} size={25} color={color} />;
+    },
+  })}
+  tabBarOptions={{
+    activeTintColor: "#e4605e",
+    inactiveTintColor: "#FFFFFF",
+    style: {
+      backgroundColor: "#AADEC0",
+    },
+  }}
+>
+  <Tab.Screen name="Home" component={HomeScreen} />
+  <Tab.Screen name="Chat" component={ChatScreen} />
+  <Tab.Screen name="Account" component={AccountScreen} />
+</Tab.Navigator>
   );
 };
 
@@ -77,32 +77,54 @@ const BottomNavigator = () => {
 export default function App(props) {
   return (
     <Provider store={store}>
-<>
-<HeaderScreen/>
-   <NavigationContainer >
-     <Stack.Navigator screenOptions={{headerShown: false}}>
-     <Stack.Screen name="Bienvenue" component={BienvenueScreen} /> 
-     <Stack.Screen name="Question1" component={Question1Screen} />
-       <Stack.Screen name="Question2" component={Question2Screen} />
-       <Stack.Screen name="Question3" component={Question3Screen} />
-      <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-       
-      
-       <Stack.Screen name="Article" component={ArticleNews} />
-       <Stack.Screen name="Order" component={OrderScreen} />
-       <Stack.Screen name="morningNews" component={MorningNewsScreen} />
-       <Stack.Screen name="Event" component={EventScreen} />
-      <Stack.Screen name="Service" component={ServiceScreen} /> 
-       <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen} />
-       <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
-       <Stack.Screen name="Recommendation" component={RecommendationScreen} />
-       <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-       <Stack.Screen name="Inscription" component={InscriptionScreen} />
-       <Stack.Screen name="Restauration" component={RestaurationScreen} />
-      <Stack.Screen name="Menu" component={MenuScreen} />
-     </Stack.Navigator>
-   </NavigationContainer>
-    </>
+      <>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              header: () => <HeaderScreen />,
+            }}
+          >
+            <Stack.Screen
+              name="Bienvenue"
+              component={BienvenueScreen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}
+            />
+            <Stack.Screen
+              name="Inscription"
+              component={InscriptionScreen} 
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}
+            />
+            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+            <Stack.Screen
+              name="Question1"
+              component={Question1Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}
+            />
+            <Stack.Screen
+              name="Question2"
+              component={Question2Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}
+            />
+            <Stack.Screen
+              name="Question3"
+              component={Question3Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}
+            />
+            <Stack.Screen name="Restauration" component={RestaurationScreen} />
+            <Stack.Screen name="Menu" component={MenuScreen} />
+            <Stack.Screen name="Article" component={ArticleNews} />
+            <Stack.Screen name="Order" component={OrderScreen} />
+            <Stack.Screen name="morningNews" component={MorningNewsScreen} />
+            <Stack.Screen name="Event" component={EventScreen} />
+            <Stack.Screen name="Service" component={ServiceScreen} />
+            <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen}/>
+            <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
+            <Stack.Screen name="Recommendation" component={RecommendationScreen} />
+            <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </>
     </Provider>
   );
 }
