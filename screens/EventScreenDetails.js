@@ -3,8 +3,9 @@ import { StyleSheet, View, Text, ScrollView} from 'react-native';
 import { ListItem, Avatar,Card,Image,Button } from 'react-native-elements'
 import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
+import { connect } from 'react-redux';
 
-export default function EventScreenDetails(props) {
+export function EventScreenDetails(props) {
 
     const [events, setEvents] = useState([])
 
@@ -12,14 +13,11 @@ export default function EventScreenDetails(props) {
         var eventsFunction = async () => {
             var rawResponse = await fetch(`http://${IPadress}:3000/events`)
             var response = await rawResponse.json();
-            console.log(response, "je console log response ")
-
             setEvents(response.events)
         }
         eventsFunction()
 
     }, []);
-    console.log('events front gwendolin',events)
 
   return (
 <ScrollView style={{marginTop: 25}}>
@@ -38,7 +36,7 @@ export default function EventScreenDetails(props) {
               <Card.Divider/>
               <Button
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0,backgroundColor:'#AADEC0'}}
-              title="Je m'inscris" onPress={() => props.navigation.navigate("Event")}/>
+              title="Je m'inscris" onPress={() =>{props.onSubmitEvent(u._id); props.navigation.navigate("Event")}}/>
         </Card>
     );
   })
@@ -48,6 +46,22 @@ export default function EventScreenDetails(props) {
 
 );
 }
+
+function mapStateToProps(state){
+  return {token:state.token}
+} 
+ function mapDispatchToProps(dispatch) {
+  return {
+    onSubmitEvent: function(idEvent) {
+        console.log('on SUBMIT EVENT',idEvent) 
+      dispatch( {type: 'saveEventId', idEvent: idEvent }) 
+    }
+  }
+}
+export default connect(mapStateToProps,
+  mapDispatchToProps
+  )(EventScreenDetails);
+
 
 const styles = StyleSheet.create({
   container: {
