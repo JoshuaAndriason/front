@@ -24,7 +24,7 @@ export default function HeaderScreen({showButtons = true}) {
           onPress={() => {navigation.navigate("Home");
           }}
           type="clear"
-          icon={<Icon name="home" size={35} color="white" />}
+          icon={<Icon name="home" size={30} color="white" />}
         />
       )}
       <View>
@@ -40,7 +40,7 @@ export default function HeaderScreen({showButtons = true}) {
         <Button
         onPress={() => {navigation.goBack()}}
           type="clear"
-          icon={<Icon name="undo" size={35} color="white" />}
+          icon={<Icon name="undo" size={30} color="white" />}
         />
       )}
     </View>

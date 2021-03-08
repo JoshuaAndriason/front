@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 
 // IMPORT SCREEN
 import HeaderScreen from "./screens/HeaderScreen";
@@ -46,8 +47,8 @@ const BottomNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Home") {
-            iconName = "home";
+          if (route.name == "Log Out") {
+            iconName = "outdent";
           } else if (route.name == "Chat") {
             iconName = "envelope";
           } else if (route.name == "Account") {
@@ -65,7 +66,7 @@ const BottomNavigator = () => {
     },
   }}
 >
-  <Tab.Screen name="Home" component={HomeScreen} />
+  <Tab.Screen name="Log Out" component={InscriptionScreen} />
   <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
 </Tab.Navigator>
