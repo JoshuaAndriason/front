@@ -20,7 +20,6 @@ export default function RestaurationScreen(props) {
       const data = await response.json()
       const menus = data.result
       setBreakfast(menus.filter(menu => menu.type == "PetitDejeuner"))
-      setDiner(menus.filter(menu => menu.type == "Diner"))
     }
     getAllMenus()
   }, []);
@@ -62,29 +61,16 @@ export default function RestaurationScreen(props) {
         <View style={styles.block}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => setIsDiner(!isDiner)}>
+            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "diner"})}>
             <Text style={styles.text}>Dîner</Text>
           </TouchableOpacity>
-          {isDiner ?
-            <>
-              {diner.map((menu, i) => {
-                return (
-                  <View key={i} style={{ flex: 1, width: "100%", alignItems: "center" }}>
-
-                    <TouchableOpacity
-                      style={styles.list}
-                    >
-                      <Text style={styles.text}>{menu.nameArticle}</Text>
-                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu")}>
-                        <Text style={{ color: "white" }}>{menu.prix} €</Text>
-                      </TouchableOpacity>
-                    </TouchableOpacity>
-                  </View>
-                )
-              })}
-            </>
-            : null
-          }
+        </View>
+        <View style={styles.block}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "A La Carte"})}>
+            <Text style={styles.text}>A la carte</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

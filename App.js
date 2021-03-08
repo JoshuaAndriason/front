@@ -25,6 +25,7 @@ import Question2Screen  from './screens/Question2Screen'
 import Question3Screen from './screens/Question3Screen'
 import RecommendationScreen from './screens/RecommendationScreen';
 import MenuScreen from './screens/MenuScreen'
+import aLaCarteMenuScreen from './screens/aLaCarteMenuScreen'
 import InscriptionScreen from './screens/InscriptionScreen';
 import DetailRecommendationScreen from './screens/DetailRecommendationScreen';
 
@@ -86,6 +87,7 @@ export default function App(props) {
      <Stack.Navigator screenOptions={{headerShown: false}}>
        <Stack.Screen name="Restauration" component={RestaurationScreen} />
       <Stack.Screen name="Menu" component={MenuScreen} />
+      <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
        {/* <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} /> 
       <Stack.Screen name="Question1" component={Question1Screen} />
