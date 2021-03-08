@@ -31,11 +31,14 @@ import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import idArticle from "./reducers/idArticle";
+import idEvent from "./reducers/idEvent";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
 
+
+
 const store = createStore(
-  combineReducers({ idArticle, token, letterRoomDirectory })
+  combineReducers({ idArticle, token, letterRoomDirectory, idEvent })
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

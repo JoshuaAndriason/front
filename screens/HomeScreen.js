@@ -10,20 +10,19 @@ const height = width * 0.6; //60%
 
 
 export function HomeScreen(props) {
-
+    const [active, setActive] = useState(0)
+    const [event, setEvent] = useState([])
     useEffect(() => {
-        var events = async () => {
+        var eventsFunction = async () => {
             var rawResponse = await fetch(`http://${IPadress}:3000/events`)
             var response = await rawResponse.json();
-            console.log(response.events,'events front')
+
+            setEvent(response.events)
         }
-        events()
+        eventsFunction()
 
     }, []);
-
-    const [active, setActive] = useState(0)
-    var events = ["https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109036/ROOM%20DIRECTORY/EVENTS/PDJ_d6u3nl_qcmjc1.jpg", "https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109027/ROOM%20DIRECTORY/EVENTS/APERITIVO_ttfrg7_sl8rh2.jpg", "https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109024/ROOM%20DIRECTORY/EVENTS/EVENT_TH%C3%89_cbxbn1_gspnzr.jpg"]
-
+    conson
 
     const change = (event) => {
         const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
@@ -35,6 +34,7 @@ export function HomeScreen(props) {
 
     return (
         <>
+        
             <View style={styles.container} >
                 <ScrollView
                     paginEnabled
@@ -43,17 +43,19 @@ export function HomeScreen(props) {
                     showsHorizontalScrollIndicator={false}
                     style={styles.scroll}>
                     {
-                        events.map((e, i) => {
+                        events.slice(0,3).map((e, i) => {
                             return (
-                                <Image key={i} source={{ uri: e }} style={styles.image} />
+                                <TouchableOpacity key={i} onPress={() =>{props.onSubmitEvent(e._id); props.navigation.navigate('Event')}}>
+                                <Image key={i} source={{ uri: e.image }} style={styles.image} />
+
+                                </TouchableOpacity>
                             )
                         })}
                 </ScrollView>
                 <View style={styles.pagination}>
-                    {events.map((i, k) => (<Text key={k} style={k == active ? styles.paginActiveText : styles.paginText}>⬤</Text>))}
+                    {events.slice(0,3).map((i, k) => (<Text key={k} style={k == active ? styles.paginActiveText : styles.paginText}>⬤</Text>))}
 
                 </View>
-                
             </View>
             <Text>token :{props.token}</Text>
             <ScrollView style={{ width: '100%', paddingBottom: 10, paddingRight: 10, paddingLeft: 10 }}>
@@ -98,13 +100,20 @@ export function HomeScreen(props) {
     )
 }
 
-
-function mapStateToProps(state) {
-    return { token: state.token }
-} export default connect(
-    mapStateToProps,
-
-)(HomeScreen);
+function mapStateToProps(state){
+    return {token:state.token}
+  } 
+   function mapDispatchToProps(dispatch) {
+    return {
+      onSubmitEvent: function(idEvent) {
+          console.log('on SUBMIT EVENT',idEvent) 
+        dispatch( {type: 'saveEventId', idEvent: idEvent }) 
+      }
+    }
+  }
+  export default connect(mapStateToProps,
+    mapDispatchToProps
+    )(HomeScreen);
 
 const styles = StyleSheet.create({
     container: { width, height,marginBottom:15 },
