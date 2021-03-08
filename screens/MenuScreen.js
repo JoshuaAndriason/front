@@ -93,32 +93,44 @@ export default function MenuScreen({ route }) {
                       value={values.email}>
                     </TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
+                     
+                    
 
-                    {/* {Object.keys(foodDatas.detail).map((category, i) => {
-                      
+                    {foodDatas.detail.map((categoryObj) => {
+                      console.log('categoryObj:', categoryObj)
                       return (
-                        <>
-                        <Text style={styles.category}>{category}</Text>
                         
-                        <View style={styles.choices}>
-                          <View style={styles.options}>
-                            <TextInput
-                              style={styles.input}
-                              onChangeText={handleChange("croissant")}
-                              placeholder={"1"}
-                              keyboardType={'numeric'}
-                              value={values.croissant}
-         
-                            />
-                            
-                            <Text style={styles.itemOption}>Croissant</Text>
-                          </View>
-                          </View>
-                        </>
+                        Object.keys(categoryObj).map((category)=> {
+                          return (
+                            <>
+                            <Text style={styles.category}>{category}</Text>
+                            {categoryObj[category].map((entry) => {
+                              return(
+                            <View style={styles.choices}>
+                              <View style={styles.options}>
+                                <TextInput
+                                  style={styles.input}
+                                  onChangeText={handleChange("croissant")}
+                                  placeholder={"1"}
+                                  keyboardType={'numeric'}
+                                  value={values.croissant}
+             
+                                />
+                                
+                                <Text style={styles.itemOption}>{entry}</Text>
+                              </View>
+                              </View>
+  
+                              )
+                            })}
+                            </>
+                        )}
                       )
-                    })} */}
+                      
+                      )
+                    })}
 
-                    <Text style={styles.category}>Vennoiseries</Text>
+                    {/* <Text style={styles.category}>Vennoiseries</Text>
                     <View style={styles.choices}>
                       <View style={styles.options}>
                         <TextInput
@@ -169,7 +181,7 @@ export default function MenuScreen({ route }) {
                         />
                         <Text style={styles.itemOption}>Chocolat chaud</Text>
                       </View>
-                    </View>
+                    </View> */}
                     <Button onPress={handleSubmit} title="Valider" />
 
                   </View>
