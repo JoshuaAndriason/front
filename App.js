@@ -20,6 +20,7 @@ import EventScreen from "./screens/EventScreen";
 import RestaurationScreen from "./screens/RestaurationScreen";
 import RoomDirectoryScreen from "./screens/RoomDirectoryScreen";
 import RoomDirectoryDetailScreen from "./screens/RoomDirectoryDetailScreen";
+import RoomDirectoryBadgeScreen from "./screens/RoomDirectoryBadgeScreen";
 import Question1Screen from "./screens/Question1Screen";
 import Question2Screen from "./screens/Question2Screen";
 import Question3Screen from "./screens/Question3Screen";
@@ -36,11 +37,12 @@ import idArticle from "./reducers/idArticle";
 import idEvent from "./reducers/idEvent";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
+import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
 
 
 
 const store = createStore(
-  combineReducers({ idArticle, token, letterRoomDirectory, idEvent })
+  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory })
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -124,6 +126,7 @@ export default function App(props) {
             <Stack.Screen name="Service" component={ServiceScreen} />
             <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen}/>
             <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
+            <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />

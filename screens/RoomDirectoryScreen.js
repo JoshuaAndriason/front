@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     borderRadius:50,
-    marginBottom: 5,
-    marginLeft: 5,
+    marginBottom: 8,
+    marginLeft: 8,
     width: '30%',
     textAlign: "center", 
   },
@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
     width: '100%',
     },
     badge : {
-      flexDirection: 'row',
+      alignItems: "center",
+      flexDirection: 'column',
+      width: '75%',
     }
 });
