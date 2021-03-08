@@ -17,7 +17,7 @@ export function RestaurationScreen(props) {
 
   useEffect(() => {
     async function getAllMenus() {
-      const response = await fetch(`http://192.168.1.67:3000/restauration/menus`)
+      const response = await fetch(`http://${IPadress}:3000/restauration/menus`)
       const data = await response.json()
       const menus = data.result
       setBreakfast(menus.filter(menu => menu.type == "PetitDejeuner"))
