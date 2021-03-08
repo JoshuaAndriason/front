@@ -20,7 +20,7 @@ export default function RecommendationScreen(props) {
               console.log('restauration')
               setIsRestaurantVisible(!isRestaurantVisible)
             }}>
-            <Text style={styles.text}>Restauration</Text>
+            <Text style={styles.text}>Restaurant recommandé</Text>
           </TouchableOpacity>
           {isRestaurantVisible ?
             <View style={{ flex: 1, width: "100%", alignItems: "center" }}>

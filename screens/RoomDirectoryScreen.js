@@ -193,6 +193,6 @@ const styles = StyleSheet.create({
     width: '100%',
     },
     badge : {
-      flexDirection: 'row'
+      flexDirection: 'row',
     }
 });

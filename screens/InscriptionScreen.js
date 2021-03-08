@@ -105,19 +105,19 @@ var backGroundConnexion =''
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center'
+   <Input textAlign='center' placeholder='Fred@gmail.com'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setEmailSignUp(value)}
      value={emailSignUp}
    />
      <Text>Nom</Text>
-   <Input textAlign='center'
+   <Input textAlign='center' placeholder='Fred'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setLastNameSignUp(value)}
      value={lastNameSignUp}
    />
     <Text>N° de chambre</Text>
-   <Input textAlign='center' keyboardType='numeric'
+   <Input textAlign='center' keyboardType='numeric' placeholder='55'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setRoomNumberSignUp(value)}
      value={roomNumberSignUp}
@@ -132,19 +132,19 @@ var backGroundConnexion =''
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center'
+   <Input textAlign='center' placeholder='Fred@gmail.com'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setSignInEmail(value)}
      value={signInEmail}
    />
      <Text>Nom</Text>
-   <Input textAlign='center'
+   <Input textAlign='center' placeholder='Fred'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setSignInName(value)}
      value={signInName}
    />
     <Text>N° de chambre</Text>
-   <Input textAlign='center' keyboardType='numeric'
+   <Input textAlign='center' keyboardType='numeric' placeholder='55'
     containerStyle = {{marginBottom: 5, width: '55%'}}
      onChangeText={(value) => setSignInRoom(value)}
      value={signInRoom}
