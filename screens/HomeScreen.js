@@ -15,7 +15,7 @@ export function HomeScreen(props) {
         var events = async () => {
             var rawResponse = await fetch(`http://${IPadress}:3000/events`)
             var response = await rawResponse.json();
-            console.log(response,'events front')
+            console.log(response.events,'events front')
         }
         events()
 
