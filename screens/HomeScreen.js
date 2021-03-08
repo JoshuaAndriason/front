@@ -11,18 +11,18 @@ const height = width * 0.6; //60%
 
 export function HomeScreen(props) {
     const [active, setActive] = useState(0)
-    const [event, setEvent] = useState([])
+    const [events, setEvents] = useState([])
     useEffect(() => {
         var eventsFunction = async () => {
             var rawResponse = await fetch(`http://${IPadress}:3000/events`)
             var response = await rawResponse.json();
 
-            setEvent(response.events)
+            setEvents(response.events)
         }
         eventsFunction()
 
     }, []);
-    conson
+    
 
     const change = (event) => {
         const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);

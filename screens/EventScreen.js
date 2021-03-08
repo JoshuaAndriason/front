@@ -12,9 +12,9 @@ export function EventScreen(props) {
   const [isComing, setIsComing]= useState(false)
 
   const [event,setEvent] = useState([])
-  
+
   useEffect(  () => { var event = async() =>{
-   var rawResponse = await fetch(`http://${IPadress}:3000/event/${props.idEvent}`)
+   var rawResponse = await fetch(`http://${IPadress}:3000/events/${props.idEvent}`)
    var response = await rawResponse.json();
   setEvent(response.event)
   }
