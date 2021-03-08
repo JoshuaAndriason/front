@@ -13,14 +13,7 @@ export default function HomeScreen(props) {
     const [RoomDirectory, setRoomDirectory] = useState([])
     const [Event, setEvent] = useState([])
     
-    useEffect(() => {
-        async function getImages() {
-          const response = await fetch(`http://${IPadress}:3000/image`)
-          const data = await response.json()
-          const Image = data.result
-        }
-        getImages()
-      }, []);
+  
 
       useEffect(() => {
         async function getHomeImage() {
