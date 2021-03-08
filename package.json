@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "-": "0.0.1",
     "@ant-design/react-native": "^4.0.7",
     "@react-native-async-storage/async-storage": "^1.14.1",
     "@react-native-community/masked-view": "0.1.10",
@@ -16,14 +17,18 @@
     "@react-navigation/stack": "^5.14.3",
     "@types/react-native-snap-carousel": "^3.8.2",
     "antd-mobile": "^2.3.4",
-    "expo": "~40.0.0",
+    "carrousel": "^0.1.11",
+    "cli": "^1.0.1",
+    "expo": "^40.0.1",
     "expo-mail-composer": "~9.0.0",
     "expo-status-bar": "~1.0.3",
     "formik": "^2.2.6",
+    "global": "^4.4.0",
     "nachos-ui": "^0.2.0-beta.1",
+    "native": "^0.3.3",
     "native-base": "^2.15.2",
     "nodemailer": "^6.5.0",
-    "react": "16.13.1",
+    "react": "^16.13.1",
     "react-datepicker": "^3.6.0",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.15.4",
@@ -42,7 +47,9 @@
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.4",
     "react-redux": "^7.2.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "save": "^2.4.0",
+    "snap": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

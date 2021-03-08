@@ -83,10 +83,6 @@ function setAnswer(answer) {
 </View>
 
 
-
-
-
-
   );
 }
 

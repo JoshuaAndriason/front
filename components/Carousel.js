@@ -5,11 +5,10 @@ import { onChange } from 'react-native-reanimated';
 const {width} = Dimensions.get("window");
 const height = width * 0.6; //60%
 
-const ChatScreen = () => {
+const Carousel = () => {
 
   const [active,setActive] = useState(0)
   var events = ["https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109036/ROOM%20DIRECTORY/EVENTS/PDJ_d6u3nl_qcmjc1.jpg","https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109027/ROOM%20DIRECTORY/EVENTS/APERITIVO_ttfrg7_sl8rh2.jpg","https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109024/ROOM%20DIRECTORY/EVENTS/EVENT_TH%C3%89_cbxbn1_gspnzr.jpg"]
-
 
 const change = (event)=> {
     const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
@@ -45,7 +44,7 @@ const change = (event)=> {
   );
 };
 
-export default ChatScreen;
+export default Carousel;
 
 const styles = StyleSheet.create({
   container: {marginTop: 50, width, height},
