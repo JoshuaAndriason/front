@@ -40,7 +40,6 @@ const store = createStore(
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 //FUNCTION BOTTOM NAVIGATION
 const BottomNavigator = () => {
   return (
