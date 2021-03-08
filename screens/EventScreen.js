@@ -13,7 +13,7 @@ export function EventScreen(props) {
 
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
-    console.log("ahhhhhh");
+
     const data = fetch(`http://${IPadress}:3000/isComing`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -49,6 +49,7 @@ function setAnswer(answer) {
 <View style={styles.container}>
     
     <HomeImage/>
+    <Text>token :{props.token}</Text>
 <View style={styles.border}>
 <Text style={styles.text}>Thé de soirée - offert</Text>
 

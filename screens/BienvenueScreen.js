@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 function BienvenueScreen(props) {
 const [isExist,setIsExist] = useState(false)
 const [localToken, setLocalToken] = useState('')
+
 useEffect(() => {
   AsyncStorage.getItem('token', (err, value) => {
     if (value) {
@@ -18,8 +19,8 @@ useEffect(() => {
   });
 }, []);
 
-console.log('im token',localToken)
-console.log('im token',isExist)
+console.log('token Bienvenue local',localToken)
+console.log('im token Bienvenue',isExist)
     return (
 
       
@@ -30,7 +31,7 @@ console.log('im token',isExist)
         onPress={() => {isExist==true?props.navigation.navigate('BottomNavigator'):props.navigation.navigate('Inscription')}}>
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
-
+    <Text h3 style={{color:'white'}}>hy :{localToken}</Text>
 
   <TouchableOpacity
     style={styles.button}

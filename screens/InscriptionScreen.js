@@ -33,13 +33,13 @@ export function InscriptionScreen(props) {
 
      if(body.result == true){
       props.addToken(body.token)
-      props.navigation.navigate('Question1');
       setLocalToken(body.token)
       AsyncStorage.setItem('token', localToken);
+      props.navigation.navigate('Question1');
       } else {
       setErrorsSignup(body.error)
     } 
-console.log(localToken,'locallllllllllllllll')
+console.log(localToken,'signUp local')
   }
 
     var handleSubmitSignin = async () => {
@@ -62,7 +62,7 @@ console.log(localToken,'locallllllllllllllll')
       }  else {
         setErrorsSignin(body.error)
       }
-      console.log('token2vcvv', localToken)
+      console.log('signIn local', localToken)
     }
 
 
@@ -156,8 +156,6 @@ var backGroundConnexion =''
     </TouchableOpacity>
 
 <Text>{listErrorsSignup}</Text></>}
-
-    
 </View>
    
   );
@@ -165,7 +163,7 @@ var backGroundConnexion =''
 function mapDispatchToProps(dispatch){
   return {
     addToken: function(token){
-      console.log('function token :',token)
+      console.log('function addToken :',token)
       dispatch({type: 'addToken', token: token})
     }
   }

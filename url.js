@@ -1,3 +1,3 @@
-const IPadress = "192.168.1.67"
+const IPadress = "172.17.1.187"
 
 export default IPadress;
