@@ -1,22 +1,45 @@
 import React, {useState} from 'react';
+import { View, ScrollView, Image, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { onChange } from 'react-native-reanimated';
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Linking,
-} from 'react-native';
+const {width} = Dimensions.get("window");
+const height = width * 0.6; //60%
 
 const ChatScreen = () => {
+
+  const [active,setActive] = useState(0)
+  var events = ["https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109036/ROOM%20DIRECTORY/EVENTS/PDJ_d6u3nl_qcmjc1.jpg","https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109027/ROOM%20DIRECTORY/EVENTS/APERITIVO_ttfrg7_sl8rh2.jpg","https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615109024/ROOM%20DIRECTORY/EVENTS/EVENT_TH%C3%89_cbxbn1_gspnzr.jpg"]
+
+
+const change = (event)=> {
+    const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
+    console.log(slide,'slide',active,'active')
+    if (slide !== active){
+      setActive(slide)
+    }
+  }
+
 
 
   return (
   
-      <View style={styles.container}>
-
+      <View style={styles.container} >
+        <ScrollView 
+        paginEnabled 
+        horizontal
+        onScroll ={change}
+        showsHorizontalScrollIndicator={false}
+        style={styles.scroll}>
+       {
+       events.map((e,i)=>{
+         return(
+ <Image key={i} source={{uri:e}} style={styles.image} />
+       )})}
+       </ScrollView>
+       <View style={styles.pagination}>
+         {events.map((i,k)=>(<Text key={k} style={k == active ? styles.paginActiveText : styles.paginText}>⬤</Text>))}
+         
+       </View>
       </View>
  
   );
@@ -25,35 +48,14 @@ const ChatScreen = () => {
 export default ChatScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 10,
-  },
-  titleText: {
-    fontSize: 22,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+  container: {marginTop: 50, width, height},
+  scroll: {width, height},
   titleTextsmall: {
     marginVertical: 8,
     fontSize: 16,
   },
-  buttonStyle: {
-    justifyContent: 'center',
-    marginTop: 15,
-    padding: 10,
-    backgroundColor: '#8ad24e',
-  },
-  buttonTextStyle: {
-    color: '#fff',
-    textAlign: 'center',
-  },
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    width: '100%',
-    paddingHorizontal: 10,
-  },
+  image: {width, height, resizeMode:'cover'},
+  pagination: {flexDirection:'row',position:'absolute',bottom:0,alignSelf:'center',},
+  paginText: {fontSize: (width / 30) ,color:'#888',margin: 3},
+  paginActiveText:{fontSize: (width / 30) ,color:'#fff',margin: 3}
 });

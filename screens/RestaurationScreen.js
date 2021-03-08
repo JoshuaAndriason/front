@@ -3,11 +3,12 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 import IPadress from "../url"
 
 
 
-export default function RestaurationScreen(props) {
+export function RestaurationScreen(props) {
   const [isBreakfast, setIsBreakfast] = useState(false)
   const [isDiner, setIsDiner] = useState(false)
   const [breakfast, setBreakfast] = useState([])
@@ -29,6 +30,7 @@ export default function RestaurationScreen(props) {
   return (
     <View style={styles.container}>
       <HomeImage />
+      <Text>token :{props.token}</Text>
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.block}>
 
@@ -92,6 +94,14 @@ export default function RestaurationScreen(props) {
 
   )
 };
+function mapStateToProps(state){
+  return {token:state.token}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(RestaurationScreen);
+
 
 const styles = StyleSheet.create({
   container: {
