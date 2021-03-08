@@ -79,37 +79,17 @@ export default function App(props) {
     <Provider store={store}>
       <>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              header: () => <HeaderScreen />,
-            }}
-          >
-            <Stack.Screen
-              name="Bienvenue"
-              component={BienvenueScreen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Inscription"
-              component={InscriptionScreen} 
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
+          <Stack.Navigator screenOptions={{ header: () => <HeaderScreen /> }}>
+            <Stack.Screen name="Bienvenue" component={BienvenueScreen}/>
+            <Stack.Screen name="Inscription" component={InscriptionScreen} 
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-            <Stack.Screen
-              name="Question1"
-              component={Question1Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Question2"
-              component={Question2Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Question3"
-              component={Question3Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
+            <Stack.Screen name="Question1" component={Question1Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+            <Stack.Screen name="Question2" component={Question2Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+            <Stack.Screen name="Question3" component={Question3Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Restauration" component={RestaurationScreen} />
             <Stack.Screen name="Menu" component={MenuScreen} />
             <Stack.Screen name="Article" component={ArticleNews} />
@@ -121,7 +101,8 @@ export default function App(props) {
             <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </>
