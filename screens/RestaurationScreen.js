@@ -1,50 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 import IPadress from "../url"
 
 
 
-export default function RestaurationScreen(props) {
+export function RestaurationScreen(props) {
   const [isBreakfast, setIsBreakfast] = useState(false)
   const [isDiner, setIsDiner] = useState(false)
-  console.log("visible :", isBreakfast);
+  const [breakfast, setBreakfast] = useState([])
+  const [diner, setDiner] = useState([])
+
+
+  useEffect(() => {
+    async function getAllMenus() {
+      const response = await fetch(`http://192.168.1.67:3000/restauration/menus`)
+      const data = await response.json()
+      const menus = data.result
+      setBreakfast(menus.filter(menu => menu.type == "PetitDejeuner"))
+      setDiner(menus.filter(menu => menu.type == "Diner"))
+    }
+    getAllMenus()
+  }, []);
+
+
   return (
     <View style={styles.container}>
       <HomeImage />
+      <Text>token :{props.token}</Text>
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.block}>
+
           <TouchableOpacity
             style={styles.item}
             onPress={() => {
-              console.log('restauration')
               setIsBreakfast(!isBreakfast)
             }}>
             <Text style={styles.text}>Petit-Déjeuner</Text>
           </TouchableOpacity>
           {isBreakfast ?
-            <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
-
-              <TouchableOpacity
-                style={styles.list}
-              >
-                <Text style={styles.text}>Le Parisien</Text>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu")}>
-                  <Text style={{ color: "white" }}>15€</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.list}
-                onPress={() => console.log('{props.navigation.navigate()}')}>
-                <Text style={styles.text}>Continental</Text>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu")}>
-                  <Text style={{ color: "white" }}>30€</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-            </View>
+            <>
+              {breakfast.map((menu, i) => {
+                return (
+                  <View key={i} style={{ flex: 1, width: "100%", alignItems: "center" }}>
+                    <TouchableOpacity
+                      style={styles.list}
+                    >
+                      <Text style={styles.text}>{menu.nameArticle}</Text>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id})}>
+                        <Text style={{ color: "white" }}>{menu.prix} €</Text>
+                      </TouchableOpacity>
+                    </TouchableOpacity>
+                  </View>
+                )
+              })}
+            </>
             : null
           }
         </View>
@@ -55,22 +68,23 @@ export default function RestaurationScreen(props) {
             <Text style={styles.text}>Dîner</Text>
           </TouchableOpacity>
           {isDiner ?
-            <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+            <>
+              {diner.map((menu, i) => {
+                return (
+                  <View key={i} style={{ flex: 1, width: "100%", alignItems: "center" }}>
 
-              <TouchableOpacity
-                style={styles.list}
-              >
-                <Text style={styles.text}>Moules Frites</Text>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("")}><Text style={{ color: "white" }}>30€</Text></TouchableOpacity>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.list}
-                onPress={() => console.log('{props.navigation.navigate()}')}>
-                <Text style={styles.text}>Pizza</Text>
-                <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("")}><Text style={{ color: "white" }}>20€</Text></TouchableOpacity>
-              </TouchableOpacity>
-            </View>
+                    <TouchableOpacity
+                      style={styles.list}
+                    >
+                      <Text style={styles.text}>{menu.nameArticle}</Text>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu")}>
+                        <Text style={{ color: "white" }}>{menu.prix} €</Text>
+                      </TouchableOpacity>
+                    </TouchableOpacity>
+                  </View>
+                )
+              })}
+            </>
             : null
           }
         </View>
@@ -80,6 +94,15 @@ export default function RestaurationScreen(props) {
 
   )
 };
+function mapStateToProps(state){
+  return {token:state.token}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(RestaurationScreen);
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -137,65 +160,3 @@ const styles = StyleSheet.create({
 
 
 
-
-
-// export default function RestaurationScreen(props) {
-//   return (
-//     <View style={styles.container}>
-//       <HomeImage />
-//       <ScrollView>
-
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => { props.navigation.navigate('Menu') }}>
-//           <Text style={styles.text}>Petit Déjeuner</Text>
-//         </TouchableOpacity>
-
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => console.log('{props.navigation.navigate()}')}>
-//           <Text style={styles.text}>Dîner</Text>
-//         </TouchableOpacity>
-
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => console.log('{props.navigation.navigate()}')}>
-//           <Text style={styles.text}>Snack</Text>
-//         </TouchableOpacity>
-
-//         <TouchableOpacity
-//           style={styles.button}
-//           onPress={() => console.log('{props.navigation.navigate()}')}>
-//           <Text style={styles.text}>Célébrations Personnelles</Text>
-//         </TouchableOpacity>
-//       </ScrollView>
-
-
-//     </View>
-
-//   )
-// };
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'flex-start',
-//     width: '100%',
-//     flexDirection: 'column',
-//     textAlign: 'left'
-//   },
-//   button: {
-//     borderColor: "#AADEC0",
-//     borderWidth: 0.5,
-//     padding: 10,
-//     width: '90%',
-//     marginBottom: 20
-//   },
-//   text: {
-//     color: 'black',
-//     fontSize: 18,
-//     textAlign: 'left'
-//   },
-
-// });
