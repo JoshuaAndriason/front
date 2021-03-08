@@ -79,7 +79,7 @@ export default function Question2Screen(props) {
         style={styles.button}
         onPress={() => { 
           handleSubmit()
-          // props.navigation.navigate('BottomNavigator') 
+          props.navigation.navigate('BottomNavigator') 
           }} >
         <Text>Confirmer</Text>
       </TouchableOpacity>

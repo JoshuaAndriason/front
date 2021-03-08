@@ -69,7 +69,7 @@ export function HomeScreen(props) {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10 }}
-                        onPress={() => props.navigation.navigate('Event')}>
+                        onPress={() => props.navigation.navigate('EventDetails')}>
                         <Image source={{ uri: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTR8fGV2ZW50fGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10, alignSelf: "flex-end" }} />
                     </TouchableOpacity>
                     <TouchableOpacity

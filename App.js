@@ -26,6 +26,7 @@ import RecommendationScreen from "./screens/RecommendationScreen";
 import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
+import EventScreenDetails from "./screens/EventScreenDetails";
 
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
@@ -42,7 +43,6 @@ const store = createStore(
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 //FUNCTION BOTTOM NAVIGATION
 const BottomNavigator = () => {
   return (
@@ -119,6 +119,7 @@ export default function App(props) {
             <Stack.Screen name="Order" component={OrderScreen} />
             <Stack.Screen name="morningNews" component={MorningNewsScreen} />
             <Stack.Screen name="Event" component={EventScreen} />
+            <Stack.Screen name="EventDetails" component={EventScreenDetails} />
             <Stack.Screen name="Service" component={ServiceScreen} />
             <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen}/>
             <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
