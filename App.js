@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 
 // IMPORT SCREEN
 import HeaderScreen from "./screens/HeaderScreen";
@@ -19,6 +20,7 @@ import EventScreen from "./screens/EventScreen";
 import RestaurationScreen from "./screens/RestaurationScreen";
 import RoomDirectoryScreen from "./screens/RoomDirectoryScreen";
 import RoomDirectoryDetailScreen from "./screens/RoomDirectoryDetailScreen";
+import RoomDirectoryBadgeScreen from "./screens/RoomDirectoryBadgeScreen";
 import Question1Screen from "./screens/Question1Screen";
 import Question2Screen from "./screens/Question2Screen";
 import Question3Screen from "./screens/Question3Screen";
@@ -26,20 +28,24 @@ import RecommendationScreen from "./screens/RecommendationScreen";
 import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
+import EventScreenDetails from "./screens/EventScreenDetails";
 
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import idArticle from "./reducers/idArticle";
+import idEvent from "./reducers/idEvent";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
+import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
+
+
 
 const store = createStore(
-  combineReducers({ idArticle, token, letterRoomDirectory })
+  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory })
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 //FUNCTION BOTTOM NAVIGATION
 const BottomNavigator = () => {
   return (
@@ -47,29 +53,29 @@ const BottomNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Home") {
-            iconName = "home";
+          if (route.name == "Log Out") {
+            iconName = "outdent";
           } else if (route.name == "Chat") {
             iconName = "envelope";
           } else if (route.name == "Account") {
             iconName = "user";
           }
 
-          return <FontAwesome name={iconName} size={25} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: "#e4605e",
-        inactiveTintColor: "#FFFFFF",
-        style: {
-          backgroundColor: "#AADEC0",
-        },
-      }}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Account" component={AccountScreen} />
-    </Tab.Navigator>
+      return <FontAwesome name={iconName} size={25} color={color} />;
+    },
+  })}
+  tabBarOptions={{
+    activeTintColor: "#e4605e",
+    inactiveTintColor: "#FFFFFF",
+    style: {
+      backgroundColor: "#AADEC0",
+    },
+  }}
+>
+  <Tab.Screen name="Log Out" component={InscriptionScreen} />
+  <Tab.Screen name="Chat" component={ChatScreen} />
+  <Tab.Screen name="Account" component={AccountScreen} />
+</Tab.Navigator>
   );
 };
 
@@ -96,9 +102,11 @@ export default function App(props) {
             <Stack.Screen name="Order" component={OrderScreen} />
             <Stack.Screen name="morningNews" component={MorningNewsScreen} />
             <Stack.Screen name="Event" component={EventScreen} />
+            <Stack.Screen name="EventDetails" component={EventScreenDetails} />
             <Stack.Screen name="Service" component={ServiceScreen} />
             <Stack.Screen name="RoomDirectory" component={RoomDirectoryScreen}/>
             <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
+            <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
             <Stack.Screen name="Home" component={HomeScreen} 

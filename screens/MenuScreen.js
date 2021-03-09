@@ -94,7 +94,7 @@ export default function MenuScreen({ route }) {
                     </TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
 
-                    {/* {Object.keys(foodDatas.detail).map((category, i) => {
+                    {Object.keys(foodDatas.detail).map((category, i) => {
                       
                       return (
                         <>
@@ -116,7 +116,7 @@ export default function MenuScreen({ route }) {
                           </View>
                         </>
                       )
-                    })} */}
+                    })}
 
                     <Text style={styles.category}>Vennoiseries</Text>
                     <View style={styles.choices}>

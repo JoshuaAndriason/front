@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
@@ -11,9 +11,21 @@ export function EventScreen(props) {
   const [checked, setChecked]= useState("");
   const [isComing, setIsComing]= useState(false)
 
+  const [event,setEvent] = useState([])
+
+  useEffect(  () => { var event = async() =>{
+   var rawResponse = await fetch(`http://${IPadress}:3000/events/${props.idEvent}`)
+   var response = await rawResponse.json();
+  setEvent(response.event)
+  }
+event()       
+
+}, []);
+
+
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
-    console.log("ahhhhhh");
+
     const data = fetch(`http://${IPadress}:3000/isComing`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -49,6 +61,8 @@ function setAnswer(answer) {
 <View style={styles.container}>
     
     <HomeImage/>
+    <Text>token :{props.token}</Text>
+    <Text>event :{props.idEvent}</Text>
 <View style={styles.border}>
 <Text style={styles.text}>Thé de soirée - offert</Text>
 
@@ -74,7 +88,7 @@ function setAnswer(answer) {
 <Button title="VALIDER" onPress={toggleOverlay} />
 </View>
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Merci pour votre retour.</Text>
+    <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
         <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
@@ -83,20 +97,15 @@ function setAnswer(answer) {
 </View>
 
 
-
-
-
-
   );
 }
 
 function mapStateToProps(state){
-  return {token:state.token}
-}  export default connect(
-  mapStateToProps, 
-  null,
+  return {token:state.token, idEvent:state.idEvent}
+}  
 
-)(EventScreen);
+export default connect(
+  mapStateToProps,null)(EventScreen);
 
 const styles = StyleSheet.create({
   container: {

@@ -12,50 +12,35 @@ export function InscriptionScreen(props) {
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
     const [isInscription,setIsInscription] = useState(true);
-    const [isConnexion,setIsConnexion] = useState(true);
-
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState('')
     const [signInRoom, setSignInRoom] = useState('')
     const [localToken, setLocalToken] = useState('')
-
-
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
+
+
    
 
-
-    useEffect(() => {
-      AsyncStorage.getItem('pseudo', (err, value) => {
-        if (value) {
-          setPseudo(value);
-          setPseudoIsSubmited(true);
-        }
-      });
-    }, []);
-  
-
     var handleSubmitSignup = async () => {
-    
-    
       const data = await fetch(`http://${IPadress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}`
+        body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}&token=`
       })
-console.log(IPadress)
       const body = await data.json()
-     console.log(body)
+
      if(body.result == true){
-    
       props.addToken(body.token)
+      setLocalToken(body.token)
+      AsyncStorage.setItem('token', localToken);
       props.navigation.navigate('Question1');
       } else {
       setErrorsSignup(body.error)
     } 
-    setLocalToken(body.token)
-    AsyncStorage.setItem('token',localToken)}
+console.log(localToken,'signUp local')
+  }
 
     var handleSubmitSignin = async () => {
  
@@ -71,12 +56,16 @@ console.log(IPadress)
       if(body.result == true){
         props.addToken(body.token)
         props.navigation.navigate("BottomNavigator")
-
+        setLocalToken(body.token)
+        AsyncStorage.setItem('token', localToken);
+        
       }  else {
         setErrorsSignin(body.error)
       }
+      console.log('signIn local', localToken)
     }
-     
+
+
 var backGroundInscription =''
 var backGroundConnexion =''
     if(isInscription){
@@ -86,8 +75,6 @@ var backGroundConnexion =''
       backGroundConnexion = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
       backGroundInscription ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
     }
-console.log('isInscription',isInscription)
-
      
     
   return (
@@ -169,8 +156,6 @@ console.log('isInscription',isInscription)
     </TouchableOpacity>
 
 <Text>{listErrorsSignup}</Text></>}
-
-    
 </View>
    
   );
@@ -178,6 +163,7 @@ console.log('isInscription',isInscription)
 function mapDispatchToProps(dispatch){
   return {
     addToken: function(token){
+      console.log('function addToken :',token)
       dispatch({type: 'addToken', token: token})
     }
   }
