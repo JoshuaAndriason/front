@@ -3,6 +3,7 @@ import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import IPadress from "../url"
 import {connect} from 'react-redux';
 
@@ -83,7 +84,7 @@ var backGroundConnexion =''
     <View style={styles.container}>
     
     <HomeImage/>
-   
+    
     <View>
     <View style={{ flexDirection: 'row',borderColor:'black'}}>
       <TouchableOpacity
@@ -102,25 +103,26 @@ var backGroundConnexion =''
       </View> 
 
       
- 
+      <KeyboardAwareScrollView>
+        <View style={styles.scroll}>
     {isInscription?<><Text style={styles.textLogin}>Inscription</Text>
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center' placeholder='Fred@gmail.com'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+   <Input textAlign='center' placeholder='@gmail.com'
+    containerStyle = {{marginBottom: 5, width: '300%'}}
      onChangeText={(value) => setEmailSignUp(value)}
      value={emailSignUp}
    />
      <Text>Nom</Text>
    <Input textAlign='center' placeholder='Fred'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+    containerStyle = {{marginBottom: 5, width: '300%'}}
      onChangeText={(value) => setLastNameSignUp(value)}
      value={lastNameSignUp}
    />
     <Text>N° de chambre</Text>
-   <Input textAlign='center' keyboardType='numeric' placeholder='55'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+   <Input textAlign='center' keyboardType='numeric' keyboardType='numbers-and-punctuation' placeholder='55'
+    containerStyle = {{marginBottom: 5, width: '100%'}}
      onChangeText={(value) => setRoomNumberSignUp(value)}
      value={roomNumberSignUp}
    />
@@ -135,20 +137,20 @@ var backGroundConnexion =''
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center' placeholder='Fred@gmail.com'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+   <Input textAlign='center' placeholder='@gmail.com'
+    containerStyle = {{marginBottom: 5, width: '300%'}}
      onChangeText={(value) => setSignInEmail(value)}
      value={signInEmail}
    />
      <Text>Nom</Text>
-   <Input textAlign='center' placeholder='Fred'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+   <Input textAlign='center' placeholder='Fred' 
+    containerStyle = {{marginBottom: 5, width: '300%'}}
      onChangeText={(value) => setSignInName(value)}
      value={signInName}
    />
     <Text>N° de chambre</Text>
-   <Input textAlign='center' keyboardType='numeric' placeholder='55'
-    containerStyle = {{marginBottom: 5, width: '55%'}}
+   <Input textAlign='center' keyboardType='numeric' keyboardType='numbers-and-punctuation' placeholder='55'
+    containerStyle = {{marginBottom: 5, width: '100%'}}
      onChangeText={(value) => setSignInRoom(value)}
      value={signInRoom}
    />
@@ -161,6 +163,8 @@ var backGroundConnexion =''
 <Text>{listErrorsSignup}</Text></>}
 
 <Text style={styles.textError}>{listErrorsSignin}</Text>
+</View>
+</KeyboardAwareScrollView>
 </View>
    
   );
@@ -194,7 +198,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
-    width: '40%' 
+    width: '100%' 
   },box:{
     width:'40%',
     padding:5,
@@ -233,5 +237,11 @@ const styles = StyleSheet.create({
     fontSize:18,
     color:'#AADEC0',
   },
+  scroll:{
+alignItems:'center',
+width:'100%',
+
+
+  }
    
 });
