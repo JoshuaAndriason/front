@@ -72,7 +72,7 @@ const BottomNavigator = () => {
     },
   }}
 >
-  <Tab.Screen name="Log Out" component={InscriptionScreen} />
+  <Tab.Screen name="Home" component={HomeScreen} />
   <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
 </Tab.Navigator>
