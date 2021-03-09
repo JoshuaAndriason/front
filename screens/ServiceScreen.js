@@ -26,7 +26,7 @@ content:'Ascenseur',url:'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614
       
     return(
       <>
-      <HomeImage/>
+      <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1615296934/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/SERVICE_yeivwz.jpg"/>
       <ScrollView contentContainerStyle={{paddingTop:10}}>
         
         <View style={styles.container}>

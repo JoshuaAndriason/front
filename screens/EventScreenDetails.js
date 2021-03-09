@@ -20,6 +20,8 @@ export function EventScreenDetails(props) {
     }, []);
 
   return (
+
+    
 <ScrollView style={{marginTop: 25}}>
 {
   events.map((u, i) => {

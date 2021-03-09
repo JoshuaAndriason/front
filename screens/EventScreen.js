@@ -32,7 +32,6 @@ console.log('fffffff',event)
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`
     })
-    // const body = await data.json()
   }
   console.log(props.token, "token")
 

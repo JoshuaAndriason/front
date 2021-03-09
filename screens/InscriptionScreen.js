@@ -34,7 +34,7 @@ export function InscriptionScreen(props) {
      if(body.result == true){
       props.addToken(body.token)
       setLocalToken(body.token)
-      AsyncStorage.setItem('token', localToken);
+      AsyncStorage.setItem('token', body.token);
       props.navigation.navigate('Question1');
       } else {
       setErrorsSignup(body.error)
@@ -57,7 +57,7 @@ console.log(localToken,'signUp local')
         props.addToken(body.token)
         props.navigation.navigate("BottomNavigator")
         setLocalToken(body.token)
-        AsyncStorage.setItem('token', localToken);
+        AsyncStorage.setItem('token', body.token);
         
       }  else {
         setErrorsSignin(body.error)
