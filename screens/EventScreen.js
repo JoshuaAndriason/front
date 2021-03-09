@@ -22,28 +22,25 @@ event()
 
 }, []);
 
+console.log('fffffff',event)
 
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
 
-    const data = fetch(`http://${IPadress}:3000/isComing`, {
+    const data = fetch(`http://${IPadress}:3000/confirmation`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `isComing=${isComing}&token=${props.token}`
+      body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`
     })
     // const body = await data.json()
   }
-
   console.log(props.token, "token")
 
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
 function setAnswer(answer) {
-  console.log(answer, "kf,fjf");
-
   if (answer === "Oui, je viens") {
     setIsComing(true)
-
   }
   else if (answer === "Dommage ! Une prochaine fois")
     setIsComing(false)
@@ -60,14 +57,13 @@ function setAnswer(answer) {
 
 <View style={styles.container}>
     
-    <HomeImage/>
+    <HomeImage uri={event.image}/>
     <Text>token :{props.token}</Text>
     <Text>event :{props.idEvent}</Text>
 <View style={styles.border}>
-<Text style={styles.text}>Thé de soirée - offert</Text>
 
-
-    <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
+<Text style={styles.text}>{event.nameEvents}</Text>
+<Text style={{marginTop:20}}>{event.description}</Text>
  
 
 

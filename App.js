@@ -29,6 +29,7 @@ import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import EventScreenDetails from "./screens/EventScreenDetails";
+import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen";
 
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
@@ -53,8 +54,8 @@ const BottomNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Log Out") {
-            iconName = "outdent";
+          if (route.name == "Home") {
+            iconName = "home";
           } else if (route.name == "Chat") {
             iconName = "envelope";
           } else if (route.name == "Account") {
@@ -96,6 +97,8 @@ export default function App(props) {
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Question3" component={Question3Screen}
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+               <Stack.Screen name="Home" component={HomeScreen} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Restauration" component={RestaurationScreen} />
             <Stack.Screen name="Menu" component={MenuScreen} />
             <Stack.Screen name="Article" component={ArticleNews} />
@@ -109,8 +112,9 @@ export default function App(props) {
             <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} 
-            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+            <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
+            <Tab.Screen name="Account" component={AccountScreen} />
+           
           </Stack.Navigator>
         </NavigationContainer>
       </>
