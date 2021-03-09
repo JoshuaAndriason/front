@@ -192,7 +192,9 @@ const styles = StyleSheet.create({
     },
     badge : {
       alignItems: "center",
-      flexDirection: 'column',
-      width: '75%',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      width: '80%',
+      justifyContent: 'center',
     }
 });
