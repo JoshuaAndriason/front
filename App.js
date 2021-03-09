@@ -85,10 +85,7 @@ export default function App(props) {
 <HeaderScreen/>
    <NavigationContainer >
      <Stack.Navigator screenOptions={{headerShown: false}}>
-       <Stack.Screen name="Restauration" component={RestaurationScreen} />
-      <Stack.Screen name="Menu" component={MenuScreen} />
-      <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
-       {/* <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+       <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
        <Stack.Screen name="Bienvenue" component={BienvenueScreen} /> 
       <Stack.Screen name="Question1" component={Question1Screen} />
        <Stack.Screen name="Question2" component={Question2Screen} />
@@ -102,7 +99,10 @@ export default function App(props) {
        <Stack.Screen name="RoomDirectoryDetail" component={RoomDirectoryDetailScreen} />
        <Stack.Screen name="Recommendation" component={RecommendationScreen} />
        <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-       <Stack.Screen name="Inscription" component={InscriptionScreen} /> */}
+       <Stack.Screen name="Inscription" component={InscriptionScreen} />
+       <Stack.Screen name="Restauration" component={RestaurationScreen} />
+      <Stack.Screen name="Menu" component={MenuScreen} />
+      <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
      </Stack.Navigator>
    </NavigationContainer>
     </>
