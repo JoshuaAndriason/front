@@ -61,6 +61,8 @@ console.log(localToken,'signUp local')
         
       }  else {
         setErrorsSignin(body.error)
+        console.log("il y a une erreur") 
+      
       }
       console.log('signIn local', localToken)
     }
@@ -96,7 +98,7 @@ var backGroundConnexion =''
       <Text style={styles.textLogin}>Connexion</Text>
     </TouchableOpacity>
     </View>
-     
+
       </View> 
 
       
@@ -128,7 +130,8 @@ var backGroundConnexion =''
       <Text>Valider</Text>
     </TouchableOpacity>
 
-<Text>{listErrorsSignup}</Text></> : <><Text style={styles.textLogin}>Connexion</Text>
+<Text style={styles.textError}>{listErrorsSignup}</Text></> : <><Text style={styles.textLogin}>Connexion</Text>
+
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
@@ -156,6 +159,8 @@ var backGroundConnexion =''
     </TouchableOpacity>
 
 <Text>{listErrorsSignup}</Text></>}
+
+<Text style={styles.textError}>{listErrorsSignin}</Text>
 </View>
    
   );
@@ -221,6 +226,12 @@ const styles = StyleSheet.create({
     color:'#AADEC0',
     fontSize:18,
     fontWeight:'bold'
-  }
+  }, textError:{
+    alignItems: 'center',
+    alignContent:'center',
+    justifyContent:'center',
+    fontSize:18,
+    color:'#AADEC0',
+  },
    
 });

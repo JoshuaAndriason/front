@@ -7,18 +7,18 @@ import { useNavigation } from "@react-navigation/native";
 export default function HeaderScreen({ showButtons = true }) {
   const navigation = useNavigation();
   return (
+      <>
+    {showButtons && (
     <View
-      style={{
-        marginTop: Constant.statusBarHeight,
-        width: "100%",
+      style={{width: "100%",
         height: 60,
         backgroundColor: "#AADEC0",
         flexDirection: "row",
         justifyContent: showButtons ? "space-between" : "center",
-        alignItems: "center",
+        alignItems: "flex-end",
       }}
     >
-      {showButtons && (
+      
         <Button
           onPress={() => {
             navigation.goBack();
@@ -26,7 +26,7 @@ export default function HeaderScreen({ showButtons = true }) {
           type="clear"
           icon={<Icon name="undo" size={30} color="white" />}
         />
-      )}
+
       <View>
         <Image
           source={{
@@ -36,7 +36,7 @@ export default function HeaderScreen({ showButtons = true }) {
           style={{ width: 92, height: 50 }}
         />
       </View>
-      {showButtons && (
+      
         <Button
           onPress={() => {
             navigation.navigate("BottomNavigator");
@@ -44,7 +44,9 @@ export default function HeaderScreen({ showButtons = true }) {
           type="clear"
           icon={<Icon name="home" size={30} color="white" />}
         />
-      )}
+      
     </View>
+        )}
+        </>
   );
-}
+};
