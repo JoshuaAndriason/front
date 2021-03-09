@@ -63,7 +63,7 @@ export function HomeScreen(props) {
                     <TouchableOpacity
                         style={{ width: "100%" }}
                         onPress={() => props.navigation.navigate('Service')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1543325042-c67825847491?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cmVjZXB0aW9ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 150, marginBottom: 10 }} />
+                        <Image source={{ uri: "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615218053/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/SERVICES_vapapg.png" }} style={{ width: '100%', height: 150, marginBottom: 10 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10 }}
