@@ -89,9 +89,25 @@ function RoomDirectoryScreen(props) {
     },
   ]
 
+    
+  const badge = [
+    {
+      badge: 'ACCUEIL',
+    },
+    {
+      badge: 'DEPART',
+    },
+    {
+      badge: 'HONESTYBAR',
+    },
+    {
+      badge: 'PRESSING',
+    },
+    {
+      badge: 'WIFI',
+    }
+  ]
   return(
-
-
 <View style={styles.container}>
 
 <HomeImage/>
@@ -100,69 +116,51 @@ function RoomDirectoryScreen(props) {
 
 
 <View style={styles.badge}>
-
+{
+          badge.map((item, i) => (
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>ACCUEIL</Text>
+        style={styles.button} key={i}
+        onPress={() => {props.onSubmitBadge(item.badge);props.navigation.navigate('RoomDirectoryBadge')}}>
+        <Text>{item.badge}</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>DÉPART</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>HONESTY BAR</Text>
-      </TouchableOpacity>
+      ))
+    }
 </View>
 
-  <View style={styles.badge}>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>PRESSING</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {props.navigation.navigate('RoomDirectoryDetail')}} >
-        <Text>WIFI</Text>
-      </TouchableOpacity>
-      </View>
 
   <ScrollView style={{width: '100%'}}>
           {
           list.map((item, i) => (
           <ListItem style={styles.list} key={i} bottomDivider 
             onPress={() => {props.onSubmitLetter(item.title);props.navigation.navigate('RoomDirectoryDetail')}}>
-
-              <ListItem.Content>
-                <ListItem.Title>{item.title}</ListItem.Title>
-              </ListItem.Content>
-              <ListItem.Chevron />
-            </ListItem>
-          ))
-        }
+          <ListItem.Content>
+            <ListItem.Title>{item.title}</ListItem.Title>
+          </ListItem.Content>
+          <ListItem.Chevron />
+        </ListItem>
+      ))
+    }
   </ScrollView>
 </View>
   )}
-
-
-
   function mapDispatchToProps(dispatch) {
     return {
       onSubmitLetter: function(letter) { 
         dispatch( {type: 'saveLetter', letterRoomDirectory: letter }) 
+      },onSubmitBadge: function(badge) { 
+        console.log(badge, "fred")
+        dispatch( {type: 'saveBadge', badgeRoomDirectory: badge }) 
       }
     }
   }
+
+
   export default connect(
     null,mapDispatchToProps)(RoomDirectoryScreen)
   
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -178,8 +176,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#AADEC0",
     borderRadius:50,
-    marginBottom: 5,
-    marginLeft: 5,
+    marginBottom: 8,
+    marginLeft: 8,
     width: '30%',
     textAlign: "center", 
   },
@@ -193,6 +191,10 @@ const styles = StyleSheet.create({
     width: '100%',
     },
     badge : {
-      flexDirection: 'row'
+      alignItems: "center",
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      width: '90%',
+      justifyContent: 'center',
     }
 });

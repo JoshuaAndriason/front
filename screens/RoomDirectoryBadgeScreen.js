@@ -5,24 +5,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 import {connect} from 'react-redux';
-
-
-export function RoomDirectoryDetailScreen(props) {
-    const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
+export function RoomDirectoryBadgeScreen(props) {
+    const [badgeRoomDirectory,setBadgeRoomDirectory] = useState([])
        useEffect(  () => { var room = async() =>{
-        var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
+        var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryBadge/${props.badgeRoomDirectory}`)
         var response = await rawResponse.json();
-       setDetailRoomDirectory(response.filterRoomDirectory)
+       setBadgeRoomDirectory(response.filterRoomDirectory)
        }
   room()       
 }, []);
-console.log('fggg',detailRoomDirectory)
+console.log('fggg',badgeRoomDirectory)
   return(
 <View style={styles.container}>
 <HomeImage/>
 <ScrollView style={{marginTop: 15}}>
   {
-    detailRoomDirectory.map((u, i) => {
+    badgeRoomDirectory.map((u, i) => {
       return (
 
         <Card key={i}>
@@ -43,10 +41,12 @@ console.log('fggg',detailRoomDirectory)
 );
 }
 function mapStateToProps(state){
-  return {letterRoomDirectory:state.letterRoomDirectory}
+  return {badgeRoomDirectory:state.badgeRoomDirectory}
 }  export default connect(
   mapStateToProps, 
-)(RoomDirectoryDetailScreen);
+)(RoomDirectoryBadgeScreen);
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

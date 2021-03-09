@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
@@ -11,27 +11,36 @@ export function EventScreen(props) {
   const [checked, setChecked]= useState("");
   const [isComing, setIsComing]= useState(false)
 
+  const [event,setEvent] = useState([])
+
+  useEffect(  () => { var event = async() =>{
+   var rawResponse = await fetch(`http://${IPadress}:3000/events/${props.idEvent}`)
+   var response = await rawResponse.json();
+  setEvent(response.event)
+  }
+event()       
+
+}, []);
+
+console.log('fffffff',event)
+
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
-    console.log("ahhhhhh");
-    const data = fetch(`http://${IPadress}:3000/isComing`, {
+
+    const data = fetch(`http://${IPadress}:3000/confirmation`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `isComing=${isComing}&token=${props.token}`
+      body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`
     })
     // const body = await data.json()
   }
-
   console.log(props.token, "token")
 
   var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
 console.log(isComing);
 function setAnswer(answer) {
-  console.log(answer, "kf,fjf");
-
   if (answer === "Oui, je viens") {
     setIsComing(true)
-
   }
   else if (answer === "Dommage ! Une prochaine fois")
     setIsComing(false)
@@ -48,12 +57,13 @@ function setAnswer(answer) {
 
 <View style={styles.container}>
     
-    <HomeImage/>
+    <HomeImage uri={event.image}/>
+    <Text>token :{props.token}</Text>
+    <Text>event :{props.idEvent}</Text>
 <View style={styles.border}>
-<Text style={styles.text}>Thé de soirée - offert</Text>
 
-
-    <Text style={{marginTop:20}}>Profitez du Céromonial du Thé proposé chaque soir, de 21h à 23h dans le Lobby Biblothèque</Text>
+<Text style={styles.text}>{event.nameEvents}</Text>
+<Text style={{marginTop:20}}>{event.description}</Text>
  
 
 
@@ -74,7 +84,7 @@ function setAnswer(answer) {
 <Button title="VALIDER" onPress={toggleOverlay} />
 </View>
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Merci pour votre retour.</Text>
+    <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
         <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
@@ -83,20 +93,15 @@ function setAnswer(answer) {
 </View>
 
 
-
-
-
-
   );
 }
 
 function mapStateToProps(state){
-  return {token:state.token}
-}  export default connect(
-  mapStateToProps, 
-  null,
+  return {token:state.token, idEvent:state.idEvent}
+}  
 
-)(EventScreen);
+export default connect(
+  mapStateToProps,null)(EventScreen);
 
 const styles = StyleSheet.create({
   container: {
