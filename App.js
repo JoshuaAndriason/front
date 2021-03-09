@@ -30,6 +30,7 @@ import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import EventScreenDetails from "./screens/EventScreenDetails";
 
+
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
@@ -53,8 +54,8 @@ const BottomNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Log Out") {
-            iconName = "outdent";
+          if (route.name == "Home") {
+            iconName = "home";
           } else if (route.name == "Chat") {
             iconName = "envelope";
           } else if (route.name == "Account") {
@@ -72,7 +73,7 @@ const BottomNavigator = () => {
     },
   }}
 >
-  <Tab.Screen name="Log Out" component={InscriptionScreen} />
+  <Tab.Screen name="Home" component={HomeScreen} />
   <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
 </Tab.Navigator>
@@ -85,37 +86,19 @@ export default function App(props) {
     <Provider store={store}>
       <>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              header: () => <HeaderScreen />,
-            }}
-          >
-            <Stack.Screen
-              name="Bienvenue"
-              component={BienvenueScreen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Inscription"
-              component={InscriptionScreen} 
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
+          <Stack.Navigator screenOptions={{ header: () => <HeaderScreen /> }}>
+            <Stack.Screen name="Bienvenue" component={BienvenueScreen}/>
+            <Stack.Screen name="Inscription" component={InscriptionScreen} 
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
-            <Stack.Screen
-              name="Question1"
-              component={Question1Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Question2"
-              component={Question2Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
-            <Stack.Screen
-              name="Question3"
-              component={Question3Screen}
-              options={{ header: () => <HeaderScreen showButtons={false} /> }}
-            />
+            <Stack.Screen name="Question1" component={Question1Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+            <Stack.Screen name="Question2" component={Question2Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+            <Stack.Screen name="Question3" component={Question3Screen}
+              options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+               <Stack.Screen name="Home" component={HomeScreen} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Restauration" component={RestaurationScreen} />
             <Stack.Screen name="Menu" component={MenuScreen} />
             <Stack.Screen name="Article" component={ArticleNews} />
@@ -129,7 +112,8 @@ export default function App(props) {
             <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
+           
           </Stack.Navigator>
         </NavigationContainer>
       </>

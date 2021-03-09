@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
       flexDirection: 'row',
       flexWrap: 'wrap',
-      width: '80%',
+      width: '90%',
       justifyContent: 'center',
     }
 });

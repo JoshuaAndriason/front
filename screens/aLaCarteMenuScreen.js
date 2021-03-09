@@ -6,32 +6,33 @@ import HomeImage from "../components/HomeImage";
 import { ScrollView } from "react-native-gesture-handler";
 import IPadress from "../url";
 
-export default function MenuScreen({ route }) {
-  const foodID = route.params.foodID;
-  const [foodDatas, setFoodDatas] = useState([]);
+export default function aLaCarteMenuScreen({ route }) {
+  const foodType = route.params.foodType;
+  const [dinerDatas, setDinerDatas] = useState([]);
   const [checked, setChecked] = useState("");
 
+ 
   useEffect(() => {
     async function getFood() {
       const response = await fetch(
-        `http://${IPadress}:3000/restauration/breakfast/${foodID}`
+        `http://${IPadress}:3000/restauration/food/${foodType}`
       );
       const data = await response.json();
-      const food = await data.result;
-      setFoodDatas(food);
+      const foods = await data.result;
+      setDinerDatas(foods);
     }
     getFood();
   }, []);
 
   return (
     <>
-      {foodDatas.detail ? (
+      {dinerDatas.length > 0 ? (
         <View style={styles.container}>
-          <HomeImage uri={foodDatas.image} />
+          <HomeImage uri={dinerDatas.image} />
           <ScrollView style={{ padding: 10 }}>
             <View style={styles.description}>
               <Text style={{ textAlign: "justify" }}>
-                {foodDatas.description}
+                {dinerDatas.description}
               </Text>
             </View>
 
@@ -39,29 +40,21 @@ export default function MenuScreen({ route }) {
               <Formik
                 initialValues={{
                   heure: ":",
-                  quantity: "",
+                  starter: "",
+                  dessert: "",
+                  dish: "",
                 }}
                 onSubmit={(values) => {
                   console.log("values:", values);
-                  const valueModified = { ...values, checked, foodID };
+                  const valueModified = { ...values, checked };
                   console.log(valueModified);
                 }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                   <View>
                     <Text style={styles.title}>Quelques Précisions</Text>
-                    <View style={styles.details}>
+                    <View style={styles.precision}>
                       <View>
-                        <View>
-                          <Text>Quantité :</Text>
-                          <TextInput
-                          onChangeText={handleChange("quantity")}
-                            style={styles.input}
-                            placeholder={"2"}
-                            value={values.quantity}
-                            keyboardType={"numeric"}
-                          />
-                        </View>
 
                         <View>
                           <Text>Heure :</Text>
@@ -95,39 +88,79 @@ export default function MenuScreen({ route }) {
                     </View>
 
                     {/* Choix */}
-                    
+                    <TextInput
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                      value={values.email}
+                    ></TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
 
-                    {foodDatas.detail.map((categoryObj) => {
-                      return Object.keys(categoryObj).map((category, i) => {
+                    <Text style={styles.category}>Entrées</Text>
+                    {dinerDatas
+                      .filter((data) => data.type == "Entrées")
+                      .map((categoryObj) => {
+                        
                         return (
                           <>
-                            <Text key={i} style={styles.category}>
-                              {category}
+                            <Text style={styles.precision}>
+                              {categoryObj.nameArticle}
                             </Text>
-                            {categoryObj[category].map((entry, i) => {
-                              return (
-                                <View key={i} style={styles.choices}>
-                                  <View style={styles.options}>
-                                    <TextInput
-                                      style={styles.input}
-                                      onChangeText={handleChange(entry)}
-                                      placeholder={"1"}
-                                      keyboardType={"numeric"}
-                                      value={values.entry}
-                                    />
+                            <Text>{categoryObj.prix} €</Text>
 
-                                    <Text style={styles.itemOption}>
-                                      {entry}
-                                    </Text>
-                                  </View>
-                                </View>
-                              );
-                            })}
+                            <TextInput
+                              style={styles.input}
+                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              placeholder={"1"}
+                              keyboardType={"numeric"}
+                              value={values.starter}
+                            />
                           </>
                         );
-                      });
-                    })}
+                      })}
+
+                    <Text style={styles.category}>Plats</Text>
+                    {dinerDatas
+                      .filter((data) => data.type == "Plats")
+                      .map((categoryObj) => {
+                        
+                        return (
+                          <>
+                            <Text style={styles.details}>
+                              {categoryObj.nameArticle}
+                            </Text>
+                            <Text>{categoryObj.prix} €</Text>
+                            <TextInput
+                              style={styles.input}
+                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              placeholder={"1"}
+                              keyboardType={"numeric"}
+                              value={values.dish}
+                            />
+                          </>
+                        );
+                      })}
+                    <Text style={styles.category}>Desserts</Text>
+                    {dinerDatas
+                      .filter((data) => data.type == "Desserts")
+                      .map((categoryObj) => {
+                        
+                        return (
+                          <>
+                            <Text style={styles.details}>
+                              {categoryObj.nameArticle}
+                            </Text>
+                            <Text>{categoryObj.prix} €</Text>
+                            <TextInput
+                              style={styles.input}
+                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              placeholder={"1"}
+                              keyboardType={"numeric"}
+                              value={values.dessert}
+                            />
+                          </>
+                        );
+                       
+                      })}
 
                     <Button onPress={handleSubmit} title="Valider" />
                   </View>
@@ -158,15 +191,20 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
   },
-  details: {
+  precision: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    textTransform: "capitalize",
+  },
+  details: {
+      
+      textTransform: "capitalize",
   },
   title: {
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 15,
+    marginBottom: 15
   },
   category: {
     backgroundColor: "#AADEC0",

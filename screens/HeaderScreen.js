@@ -2,11 +2,10 @@ import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import Constant from "expo-constants";
-import { useNavigation } from '@react-navigation/native';  
+import { useNavigation } from "@react-navigation/native";
 
-
-export default function HeaderScreen({showButtons = true}) {
-  const navigation = useNavigation ( ) ; 
+export default function HeaderScreen({ showButtons = true }) {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -21,10 +20,11 @@ export default function HeaderScreen({showButtons = true}) {
     >
       {showButtons && (
         <Button
-          onPress={() => {navigation.navigate("Home");
+          onPress={() => {
+            navigation.goBack();
           }}
           type="clear"
-          icon={<Icon name="home" size={30} color="white" />}
+          icon={<Icon name="undo" size={30} color="white" />}
         />
       )}
       <View>
@@ -38,9 +38,11 @@ export default function HeaderScreen({showButtons = true}) {
       </View>
       {showButtons && (
         <Button
-        onPress={() => {navigation.goBack()}}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
           type="clear"
-          icon={<Icon name="undo" size={30} color="white" />}
+          icon={<Icon name="home" size={30} color="white" />}
         />
       )}
     </View>

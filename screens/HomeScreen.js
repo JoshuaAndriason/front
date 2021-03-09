@@ -10,19 +10,39 @@ const height = width * 0.6; //60%
 
 
 export function HomeScreen(props) {
+    const [Service, setService] = useState([])
+    const [Restauration, setRestauration] = useState([])
+    const [Recommendation, setRecommendation] = useState([])
+    const [MorningNews, setMorningNews] = useState([])
+    const [RoomDirectory, setRoomDirectory] = useState([])
+    const [Event, setEvent] = useState([])
     const [active, setActive] = useState(0)
     const [events, setEvents] = useState([])
-    useEffect(() => {
-        var eventsFunction = async () => {
-            var rawResponse = await fetch(`http://${IPadress}:3000/events`)
-            var response = await rawResponse.json();
+  
 
-            setEvents(response.events)
+      useEffect(() => {
+        async function getHomeImage() {
+        const response = await fetch(`http://${IPadress}:3000/image`)
+          const data = await response.json()
+          const hotels = await data.result
+          const ImageHomepage = hotels[0].image
+            setService(ImageHomepage[0]);
+            setRestauration(ImageHomepage[1]);
+            setRecommendation(ImageHomepage[2]);
+            setMorningNews(ImageHomepage[3]);
+            setRoomDirectory(ImageHomepage[4]);
+            setEvent(ImageHomepage[5]);
         }
-        eventsFunction()
+            var eventsFunction = async () => {
+                var rawResponse = await fetch(`http://${IPadress}:3000/events`)
+                var response = await rawResponse.json();
+                setEvents(response.events)
+        }
+        getHomeImage();
+        eventsFunction();
+      }, []);
 
-    }, []);
-    
+
 
     const change = (event) => {
         const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
@@ -57,15 +77,15 @@ export function HomeScreen(props) {
 
                 </View>
             </View>
-            <Text>token :{props.token}</Text>
+            <Text>Token :{props.token}</Text>
             <ScrollView style={{ width: '100%', paddingBottom: 10, paddingRight: 10, paddingLeft: 10 }}>
 
                 <View style={{ display: "flex", width: "100%", flexDirection: "row", flexWrap: "wrap" }}>
 
                     <TouchableOpacity
-                        style={{ width: "100%" }}
-                        onPress={() => props.navigation.navigate('Service')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1543325042-c67825847491?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NXx8cmVjZXB0aW9ufGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 150, marginBottom: 10 }} />
+                        style={{ width: "100%"}}
+                        onPress={() => props.navigation.navigate(Service.serviceName)}>
+                        <Image source={{ uri: Service.imageService}} style={{ width: '100%', height:150, marginBottom: 10 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10 }}
@@ -74,23 +94,23 @@ export function HomeScreen(props) {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%" }}
-                        onPress={() => props.navigation.navigate('Recommendation')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1604595817512-b7a728795249?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cGFyaXNpYW4lMjBtYXJrZXR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                        onPress={() => props.navigation.navigate(Recommendation.serviceName)}>
+                        <Image source={{ uri: Recommendation.imageRecommendatation}} style={{ width: '100%', height: 200 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={{ width: "48.5%", marginRight: 10 }}
-                        onPress={() => props.navigation.navigate('Restauration')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1428515613728-6b4607e44363?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200, marginBottom: 10 }} />
+                        style={{ width: "48.5%", marginRight: 10  }}
+                        onPress={() => props.navigation.navigate(Restauration.serviceName)}>
+                        <Image source={{ uri: Restauration.imageRestauration }} style={{ width: '100%', height: 200, marginBottom: 10}} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%" }}
-                        onPress={() => props.navigation.navigate('morningNews')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFwZXIlMjBuZXdzfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 200 }} />
+                        onPress={() => props.navigation.navigate(MorningNews.serviceName)}>
+                        <Image source={{ uri: MorningNews.imageNews }} style={{ width: '100%', height: 200 }} />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={{ width: "100%" }}
-                        onPress={() => props.navigation.navigate('RoomDirectory')}>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfDB8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }} style={{ width: '100%', height: 150, marginBottom: 10, }} />
+                        style={{ width: "100%"}}
+                        onPress={() => props.navigation.navigate(RoomDirectory.serviceName)}>
+                        <Image source={{ uri: RoomDirectory.imageDirectory }} style={{ width: '100%', height:150, marginBottom: 10, }} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>

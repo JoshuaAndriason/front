@@ -5,6 +5,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 import {connect} from 'react-redux';
+
+
 export function RoomDirectoryDetailScreen(props) {
     const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
        useEffect(  () => { var room = async() =>{
