@@ -29,6 +29,7 @@ import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import EventScreenDetails from "./screens/EventScreenDetails";
+import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen";
 
 
 // IMPORT REDUCER
