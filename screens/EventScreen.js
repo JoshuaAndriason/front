@@ -83,11 +83,14 @@ function setAnswer(answer) {
 
 <Button title="VALIDER" onPress={toggleOverlay} />
 </View>
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+      <Overlay isVisible={visible} >
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
-        <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
+        <Button title="RETOUR" onPress={() => {
+          toggleOverlay()
+          props.navigation.navigate('Home')
+          }}/>
       </Overlay>
 
 </View>

@@ -83,15 +83,9 @@ export function HomeScreen(props) {
                 <View style={{ display: "flex", width: "100%", flexDirection: "row", flexWrap: "wrap" }}>
 
                     <TouchableOpacity
-<<<<<<< HEAD
-                        style={{ width: "100%" }}
-                        onPress={() => props.navigation.navigate('Service')}>
-                        <Image source={{ uri: "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615218053/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/SERVICES_vapapg.png" }} style={{ width: '100%', height: 150, marginBottom: 10 }} />
-=======
                         style={{ width: "100%"}}
                         onPress={() => props.navigation.navigate(Service.serviceName)}>
                         <Image source={{ uri: Service.imageService}} style={{ width: '100%', height:150, marginBottom: 10 }} />
->>>>>>> 7700132efc56aa19d8147fb409ec9366704a6863
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ width: "48.5%", marginRight: 10 }}
