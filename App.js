@@ -53,8 +53,8 @@ const BottomNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           let iconName;
-          if (route.name == "Log Out") {
-            iconName = "outdent";
+          if (route.name == "Home") {
+            iconName = "home";
           } else if (route.name == "Chat") {
             iconName = "envelope";
           } else if (route.name == "Account") {
@@ -72,7 +72,7 @@ const BottomNavigator = () => {
     },
   }}
 >
-  <Tab.Screen name="Log Out" component={InscriptionScreen} />
+  <Tab.Screen name="Home" component={HomeScreen} />
   <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
 </Tab.Navigator>
@@ -96,6 +96,8 @@ export default function App(props) {
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Question3" component={Question3Screen}
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+               <Stack.Screen name="Home" component={HomeScreen} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Restauration" component={RestaurationScreen} />
             <Stack.Screen name="Menu" component={MenuScreen} />
             <Stack.Screen name="Article" component={ArticleNews} />
@@ -109,8 +111,7 @@ export default function App(props) {
             <Stack.Screen name="RoomDirectoryBadge" component={RoomDirectoryBadgeScreen} />
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} 
-            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
+           
           </Stack.Navigator>
         </NavigationContainer>
       </>

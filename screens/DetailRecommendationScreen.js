@@ -18,7 +18,7 @@ var details = props.route.params.detailsRecommendations
   
       <View  style={styles.boxLogo}>
       <View style={styles.inner}>
-      <Image source={{ uri: details.logo }} style={{ width: 130 , height: 60, marginTop: 20, resizeMode: 'strech' }}></Image>
+      <Image source={{ uri: details.logo }} style={{ width: 130 , height: 60, marginTop: 20, resizeMode: 'stretch' }}></Image>
       <View style={styles.text}><Text>{details.adresse}</Text></View>
       </View>
       </View>
