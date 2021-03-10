@@ -25,10 +25,10 @@ export function RestaurationScreen(props) {
     getAllMenus()
   }, []);
 
-
+ 
   return (
     <View style={styles.container}>
-      <HomeImage />
+      <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590448/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7190_hotel_des_deux_iles_bd_gq0vyj.jpg"/>
       <Text>token :{props.token}</Text>
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.block}>

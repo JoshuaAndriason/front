@@ -29,7 +29,12 @@ import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import EventScreenDetails from "./screens/EventScreenDetails";
+<<<<<<< HEAD
 import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen"
+=======
+import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen";
+import LogoutScreen from "./screens/LogoutScreen";
+>>>>>>> 0cd064a5c9218bbccc8891a6a34dfc60c1f15fd6
 
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
@@ -39,6 +44,7 @@ import idEvent from "./reducers/idEvent";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
 import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
+
 
 
 
@@ -55,14 +61,16 @@ const BottomNavigator = () => {
         tabBarIcon: ({ color }) => {
           let iconName;
           if (route.name == "Home") {
-            iconName = "home";
+            iconName = "home";} 
+            else if (route.name == "Account") {
+              iconName = "user";
           } else if (route.name == "Chat") {
             iconName = "envelope";
-          } else if (route.name == "Account") {
-            iconName = "user";
+          } else if (route.name =="Logout") {
+            iconName = "sign-out"
           }
 
-      return <FontAwesome name={iconName} size={25} color={color} />;
+      return <FontAwesome name={iconName} size={20} color={color} style={{flexDirection:'row'}}/>;
     },
   })}
   tabBarOptions={{
@@ -70,12 +78,16 @@ const BottomNavigator = () => {
     inactiveTintColor: "#FFFFFF",
     style: {
       backgroundColor: "#AADEC0",
+      height:70,
+      width:'100%'
+    
     },
   }}
 >
   <Tab.Screen name="Home" component={HomeScreen} />
-  <Tab.Screen name="Chat" component={ChatScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
+  <Tab.Screen name="Chat" component={ChatScreen} />
+  <Tab.Screen name="Logout" component={LogoutScreen} />
 </Tab.Navigator>
   );
 };
@@ -87,10 +99,12 @@ export default function App(props) {
       <>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ header: () => <HeaderScreen /> }}>
-            <Stack.Screen name="Bienvenue" component={BienvenueScreen}/>
+            <Stack.Screen name="Bienvenue" component={BienvenueScreen} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Inscription" component={InscriptionScreen} 
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
-            <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
+            <Stack.Screen name="BottomNavigator" component={BottomNavigator} 
+            options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Question1" component={Question1Screen}
               options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
             <Stack.Screen name="Question2" component={Question2Screen}
@@ -113,6 +127,7 @@ export default function App(props) {
             <Stack.Screen name="Recommendation" component={RecommendationScreen} />
             <Stack.Screen name="DetailRecommendation" component={DetailRecommendationScreen} />
             <Stack.Screen name="aLaCarte" component={aLaCarteMenuScreen} />
+            <Tab.Screen name="Account" component={AccountScreen} />
            
           </Stack.Navigator>
         </NavigationContainer>

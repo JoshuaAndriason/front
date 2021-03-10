@@ -21,7 +21,7 @@ function MorningNewsScreen(props) {
 
   return (
     <View >
-      <HomeImage/>
+      <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590349/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A6914_hotel_des_deux_iles_bd_e2lur1.jpg"/>
 {
     sourceList.map((l, i) => (
       <ListItem key={i} bottomDivider>
