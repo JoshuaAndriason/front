@@ -60,13 +60,13 @@ const BottomNavigator = () => {
             iconName = "home";} 
             else if (route.name == "Account") {
               iconName = "user";
-          } else if (route.name == "Chat") {
+          } else if (route.name == "Contact") {
             iconName = "envelope";
           } else if (route.name =="Logout") {
             iconName = "sign-out"
           }
 
-      return <FontAwesome name={iconName} size={20} color={color} style={{flexDirection:'row'}}/>;
+      return <FontAwesome name={iconName} size={25} color={color}/>;
     },
   })}
   tabBarOptions={{
@@ -74,16 +74,16 @@ const BottomNavigator = () => {
     inactiveTintColor: "#FFFFFF",
     style: {
       backgroundColor: "#AADEC0",
-      height:70,
-      width:'100%'
-    
+      height:65,
+      width:'100%'    
     },
   }}
 >
   <Tab.Screen name="Home" component={HomeScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
-  <Tab.Screen name="Chat" component={ChatScreen} />
-  <Tab.Screen name="Logout" component={LogoutScreen} />
+  <Tab.Screen name="Contact" component={ChatScreen} />
+  <Tab.Screen name="Logout" component={LogoutScreen} options={{tabBarVisible:false}}   
+  options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
 </Tab.Navigator>
   );
 };
