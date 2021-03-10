@@ -27,11 +27,12 @@ useEffect(  () => { var accountFunction = async() =>{
     setAccount(body.saveUser)
     setEvent(body.saveEvents)
     setOrder(body.saveOrder)
+    
   }
   accountFunction()       
   
   }, []); 
-
+  console.log('fffffff',order)
   //FORMAT DATE
 const dateFormat = function(date){
   var newDate = new Date(date);
@@ -75,13 +76,13 @@ const dateFormat = function(date){
             key={i}
             bottomDivider
             onPress={() => {
-              props.navigation.navigate("Order");
+              props.onSubmitOrder(item._id);props.navigation.navigate("Order")
             }}
           >
             <Icon name={item.icon} />
             <ListItem.Content>
               <ListItem.Title>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
-              <ListItem.Subtitle> N° {'CMD-'+item._id.slice(10)}</ListItem.Subtitle>
+              <ListItem.Subtitle> N° {'CMD-'+item._id.slice(18)}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem>
@@ -120,13 +121,22 @@ const dateFormat = function(date){
   );
 }
 
+
 function mapStateToProps(state){
   return {token:state.token}
-}  export default connect(
-  mapStateToProps, 
-  null,
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmitOrder: function(idOrder) {
+        console.log('on ORDER',idOrder) 
+      dispatch( {type: 'saveOrderId', idOrder: idOrder }) 
+    }
+  }
+}
+export default connect(mapStateToProps,
+  mapDispatchToProps
+  )(AccountScreen);
 
-)(AccountScreen);
 
 const styles = StyleSheet.create({
   container: {

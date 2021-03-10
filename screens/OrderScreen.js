@@ -8,29 +8,23 @@ import IPadress from "../url"
 export function OrderScreen(props) {
 
   //Déclaration des ETATS
-  const [isCommande, setIsCommande] = useState(false);
-  const [isEvenement, setisEvenement] = useState(false);
-  const [account, setAccount] = useState([])
-  const [event, setEvent] = useState([])
   const [order, setOrder] = useState([])
-
+  const [orderDetails, setOrderDetails] = useState([])
+  const [food,setFood] = useState([])
 
   //Recupération de l'évent et commande et infos USER DU BACK 
 useEffect(  () => { var accountFunction = async() =>{
-  const data = await fetch(`http://${IPadress}:3000/account`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `token=${props.token}`
-    })
-    console.log(data.json)
-    const body = await data.json()
-    setAccount(body.saveUser)
-    setEvent(body.saveEvents)
-    setOrder(body.saveOrder)
+  const responseFood = await fetch(`http://${IPadress}:3000/account/${props.idOrder}`)
+  const bodyFood = await responseFood.json()
+    setOrderDetails(bodyFood.saveOrder.order[0].details)
+    setOrder(bodyFood.saveOrder)
+    setFood(bodyFood.saveFood)
   }
   accountFunction()       
   
   }, []); 
+
+  console.log('order',order)
 
   //FORMAT DATE
 const dateFormat = function(date){
@@ -58,30 +52,28 @@ const dateFormat = function(date){
     <View style={styles.container}>
     
     <HomeImage/>
+    <Text style={{marginBottom:10}} h4>Détail de votre commande</Text>
     
-    <Text h4>À propos de votre commande</Text>
-
-      <Text style={{marginTop:20}} >Date de commande : 16/04/2021</Text>
+      <Text style={{marginTop:10}} >Date de commande : {dateFormat(order.dateService)}</Text>
  
-      <Text style={{marginTop:10}}>Heure de commande : 21h37</Text>
+      <Text style={{marginTop:10,marginBottom:20}}>Heure de commande : {order.heureService}</Text>
 
-      <Text style={{marginTop:10, marginBottom:40}}>Numéro de commande : k87b65</Text>
 
-      <Text style={{marginBottom:20}} h4>Détail de votre commande</Text>
+      
+  <Text style={styles.text}>{food.type}: {food.nameArticle}</Text>
 
       {
-    list.map((item, i) => (
+    orderDetails.map((item, i) => (
       <ListItem style={styles.list} key={i} bottomDivider>
         <Icon name={item.icon} />
         <ListItem.Content>
-          <ListItem.Title>{item.title}</ListItem.Title>
+          <ListItem.Title>{Object.values(item)} x {Object.keys(item) } </ListItem.Title>
           <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     ))
   }
- 
- <Text style={{marginTop:20}} >Total TTC : 83,00€</Text>
+
 
 </View>
 
@@ -91,7 +83,7 @@ const dateFormat = function(date){
 }
 
 function mapStateToProps(state){
-  return {token:state.token}
+  return {token:state.token,idOrder:state.idOrder}
 }  export default connect(
   mapStateToProps, 
   null,
@@ -117,4 +109,12 @@ const styles = StyleSheet.create({
   list: {
       width: '100%',
     },
+    text:{
+      textAlign:'left',
+      fontSize: 17,
+      width:'100%',
+      fontWeight:'bold',
+      marginLeft: 70, 
+      color:"#AADEC0",
+    }
 });

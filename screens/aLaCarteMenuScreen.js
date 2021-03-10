@@ -9,9 +9,9 @@ import IPadress from "../url";
 export default function aLaCarteMenuScreen({ route }) {
   const foodType = route.params.foodType;
   const [dinerDatas, setDinerDatas] = useState([]);
+  console.log('dinerDatas:', dinerDatas)
   const [checked, setChecked] = useState("");
 
- 
   useEffect(() => {
     async function getFood() {
       const response = await fetch(
@@ -19,6 +19,7 @@ export default function aLaCarteMenuScreen({ route }) {
       );
       const data = await response.json();
       const foods = await data.result;
+      console.log('foods:', foods)
       setDinerDatas(foods);
     }
     getFood();
@@ -40,22 +41,53 @@ export default function aLaCarteMenuScreen({ route }) {
               <Formik
                 initialValues={{
                   heure: ":",
-                  starter: "",
-                  dessert: "",
-                  dish: "",
+                  // starter: "",
+                  // dessert: "",
+                  // dish: "",
                 }}
-                onSubmit={(values) => {
+                onSubmit={async (values)  => {
                   console.log("values:", values);
                   const valueModified = { ...values, checked };
                   console.log(valueModified);
-                }}
+
+                  // store all entries of the values object
+                  const valuesEntry = Object.entries(values);
+                  // initialize an array where the details of the order will be push inside
+                  let details = [];
+                  // push only the object that contains an detail of the order into details array
+                  for (let index = 0; index < valuesEntry.length; index++) {
+                    if (
+                      valuesEntry[index][0] !== "heure"
+                    ) {
+                      let obj = {};
+                      obj[valuesEntry[index][0]] = valuesEntry[index][1];
+                      details.push(obj);
+                    }
+                  }
+                 // store the current date (when the commande has been ordered)
+              const date = new Date().toString()
+              
+              // send the order to the back
+              try {
+               
+                const sendOrder = await fetch(`http://${IPadress}:3000/restauration/order`, {
+                  method: "POST",
+                  headers: { 'Content-Type': 'application/json'},
+                  body: JSON.stringify({details, heure: values.heure, lieu: checked, date})
+                })
+                sendOrder()
+              } catch (error) {
+                console.log('error:', error)
+              }
+              //console.log('details:', details, values.heure, values.quantity, checked, date)
+            
+            }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                   <View>
                     <Text style={styles.title}>Quelques Précisions</Text>
                     <View style={styles.precision}>
                       <View>
-
                         <View>
                           <Text>Heure :</Text>
                           <TextInput
@@ -95,13 +127,12 @@ export default function aLaCarteMenuScreen({ route }) {
                     ></TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
 
-                    <Text style={styles.category}>Entrées</Text>
                     {dinerDatas
                       .filter((data) => data.type == "Entrées")
-                      .map((categoryObj) => {
-                        
+                      .map((categoryObj, i) => {
                         return (
                           <>
+                          <Text style={styles.category}>Entrées</Text>
                             <Text style={styles.precision}>
                               {categoryObj.nameArticle}
                             </Text>
@@ -109,7 +140,9 @@ export default function aLaCarteMenuScreen({ route }) {
 
                             <TextInput
                               style={styles.input}
-                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              onChangeText={handleChange(
+                                categoryObj.nameArticle
+                              )}
                               placeholder={"1"}
                               keyboardType={"numeric"}
                               value={values.starter}
@@ -118,20 +151,21 @@ export default function aLaCarteMenuScreen({ route }) {
                         );
                       })}
 
-                    <Text style={styles.category}>Plats</Text>
                     {dinerDatas
                       .filter((data) => data.type == "Plats")
                       .map((categoryObj) => {
-                        
                         return (
                           <>
+                          <Text style={styles.category}>Plats</Text>
                             <Text style={styles.details}>
                               {categoryObj.nameArticle}
                             </Text>
                             <Text>{categoryObj.prix} €</Text>
                             <TextInput
                               style={styles.input}
-                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              onChangeText={handleChange(
+                                categoryObj.nameArticle
+                              )}
                               placeholder={"1"}
                               keyboardType={"numeric"}
                               value={values.dish}
@@ -139,27 +173,49 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
-                    <Text style={styles.category}>Desserts</Text>
                     {dinerDatas
                       .filter((data) => data.type == "Desserts")
                       .map((categoryObj) => {
-                        
                         return (
                           <>
+                          <Text style={styles.category}>Desserts</Text>
                             <Text style={styles.details}>
                               {categoryObj.nameArticle}
                             </Text>
                             <Text>{categoryObj.prix} €</Text>
                             <TextInput
                               style={styles.input}
-                              onChangeText={handleChange(categoryObj.nameArticle)}
+                              onChangeText={handleChange(
+                                categoryObj.nameArticle
+                              )}
                               placeholder={"1"}
                               keyboardType={"numeric"}
                               value={values.dessert}
                             />
                           </>
                         );
-                       
+                      })}
+                      {dinerDatas
+                      .filter((data) => data.type == "Carte")
+                      .map((categoryObj) => {
+                        return (
+                          <>
+                          <Text style={styles.category}>A la carte</Text>
+                            <Text style={styles.details}>
+                              {categoryObj.nameArticle}
+                            </Text>
+                            <Text>{categoryObj.prix} €</Text>
+                            <TextInput
+                              style={styles.input}
+                              onChangeText={handleChange(
+                                categoryObj.nameArticle
+                              )}
+                              placeholder={"1"}
+                              keyboardType={"numeric"}
+                              value={values.dessert}
+                            />
+                          </>
+                        );
                       })}
 
                     <Button onPress={handleSubmit} title="Valider" />
@@ -198,13 +254,12 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   details: {
-      
-      textTransform: "capitalize",
+    textTransform: "capitalize",
   },
   title: {
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 15
+    marginBottom: 15,
   },
   category: {
     backgroundColor: "#AADEC0",

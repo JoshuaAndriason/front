@@ -37,15 +37,16 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import idArticle from "./reducers/idArticle";
 import idEvent from "./reducers/idEvent";
+import idOrder from "./reducers/idOrder";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
 import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
 
 
 
-
+// DECLARATION STORE,STACK,Tab
 const store = createStore(
-  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory })
+  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory,idOrder })
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -88,7 +89,7 @@ const BottomNavigator = () => {
   );
 };
 
-//FUNCTION BOTTOM NAVIGATION
+//FUNCTION APP.JS
 export default function App(props) {
   return (
     <Provider store={store}>
