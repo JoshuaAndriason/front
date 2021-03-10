@@ -66,7 +66,7 @@ const BottomNavigator = () => {
             iconName = "sign-out"
           }
 
-      return <FontAwesome name={iconName} size={20} color={color} style={{flexDirection:'row'}}/>;
+      return <FontAwesome name={iconName} size={25} color={color}/>;
     },
   })}
   tabBarOptions={{
@@ -74,7 +74,7 @@ const BottomNavigator = () => {
     inactiveTintColor: "#FFFFFF",
     style: {
       backgroundColor: "#AADEC0",
-      height:70,
+      height:65,
       width:'100%'
     
     },

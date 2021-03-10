@@ -6,12 +6,16 @@ import {connect} from 'react-redux';
 import IPadress from "../url";
 
 export function AccountScreen(props) {
+
+  //Déclaration des ETATS
   const [isCommande, setIsCommande] = useState(false);
   const [isEvenement, setisEvenement] = useState(false);
   const [account, setAccount] = useState([])
   const [event, setEvent] = useState([])
   const [order, setOrder] = useState([])
 
+
+  //Recupération de l'évent et commande et infos USER DU BACK 
 useEffect(  () => { var accountFunction = async() =>{
   const data = await fetch(`http://${IPadress}:3000/account`, {
       method: 'POST',
@@ -28,26 +32,6 @@ useEffect(  () => { var accountFunction = async() =>{
   
   }, []); 
 
-
-  console.log('++++++++===event',order)
-
-  const list = [
-    {
-      title: "Commande du 16/04/2021 à 21h37",
-      subtitle: "Cmd N° k87b65",
-      icon: "av-timer",
-    },
-    {
-      title: "Commande du 16/04/2021 à 23h59",
-      subtitle: "Cmd N° 16f9H7",
-      icon: "av-timer",
-    },
-    {
-      title: "Commande du 17/04/2021 à 18h26",
-      subtitle: "Cmd N° 8j09kl",
-      icon: "av-timer",
-    },
-  ];
   //FORMAT DATE
 const dateFormat = function(date){
   var newDate = new Date(date);
@@ -60,22 +44,21 @@ const dateFormat = function(date){
   return (
     <ScrollView>
       <View style={styles.container}>
+      {/* Home IMAGE */}
         <HomeImage />
 
+{/* Recap des INFOS DU USER */}
     <Text>Token :{props.token}</Text>
-
     <Text h4>Bonjour {account.lastName} !</Text>
-
     <Text style={{ marginTop: 10 }}>Numéro de chambre : {account.roomNumber}</Text>
-
     <Text style={{ marginTop: 10, marginBottom: 40 }}>
-      Centre d'intérets :{account.motivation}
+      Centre d'intérets :{account.motivation==='undefined'?"auncun centre d'intêret":account.motivation}
     </Text>
-
     <Text style={{ marginBottom: 20 }} h4>
       Récapitulatif :
     </Text>
 
+{/*ACCORDION RECAP COMMANDES*/}
     <TouchableOpacity
       style={styles.item}
       onPress={() => {
@@ -98,14 +81,14 @@ const dateFormat = function(date){
             <Icon name={item.icon} />
             <ListItem.Content>
               <ListItem.Title>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
-              <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+              <ListItem.Subtitle> N° {'CMD-'+item._id.slice(10)}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem>
         ))}
       </>
     ) : null}
-
+{/*ACCORDION RECAP EVENT*/}
     <TouchableOpacity
       style={styles.item}
       onPress={() => {

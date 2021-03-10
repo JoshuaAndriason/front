@@ -1,10 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 import IPadress from "../url"
 
-export default function OrderScreen(props) {
+export function OrderScreen(props) {
+
+  //Déclaration des ETATS
+  const [isCommande, setIsCommande] = useState(false);
+  const [isEvenement, setisEvenement] = useState(false);
+  const [account, setAccount] = useState([])
+  const [event, setEvent] = useState([])
+  const [order, setOrder] = useState([])
+
+
+  //Recupération de l'évent et commande et infos USER DU BACK 
+useEffect(  () => { var accountFunction = async() =>{
+  const data = await fetch(`http://${IPadress}:3000/account`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: `token=${props.token}`
+    })
+    console.log(data.json)
+    const body = await data.json()
+    setAccount(body.saveUser)
+    setEvent(body.saveEvents)
+    setOrder(body.saveOrder)
+  }
+  accountFunction()       
+  
+  }, []); 
+
+  //FORMAT DATE
+const dateFormat = function(date){
+  var newDate = new Date(date);
+  var format = newDate.getDate()+'/'+(newDate.getMonth()+1)+'/'+newDate.getFullYear();
+  return format;
+}
+  
 
   const list = [
     {
@@ -53,22 +87,16 @@ export default function OrderScreen(props) {
 
 </ScrollView>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   );
 }
+
+function mapStateToProps(state){
+  return {token:state.token}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(OrderScreen);
 
 const styles = StyleSheet.create({
   container: {
