@@ -1,3 +1,4 @@
+{/* Import components */}
 import React, { useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, CheckBox } from 'react-native-elements';
@@ -12,7 +13,7 @@ export default function Question2Screen(props) {
 
   async function  handleSubmit(){
     console.log("answer:", checked);
-    //Set the value of user's motivation
+// Set the value of user's motivation
    let interest;
     switch (checked) {
       case "Gourmand de toutes propositions culinaires":
@@ -25,6 +26,7 @@ export default function Question2Screen(props) {
         return
     }
 
+// Sending collected information to the database
     await fetch(`http://${IPadress}:3000/questionnary/interest`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -90,6 +92,7 @@ export default function Question2Screen(props) {
   );
 }
 
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -97,7 +100,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -118,11 +120,12 @@ const styles = StyleSheet.create({
     height: '55%',
     margin: 10,
     padding: 20
-
-  }, titleForm: {
+  }, 
+  titleForm: {
     fontSize: 15,
     fontWeight: 'bold'
-  }, pagination: {
+  }, 
+  pagination: {
     borderColor: '#AADEC0',
     borderBottomWidth: 1,
     marginBottom: 20,
@@ -133,7 +136,3 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
-
-
-

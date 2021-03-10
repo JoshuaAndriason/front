@@ -1,5 +1,6 @@
+{/* Import components */}
 import React from 'react';
-import { StyleSheet, Button, View, TouchableOpacity, Text} from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import email from 'react-native-email';
 import HomeImage from '../components/HomeImage';
@@ -7,7 +8,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { H2 } from 'native-base';
 import call from 'react-native-phone-call';
 import { Linking } from 'react-native';
- 
+
+{/* Export of the main component */}
 export default class App extends React.Component {
     render() {
         return (
@@ -16,6 +18,7 @@ export default class App extends React.Component {
                 <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1615366939/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/reception_oilqto.jpg"/>
                 <H2 style={{ marginBottom: "3%"}}>Besoin de nous ?</H2>
 
+{/* On press handleEmail */}
                 <FontAwesome name="envelope"
                 name='envelope'
                 color='#AADEC0'
@@ -24,6 +27,7 @@ export default class App extends React.Component {
                 <Text style={{ marginBottom: "8%"}}>
                 Envoyer un message à la réception</Text>
 
+{/* On press makeCall */}
                 <Icon
                 name='tty'
                 color='#AADEC0'
@@ -32,6 +36,7 @@ export default class App extends React.Component {
                 <Text style={{ marginBottom: "8%"}}>
                 Appeler la réception</Text>
 
+{/* On press link to Hotel Booking Engine URL */}
                 <Icon
                 name='hotel'
                 color='#AADEC0'
@@ -43,10 +48,8 @@ export default class App extends React.Component {
         )
     }
  
-
-
     
-
+// Setup react-native-email method
     handleEmail = () => {
         const to = ['info@hoteldesdeuxiles.com']
         email(to, {
@@ -55,6 +58,7 @@ export default class App extends React.Component {
         }).catch(console.error)
     }
 
+// Setup react-native-phone-call method
     makeCall = (number) => {
       const args = {
           number: '0143261335',
@@ -66,7 +70,7 @@ export default class App extends React.Component {
 }
  
 
-
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,
