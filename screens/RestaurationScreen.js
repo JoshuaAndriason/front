@@ -9,10 +9,11 @@ import IPadress from "../url"
 
 
 export function RestaurationScreen(props) {
+  // system toggle to display the items of breakfast
   const [isBreakfast, setIsBreakfast] = useState(false)
-  const [isDiner, setIsDiner] = useState(false)
+  // array which store the breakfast list from the BDD
   const [breakfast, setBreakfast] = useState([])
-  const [diner, setDiner] = useState([])
+ 
 
 
   useEffect(() => {
@@ -31,8 +32,8 @@ export function RestaurationScreen(props) {
       <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590448/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7190_hotel_des_deux_iles_bd_gq0vyj.jpg"/>
       <Text>token :{props.token}</Text>
       <ScrollView style={{ flex: 1, width: "100%" }}>
+        {/* Display breakfast items */}
         <View style={styles.block}>
-
           <TouchableOpacity
             style={styles.item}
             onPress={() => {
@@ -49,7 +50,7 @@ export function RestaurationScreen(props) {
                       style={styles.list}
                     >
                       <Text style={styles.text}>{menu.nameArticle}</Text>
-                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id, price: menu.prix})}>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id, price: menu.prix, token: props.token})}>
                         <Text style={{ color: "white" }}>{menu.prix} €</Text>
                       </TouchableOpacity>
                     </TouchableOpacity>
@@ -60,17 +61,19 @@ export function RestaurationScreen(props) {
             : null
           }
         </View>
+        {/* get diner items to send to aLaCarte composent */}
         <View style={styles.block}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "diner"})}>
+            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "diner", token: props.token})}>
             <Text style={styles.text}>Dîner</Text>
           </TouchableOpacity>
         </View>
+        {/* get carte items to send to aLaCarte composent */}
         <View style={styles.block}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "Carte"})}>
+            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "Carte", token: props.token})}>
             <Text style={styles.text}>A la carte</Text>
           </TouchableOpacity>
         </View>

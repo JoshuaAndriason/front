@@ -7,6 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import IPadress from "../url";
 
 export default function aLaCarteMenuScreen({ route }) {
+  const token = route.params.token;
   const foodType = route.params.foodType;
   const [dinerDatas, setDinerDatas] = useState([]);
   console.log('dinerDatas:', dinerDatas)
@@ -41,9 +42,6 @@ export default function aLaCarteMenuScreen({ route }) {
               <Formik
                 initialValues={{
                   heure: ":",
-                  // starter: "",
-                  // dessert: "",
-                  // dish: "",
                 }}
                 onSubmit={async (values)  => {
                   console.log("values:", values);
@@ -73,14 +71,12 @@ export default function aLaCarteMenuScreen({ route }) {
                 const sendOrder = await fetch(`http://${IPadress}:3000/restauration/order`, {
                   method: "POST",
                   headers: { 'Content-Type': 'application/json'},
-                  body: JSON.stringify({details, heure: values.heure, lieu: checked, date})
+                  body: JSON.stringify({details, heure: values.heure, lieu: checked, date, token})
                 })
                 sendOrder()
               } catch (error) {
                 console.log('error:', error)
               }
-              //console.log('details:', details, values.heure, values.quantity, checked, date)
-            
             }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -99,6 +95,7 @@ export default function aLaCarteMenuScreen({ route }) {
                         </View>
                       </View>
 
+                      {/* Order precisions */}
                       <View>
                         <Text>En chambre</Text>
                         <RadioButton
@@ -126,7 +123,7 @@ export default function aLaCarteMenuScreen({ route }) {
                       value={values.email}
                     ></TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
-
+                          {/* Starter choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Entrées")
                       .map((categoryObj, i) => {
@@ -150,7 +147,8 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
-
+                    
+                    {/* Dish choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Plats")
                       .map((categoryObj) => {
@@ -173,6 +171,8 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
+
+                    {/* Desserts choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Desserts")
                       .map((categoryObj) => {
@@ -195,6 +195,7 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
+                      {/* à la carte choices */}
                       {dinerDatas
                       .filter((data) => data.type == "Carte")
                       .map((categoryObj) => {

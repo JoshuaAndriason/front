@@ -1,3 +1,4 @@
+{/* Import components */}
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Input, Text, ListItem, Icon, CheckBox } from 'react-native-elements';
@@ -33,7 +34,7 @@ export function Question1Screen(props) {
 
   async function handleSubmit() {
     console.log("answer:", checked);
-    //Set the value of user's motivation
+// Set the value of user's motivation
     let motivation;
     switch (checked) {
       case "Le travail":
@@ -50,7 +51,7 @@ export function Question1Screen(props) {
     }
 
 
-
+// Sending collected information to the database
     await fetch(`http://${IPadress}:3000/questionnary/motivation/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -114,6 +115,7 @@ function mapStateToProps(state) {
 )(Question1Screen);
 
 
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -121,7 +123,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
-
     flexDirection: 'column',
     textAlign: 'center'
   },
@@ -142,11 +143,12 @@ const styles = StyleSheet.create({
     height: '55%',
     margin: 10,
     padding: 20
-
-  }, titleForm: {
+  }, 
+  titleForm: {
     fontSize: 15,
     fontWeight: 'bold'
-  }, pagination: {
+  }, 
+  pagination: {
     borderColor: '#AADEC0',
     borderBottomWidth: 1,
     marginBottom: 20,
@@ -157,7 +159,3 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
-
-
-

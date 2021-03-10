@@ -14,17 +14,17 @@ export function InscriptionScreen(props) {
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
     const [isInscription,setIsInscription] = useState(true);
     const [signInEmail, setSignInEmail] = useState('')
-    const [signInName, setSignInName] = useState('')
-    const [signInRoom, setSignInRoom] = useState('')
+    const [signInName, setSignInName] = useState("")
+    const [signInRoom, setSignInRoom] = useState("")
     const [localToken, setLocalToken] = useState('')
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
 
-
    
 
     var handleSubmitSignup = async () => {
+      console.log("name=====",signInName)
       const data = await fetch(`http://${IPadress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -160,10 +160,11 @@ var backGroundConnexion =''
       onPress={() => {handleSubmitSignin()}} >
       <Text>Valider</Text>
     </TouchableOpacity>
+    <Text style={styles.textError}>{listErrorsSignin}</Text>
 
-<Text>{listErrorsSignup}</Text></>}
+</>}
 
-<Text style={styles.textError}>{listErrorsSignin}</Text>
+
 
 </KeyboardAwareScrollView>
 </View>
