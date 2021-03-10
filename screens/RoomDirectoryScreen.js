@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import HomeImage from '../components/HomeImage'
+import HomeImage from '../components/HomeImage';
 import {connect} from 'react-redux';
 import IPadress from "../url"
 
@@ -110,7 +110,7 @@ function RoomDirectoryScreen(props) {
   return(
 <View style={styles.container}>
 
-<HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615295785/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/RoomDirectory_w5fxrh.jpg'/>
+<HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297478/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/ROOM_DIRECTORY_sfzti8.jpg'/>
 
 <Text style={{marginBottom:20}} h4>Notre hôtel de A à Z</Text>
 
