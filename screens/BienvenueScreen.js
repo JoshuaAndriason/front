@@ -49,7 +49,7 @@ function BienvenueScreen(props) {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          props.navigation.navigate("Inscription");
+          props.navigation.navigate("BottomNavigator");
         }}
       >
         <Text>Bienvenue</Text>
