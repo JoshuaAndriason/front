@@ -10,10 +10,9 @@ export function EventScreen(props) {
   const [visible, setVisible] = useState(false);
   const [checked, setChecked]= useState("");
   const [isComing, setIsComing]= useState(false)
+  const [event, setEvent] = useState([])
 
-  const [event,setEvent] = useState([])
-
-  useEffect(  () => { var event = async() =>{
+  useEffect( () => { var event = async () => {
    var rawResponse = await fetch(`http://${IPadress}:3000/events/${props.idEvent}`)
    var response = await rawResponse.json();
   setEvent(response.event)
@@ -63,7 +62,7 @@ function setAnswer(answer) {
     <HomeImage uri={event.image}/>
     <Text>token :{props.token}</Text>
     <Text>event :{props.idEvent}</Text>
-<View style={styles.border}>
+<ScrollView style={styles.border}>
 
 <Text style={styles.text}>{event.nameEvents}</Text>
 <Text style={{marginTop:20}}>{event.description}</Text>
@@ -85,18 +84,16 @@ function setAnswer(answer) {
 
 
 <Button title="VALIDER" onPress={handleSubmit} />
-</View>
+</ScrollView>
       <Overlay isVisible={visible} >
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
-        <Button title="RETOUR" onPress={() => {
-          toggleOverlay()
-          props.navigation.navigate('Home')
-          }}/>
+        <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
       </Overlay>
 
 </View>
+
 
 
   );
@@ -117,8 +114,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
 
-    flexDirection: 'column',
-    textAlign: 'center'
+flexDirection: 'column',
+textAlign: 'center'
   },
   button: {
     alignItems: "center",
@@ -134,7 +131,7 @@ const styles = StyleSheet.create({
       borderColor:'#AADEC0',
       borderWidth:1,
       width:"90%",
-      height:'55%',
+      height:'90%',
       margin:10,
       padding:20
 
@@ -156,4 +153,3 @@ const styles = StyleSheet.create({
   textAlign:'center',
 }
 });
-

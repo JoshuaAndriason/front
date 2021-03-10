@@ -1,8 +1,10 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { View, StyleSheet, Image} from "react-native";
+import { Button} from "react-native-elements";
 import Constant from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 export default function HeaderScreen({ showButtons = true }) {
   const navigation = useNavigation();
@@ -24,7 +26,7 @@ export default function HeaderScreen({ showButtons = true }) {
             navigation.goBack();
           }}
           type="clear"
-          icon={<Icon name="undo" size={30} color="white" />}
+          icon={<Icon name="chevron-left" size={25} color="white" />}
         />
       )}
       <View>
@@ -39,10 +41,10 @@ export default function HeaderScreen({ showButtons = true }) {
       {showButtons && (
         <Button
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("BottomNavigator");
           }}
           type="clear"
-          icon={<Icon name="home" size={30} color="white" />}
+          icon={<Icon name="home" size={25} color="white" />}
         />
       )}
     </View>
