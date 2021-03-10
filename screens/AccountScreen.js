@@ -28,9 +28,9 @@ useEffect(  () => { var accountFunction = async() =>{
   
   }, []); 
 
-  console.log('account',account)
-  console.log('event',event)
-  console.log('order',order)
+
+  console.log('++++++++===event',event)
+
   const list = [
     {
       title: "Commande du 16/04/2021 à 21h37",
@@ -115,14 +115,12 @@ useEffect(  () => { var accountFunction = async() =>{
             style={styles.list}
             key={i}
             bottomDivider
-            onPress={() => {
-              props.navigation.navigate("Order");
-            }}
+            
           >
             <Icon name={item.icon} />
             <ListItem.Content>
-              <ListItem.Title>{item.title}</ListItem.Title>
-              <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+              <ListItem.Title>{item.event.nameEvents} Le {formatDate(item.event.dateEvents)} </ListItem.Title>
+
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem>

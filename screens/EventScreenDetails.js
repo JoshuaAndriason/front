@@ -20,9 +20,11 @@ export function EventScreenDetails(props) {
     }, []);
 
   return (
+<View style={styles.container}>
 
+<HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297198/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/EVENTS_LARGE_qehdzy.jpg'/>
     
-<ScrollView style={{marginTop: 25}}>
+<ScrollView >
 {
   events.map((u, i) => {
     return (
@@ -45,7 +47,7 @@ export function EventScreenDetails(props) {
 }
 
  </ScrollView>
-
+</View>
 );
 }
 

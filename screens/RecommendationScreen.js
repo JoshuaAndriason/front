@@ -33,7 +33,7 @@ export default function RecommendationScreen(props) {
 
   return (
     <View style={styles.container}>
-      <HomeImage />
+      <HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297110/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/RECOMMANDATIONS_LARGE_hewvj1.jpg'/>
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.block}>
           <TouchableOpacity

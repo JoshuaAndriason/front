@@ -32,6 +32,9 @@ console.log('fffffff',event)
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`
     })
+
+    setVisible(!visible);
+   
   }
   console.log(props.token, "token")
 
@@ -43,12 +46,13 @@ function setAnswer(answer) {
   }
   else if (answer === "Dommage ! Une prochaine fois")
     setIsComing(false)
+
 }
 
 // const toggle overlay affiche message de conf et fait la requete en meme temps//
   const toggleOverlay = () => {
     setVisible(!visible);
-    handleSubmit()
+   
   };
 
   return (
@@ -80,13 +84,16 @@ function setAnswer(answer) {
   />)})}
 
 
-<Button title="VALIDER" onPress={toggleOverlay} />
+<Button title="VALIDER" onPress={handleSubmit} />
 </View>
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+      <Overlay isVisible={visible} >
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
-        <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
+        <Button title="RETOUR" onPress={() => {
+          toggleOverlay()
+          props.navigation.navigate('Home')
+          }}/>
       </Overlay>
 
 </View>
