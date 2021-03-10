@@ -47,13 +47,15 @@ export default function MenuScreen({ route }) {
               const valuesEntry = Object.entries(values)
               // initialize an array where the details of the order will be push inside
               let details = []
-              // push only the object that contains an detail of the order into details array
+              // push only the object that doesn't contains an "heure" or "quantity" key into details array
               for (let index = 0; index < valuesEntry.length; index++) {
                 if(valuesEntry[index][0] !== "heure" && valuesEntry[index][0] !== "quantity"){
+                
                   let obj = {}
                   obj[valuesEntry[index][0]] = valuesEntry[index][1]
                   console.log('obj:', obj)
                   details.push(obj)
+
                 }
                 console.log('details:', details)
               }
