@@ -110,7 +110,7 @@ function RoomDirectoryScreen(props) {
   return(
 <View style={styles.container}>
 
-<HomeImage/>
+<HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615295785/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/RoomDirectory_w5fxrh.jpg'/>
 
 <Text style={{marginBottom:20}} h4>Notre hôtel de A à Z</Text>
 

@@ -123,6 +123,7 @@ export function HomeScreen(props) {
 function mapStateToProps(state){
     return {token:state.token}
   } 
+  
    function mapDispatchToProps(dispatch) {
     return {
       onSubmitEvent: function(idEvent) {
