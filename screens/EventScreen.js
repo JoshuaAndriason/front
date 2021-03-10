@@ -82,9 +82,9 @@ function setAnswer(answer) {
 
   />)})}
 
-
-<Button title="VALIDER" onPress={handleSubmit} />
 </ScrollView>
+<Button buttonStyle={{ marginTop:10, marginBottom:50, backgroundColor:'#AADEC0', width:200, color:'red'}} title="Valider" onPress={handleSubmit} />
+
       <Overlay isVisible={visible} >
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
@@ -122,18 +122,18 @@ textAlign: 'center'
     backgroundColor: "#AADEC0",
     padding: 10,
     width: '40%' ,
-    borderRadius:5,
+    borderRadius:2,
   },
   list: {
       width: '100%',
     },
     border:{
       borderColor:'#AADEC0',
-      borderWidth:1,
+      borderWidth:3,
       width:"90%",
-      height:'90%',
       margin:10,
-      padding:20
+      padding:20,
+      paddingBottom:30
 
 },titleForm:{
   fontSize:15,
