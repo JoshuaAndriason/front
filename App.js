@@ -29,12 +29,8 @@ import MenuScreen from "./screens/MenuScreen";
 import InscriptionScreen from "./screens/InscriptionScreen";
 import DetailRecommendationScreen from "./screens/DetailRecommendationScreen";
 import EventScreenDetails from "./screens/EventScreenDetails";
-<<<<<<< HEAD
-import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen"
-=======
 import aLaCarteMenuScreen from "./screens/aLaCarteMenuScreen";
 import LogoutScreen from "./screens/LogoutScreen";
->>>>>>> 0cd064a5c9218bbccc8891a6a34dfc60c1f15fd6
 
 // IMPORT REDUCER
 import { createStore, combineReducers } from "redux";
