@@ -13,7 +13,6 @@ function BienvenueScreen(props) {
   const [localToken, setLocalToken] = useState("");
 
   useEffect(() => {
-    // store token into localStorage
     AsyncStorage.getItem("token", (err, value) => {
       if (value) {
         setLocalToken(value);
@@ -36,7 +35,6 @@ function BienvenueScreen(props) {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          // 
           isExist == true
             ? props.navigation.navigate("BottomNavigator")
             : props.navigation.navigate("Inscription");
@@ -51,7 +49,7 @@ function BienvenueScreen(props) {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          props.navigation.navigate("BottomNavigator");
+          props.navigation.navigate("Inscription");
         }}
       >
         <Text>Bienvenue</Text>
