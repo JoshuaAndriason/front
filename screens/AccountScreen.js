@@ -29,7 +29,7 @@ useEffect(  () => { var accountFunction = async() =>{
   }, []); 
 
 
-  console.log('++++++++===event',event)
+  console.log('++++++++===event',order)
 
   const list = [
     {
@@ -48,6 +48,12 @@ useEffect(  () => { var accountFunction = async() =>{
       icon: "av-timer",
     },
   ];
+  //FORMAT DATE
+const dateFormat = function(date){
+  var newDate = new Date(date);
+  var format = newDate.getDate()+'/'+(newDate.getMonth()+1)+'/'+newDate.getFullYear();
+  return format;
+}
 
   
 
@@ -80,7 +86,7 @@ useEffect(  () => { var accountFunction = async() =>{
     </TouchableOpacity>
     {isCommande ? (
       <>
-        {list.map((item, i) => (
+        {order.map((item, i) => (
           <ListItem
             style={styles.list}
             key={i}
@@ -91,7 +97,7 @@ useEffect(  () => { var accountFunction = async() =>{
           >
             <Icon name={item.icon} />
             <ListItem.Content>
-              <ListItem.Title>{item.title}</ListItem.Title>
+              <ListItem.Title>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
               <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
@@ -117,9 +123,8 @@ useEffect(  () => { var accountFunction = async() =>{
             bottomDivider
             
           >
-            <Icon name={item.icon} />
             <ListItem.Content>
-              <ListItem.Title>{item.event.nameEvents} Le {formatDate(item.event.dateEvents)} </ListItem.Title>
+              <ListItem.Title>{item.event.nameEvents}</ListItem.Title>
 
             </ListItem.Content>
             <ListItem.Chevron />
