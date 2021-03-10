@@ -8,6 +8,7 @@ import IPadress from "../url";
 
 export default function MenuScreen({ route }) {
   const foodID = route.params.foodID;
+  const price = route.params.price;
   const [foodDatas, setFoodDatas] = useState([]);
   const [checked, setChecked] = useState("");
 
@@ -51,8 +52,10 @@ export default function MenuScreen({ route }) {
                 if(valuesEntry[index][0] !== "heure" && valuesEntry[index][0] !== "quantity"){
                   let obj = {}
                   obj[valuesEntry[index][0]] = valuesEntry[index][1]
+                  console.log('obj:', obj)
                   details.push(obj)
                 }
+                console.log('details:', details)
               }
 
             // store the current date (when the commande has been ordered)
@@ -61,12 +64,12 @@ export default function MenuScreen({ route }) {
               // send the order to the back
               try {
                 console.log('====================================');
-                console.log("inside try");
+                console.log(foodID);
                 console.log('====================================');
                 const sendOrder = await fetch(`http://${IPadress}:3000/restauration/order`, {
                   method: "POST",
                   headers: { 'Content-Type': 'application/json'},
-                  body: JSON.stringify({details, heure: values.heure, quantity: values.quantity, lieu: checked, date})
+                  body: JSON.stringify({details, heure: values.heure, quantity: values.quantity, lieu: checked, date, price, foodID})
                 })
                 sendOrder()
               } catch (error) {
@@ -149,7 +152,7 @@ export default function MenuScreen({ route }) {
                                   onChangeText={handleChange(entry)}
                                   placeholder={"1"}
                                   keyboardType={"numeric"}
-                                  value={values[entry]}
+                                  value={values.entry}
                                 />
 
                                 <Text style={styles.itemOption}>

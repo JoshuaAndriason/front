@@ -49,7 +49,7 @@ export function RestaurationScreen(props) {
                       style={styles.list}
                     >
                       <Text style={styles.text}>{menu.nameArticle}</Text>
-                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id})}>
+                      <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id, price: menu.prix})}>
                         <Text style={{ color: "white" }}>{menu.prix} €</Text>
                       </TouchableOpacity>
                     </TouchableOpacity>
@@ -70,7 +70,7 @@ export function RestaurationScreen(props) {
         <View style={styles.block}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "A La Carte"})}>
+            onPress={() => props.navigation.navigate("aLaCarte", {foodType : "Carte"})}>
             <Text style={styles.text}>A la carte</Text>
           </TouchableOpacity>
         </View>
