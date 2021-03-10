@@ -6,6 +6,7 @@ import HomeImage from '../components/HomeImage';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { H2 } from 'native-base';
 import call from 'react-native-phone-call';
+import { Linking } from 'react-native';
  
 export default class App extends React.Component {
     render() {
@@ -13,12 +14,12 @@ export default class App extends React.Component {
             <View style={styles.container}>
 
                 <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1615366939/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/reception_oilqto.jpg"/>
-                <H2 style={{ marginBottom: "8%"}}>Besoin de nous ?</H2>
+                <H2 style={{ marginBottom: "3%"}}>Besoin de nous ?</H2>
 
                 <FontAwesome name="envelope"
                 name='envelope'
                 color='#AADEC0'
-                size='120%' 
+                size='90%' 
                 onPress={this.handleEmail}/>
                 <Text style={{ marginBottom: "8%"}}>
                 Envoyer un message à la réception</Text>
@@ -26,9 +27,17 @@ export default class App extends React.Component {
                 <Icon
                 name='tty'
                 color='#AADEC0'
-                size='150%' 
+                size='100%' 
                 onPress={this.makeCall}/>
-                <Text>Appeler la réception</Text>
+                <Text style={{ marginBottom: "8%"}}>
+                Appeler la réception</Text>
+
+                <Icon
+                name='hotel'
+                color='#AADEC0'
+                size='100%' 
+                onPress={() => Linking.openURL('https://www.secure-hotel-booking.com/smart/Agence-WEBCOM/265A-8462/fr/')}/>
+                <Text>Effectuer votre prochaine réservation</Text>
 
             </View>
         )
