@@ -35,7 +35,7 @@ console.log('im token Bienvenue',isExist)
 
   <TouchableOpacity
     style={styles.button}
-    onPress={() => {props.navigation.navigate('BottomNavigator')}}>
+    onPress={() => {props.navigation.navigate('Inscription')}}>
     <Text>Bienvenue</Text>
   </TouchableOpacity>
 
