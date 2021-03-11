@@ -1,10 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
 import {Input, Text, ListItem, Icon} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
+import {connect} from 'react-redux';
 import IPadress from "../url"
 
-export default function OrderScreen(props) {
+export function OrderScreen(props) {
+
+  //Déclaration des ETATS
+  const [order, setOrder] = useState([])
+  const [orderDetails, setOrderDetails] = useState([])
+  const [food,setFood] = useState([])
+
+  //Recupération de l'évent et commande et infos USER DU BACK 
+useEffect(  () => { var accountFunction = async() =>{
+  const responseFood = await fetch(`http://${IPadress}:3000/account/${props.idOrder}`)
+  const bodyFood = await responseFood.json()
+    setOrderDetails(bodyFood.saveOrder.order[0].details)
+    setOrder(bodyFood.saveOrder)
+    setFood(bodyFood.saveFood)
+  }
+  accountFunction()       
+  
+  }, []); 
+
+  console.log('order',order)
+
+  //FORMAT DATE
+const dateFormat = function(date){
+  var newDate = new Date(date);
+  var format = newDate.getDate()+'/'+(newDate.getMonth()+1)+'/'+newDate.getFullYear();
+  return format;
+}
+  
 
   const list = [
     {
@@ -24,51 +52,43 @@ export default function OrderScreen(props) {
     <View style={styles.container}>
     
     <HomeImage/>
+    <Text style={{marginBottom:10}} h4>Détail de votre commande</Text>
     
-    <Text h4>À propos de votre commande</Text>
-
-      <Text style={{marginTop:20}} >Date de commande : 16/04/2021</Text>
+      <Text style={{marginTop:10}} >Date de commande : {dateFormat(order.dateService)}</Text>
  
-      <Text style={{marginTop:10}}>Heure de commande : 21h37</Text>
+      <Text style={{marginTop:10,marginBottom:20}}>Heure de commande : {order.heureService}</Text>
 
-      <Text style={{marginTop:10, marginBottom:40}}>Numéro de commande : k87b65</Text>
 
-      <Text style={{marginBottom:20}} h4>Détail de votre commande</Text>
+      
+  <Text style={styles.text}>{food.type}: {food.nameArticle}</Text>
 
       {
-    list.map((item, i) => (
+    orderDetails.map((item, i) => (
       <ListItem style={styles.list} key={i} bottomDivider>
         <Icon name={item.icon} />
         <ListItem.Content>
-          <ListItem.Title>{item.title}</ListItem.Title>
+          <ListItem.Title>{Object.values(item)} x {Object.keys(item) } </ListItem.Title>
           <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     ))
   }
- 
- <Text style={{marginTop:20}} >Total TTC : 83,00€</Text>
+
 
 </View>
 
 </ScrollView>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   );
 }
+
+function mapStateToProps(state){
+  return {token:state.token,idOrder:state.idOrder}
+}  export default connect(
+  mapStateToProps, 
+  null,
+
+)(OrderScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -89,4 +109,12 @@ const styles = StyleSheet.create({
   list: {
       width: '100%',
     },
+    text:{
+      textAlign:'left',
+      fontSize: 17,
+      width:'100%',
+      fontWeight:'bold',
+      marginLeft: 70, 
+      color:"#AADEC0",
+    }
 });

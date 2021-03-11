@@ -1,57 +1,61 @@
-import React, {useState,useEffect} from 'react';
-import {StyleSheet, View, TouchableOpacity, ScrollView} from 'react-native';
-import {Input, Text, ListItem, Icon, CheckBox, Overlay, Button} from 'react-native-elements';
-import HomeImage from '../components/HomeImage'
-import {connect} from 'react-redux';
-import IPadress from "../url"
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
+import {
+  Input,
+  Text,
+  ListItem,
+  Icon,
+  CheckBox,
+  Overlay,
+  Button,
+} from "react-native-elements";
+import HomeImage from "../components/HomeImage";
+import { connect } from "react-redux";
+import IPadress from "../url";
 
 export function EventScreen(props) {
-
   const [visible, setVisible] = useState(false);
-  const [checked, setChecked]= useState("");
-  const [isComing, setIsComing]= useState(false)
-  const [event, setEvent] = useState([])
+  const [checked, setChecked] = useState("");
+  const [isComing, setIsComing] = useState(false);
+  const [event, setEvent] = useState([]);
 
-  useEffect( () => { var event = async () => {
-   var rawResponse = await fetch(`http://${IPadress}:3000/events/${props.idEvent}`)
-   var response = await rawResponse.json();
-  setEvent(response.event)
-  }
-event()       
+  useEffect(() => {
+    var event = async () => {
+      var rawResponse = await fetch(
+        `http://${IPadress}:3000/events/${props.idEvent}`
+      );
+      var response = await rawResponse.json();
+      setEvent(response.event);
+    };
+    event();
+  }, []);
 
-}, []);
-
-console.log('fffffff',event)
+  console.log("fffffff", event);
 
   var handleSubmit = async () => {
     //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
 
     const data = fetch(`http://${IPadress}:3000/confirmation`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`,
+    });
 
     setVisible(!visible);
-   
+  };
+  console.log(props.token, "token");
+
+  var checkBoxList = ["Oui, je viens", "Dommage ! Une prochaine fois"];
+  console.log(isComing);
+  function setAnswer(answer) {
+    if (answer === "Oui, je viens") {
+      setIsComing(true);
+    } else if (answer === "Dommage ! Une prochaine fois") setIsComing(false);
   }
-  console.log(props.token, "token")
 
-  var checkBoxList =["Oui, je viens","Dommage ! Une prochaine fois"]
-console.log(isComing);
-function setAnswer(answer) {
-  if (answer === "Oui, je viens") {
-    setIsComing(true)
-  }
-  else if (answer === "Dommage ! Une prochaine fois")
-    setIsComing(false)
-
-}
-
-// const toggle overlay affiche message de conf et fait la requete en meme temps//
+  // const toggle overlay affiche message de conf et fait la requete en meme temps//
   const toggleOverlay = () => {
     setVisible(!visible);
-   
   };
 
   return (
@@ -82,58 +86,60 @@ function setAnswer(answer) {
 
   />)})}
 
-
-<Button title="VALIDER" onPress={handleSubmit} />
 </ScrollView>
-      <Overlay isVisible={visible} >
+<Button buttonStyle={{ marginTop:10, marginBottom:50, backgroundColor:'#AADEC0', width:200, color:'red'}} title="Valider" onPress={handleSubmit} />
+
+      <Overlay isVisible={visible} style={{flexDirection:"column"}}>
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
-        <Button title="RETOUR" onPress={() => {props.navigation.navigate('Home')}}/>
+        <Button
+        buttonStyle={{ marginTop:15,backgroundColor:'#AADEC0', width: "80%", alignSelf: "center"}}
+          title="RETOUR"
+          onPress={() => {
+            toggleOverlay();
+            props.navigation.navigate("Home");
+          }}
+        />
       </Overlay>
-
-</View>
-
-
-
+    </View>
   );
 }
 
-function mapStateToProps(state){
-  return {token:state.token, idEvent:state.idEvent}
-}  
+function mapStateToProps(state) {
+  return { token: state.token, idEvent: state.idEvent };
+}
 
-export default connect(
-  mapStateToProps,null)(EventScreen);
+export default connect(mapStateToProps, null)(EventScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    width: '100%',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: "100%",
 
-flexDirection: 'column',
-textAlign: 'center'
+    flexDirection: "column",
+    textAlign: "center",
   },
   button: {
     alignItems: "center",
     backgroundColor: "#AADEC0",
     padding: 10,
     width: '40%' ,
-    borderRadius:5,
+    borderRadius:2,
   },
   list: {
       width: '100%',
     },
     border:{
       borderColor:'#AADEC0',
-      borderWidth:1,
+      borderWidth:3,
       width:"90%",
-      height:'90%',
       margin:10,
-      padding:20
+      padding:20,
+      paddingBottom:30
 
 },titleForm:{
   fontSize:15,

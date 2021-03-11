@@ -37,15 +37,16 @@ import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import idArticle from "./reducers/idArticle";
 import idEvent from "./reducers/idEvent";
+import idOrder from "./reducers/idOrder";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
 import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
 
 
 
-
+// DECLARATION STORE,STACK,Tab
 const store = createStore(
-  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory })
+  combineReducers({ idArticle, token, letterRoomDirectory, idEvent,badgeRoomDirectory,idOrder })
 );
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -60,13 +61,13 @@ const BottomNavigator = () => {
             iconName = "home";} 
             else if (route.name == "Account") {
               iconName = "user";
-          } else if (route.name == "Chat") {
+          } else if (route.name == "Contact") {
             iconName = "envelope";
           } else if (route.name =="Logout") {
             iconName = "sign-out"
           }
 
-      return <FontAwesome name={iconName} size={20} color={color} style={{flexDirection:'row'}}/>;
+      return <FontAwesome name={iconName} size={25} color={color}/>;
     },
   })}
   tabBarOptions={{
@@ -74,21 +75,21 @@ const BottomNavigator = () => {
     inactiveTintColor: "#FFFFFF",
     style: {
       backgroundColor: "#AADEC0",
-      height:70,
-      width:'100%'
-    
+      height:65,
+      width:'100%'    
     },
   }}
 >
   <Tab.Screen name="Home" component={HomeScreen} />
   <Tab.Screen name="Account" component={AccountScreen} />
-  <Tab.Screen name="Chat" component={ChatScreen} />
-  <Tab.Screen name="Logout" component={LogoutScreen} />
+  <Tab.Screen name="Contact" component={ChatScreen} />
+  <Tab.Screen name="Logout" component={LogoutScreen} options={{tabBarVisible:false}}   
+  options={{ header: () => <HeaderScreen showButtons={false} /> }}/>
 </Tab.Navigator>
   );
 };
 
-//FUNCTION BOTTOM NAVIGATION
+//FUNCTION APP.JS
 export default function App(props) {
   return (
     <Provider store={store}>

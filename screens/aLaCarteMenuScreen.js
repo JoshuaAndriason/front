@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextInput, View, Text, StyleSheet } from "react-native";
+import { TextInput, View, Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { RadioButton } from "react-native-paper";
 import HomeImage from "../components/HomeImage";
 import { ScrollView } from "react-native-gesture-handler";
+import { Overlay, Button } from "react-native-elements";
 import IPadress from "../url";
 
-export default function aLaCarteMenuScreen({ route }) {
+export default function aLaCarteMenuScreen({ route, navigation }) {
+  // datas from props
+  const token = route.params.token;
   const foodType = route.params.foodType;
+
+  // States
   const [dinerDatas, setDinerDatas] = useState([]);
-  console.log('dinerDatas:', dinerDatas)
   const [checked, setChecked] = useState("");
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function getFood() {
@@ -19,12 +24,16 @@ export default function aLaCarteMenuScreen({ route }) {
       );
       const data = await response.json();
       const foods = await data.result;
-      console.log('foods:', foods)
       setDinerDatas(foods);
     }
     getFood();
   }, []);
 
+    // const toggle overlay affiche message de conf et fait la requete en meme temps//
+    const toggleOverlay = () => {
+      setVisible(!visible);
+    };
+  
   return (
     <>
       {dinerDatas.length > 0 ? (
@@ -41,47 +50,50 @@ export default function aLaCarteMenuScreen({ route }) {
               <Formik
                 initialValues={{
                   heure: ":",
-                  // starter: "",
-                  // dessert: "",
-                  // dish: "",
                 }}
-                onSubmit={async (values)  => {
-                  console.log("values:", values);
-                  const valueModified = { ...values, checked };
-                  console.log(valueModified);
-
+                onSubmit={async (values) => {
                   // store all entries of the values object
                   const valuesEntry = Object.entries(values);
                   // initialize an array where the details of the order will be push inside
                   let details = [];
                   // push only the object that contains an detail of the order into details array
                   for (let index = 0; index < valuesEntry.length; index++) {
-                    if (
-                      valuesEntry[index][0] !== "heure"
-                    ) {
+                    if (valuesEntry[index][0] !== "heure") {
                       let obj = {};
                       obj[valuesEntry[index][0]] = valuesEntry[index][1];
                       details.push(obj);
                     }
                   }
-                 // store the current date (when the commande has been ordered)
-              const date = new Date().toString()
-              
-              // send the order to the back
-              try {
-               
-                const sendOrder = await fetch(`http://${IPadress}:3000/restauration/order`, {
-                  method: "POST",
-                  headers: { 'Content-Type': 'application/json'},
-                  body: JSON.stringify({details, heure: values.heure, lieu: checked, date})
-                })
-                sendOrder()
-              } catch (error) {
-                console.log('error:', error)
-              }
-              //console.log('details:', details, values.heure, values.quantity, checked, date)
-            
-            }}
+                  // store the current date (when the commande has been ordered)
+                  const date = new Date().toString();
+
+                  // send the order to the back
+
+                  const sendOrder = await fetch(
+                    `http://${IPadress}:3000/restauration/order`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        details,
+                        heure: values.heure,
+                        lieu: checked,
+                        date,
+                        token,
+                      }),
+                    }
+                  )
+                    .then((response) => {
+                      response.json();
+                    })
+                    .then((data) => {
+                      console.log("data: ", data);
+                      setVisible(!visible);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong", err);
+                    });
+                }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                   <View>
@@ -99,6 +111,7 @@ export default function aLaCarteMenuScreen({ route }) {
                         </View>
                       </View>
 
+                      {/* Order precisions */}
                       <View>
                         <Text>En chambre</Text>
                         <RadioButton
@@ -126,13 +139,15 @@ export default function aLaCarteMenuScreen({ route }) {
                       value={values.email}
                     ></TextInput>
                     <Text style={styles.title}>Faites votre choix</Text>
-
+                    {/* Starter choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Entrées")
                       .map((categoryObj, i) => {
                         return (
                           <>
-                          <Text style={styles.category}>Entrées</Text>
+                            <Text key={i} style={styles.category}>
+                              Entrées
+                            </Text>
                             <Text style={styles.precision}>
                               {categoryObj.nameArticle}
                             </Text>
@@ -151,12 +166,15 @@ export default function aLaCarteMenuScreen({ route }) {
                         );
                       })}
 
+                    {/* Dish choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Plats")
-                      .map((categoryObj) => {
+                      .map((categoryObj, i) => {
                         return (
                           <>
-                          <Text style={styles.category}>Plats</Text>
+                            <Text key={i} style={styles.category}>
+                              Plats
+                            </Text>
                             <Text style={styles.details}>
                               {categoryObj.nameArticle}
                             </Text>
@@ -173,12 +191,14 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
+
+                    {/* Desserts choices */}
                     {dinerDatas
                       .filter((data) => data.type == "Desserts")
                       .map((categoryObj) => {
                         return (
                           <>
-                          <Text style={styles.category}>Desserts</Text>
+                            <Text style={styles.category}>Desserts</Text>
                             <Text style={styles.details}>
                               {categoryObj.nameArticle}
                             </Text>
@@ -195,12 +215,13 @@ export default function aLaCarteMenuScreen({ route }) {
                           </>
                         );
                       })}
-                      {dinerDatas
+                    {/* à la carte choices */}
+                    {dinerDatas
                       .filter((data) => data.type == "Carte")
                       .map((categoryObj) => {
                         return (
                           <>
-                          <Text style={styles.category}>A la carte</Text>
+                            <Text style={styles.category}>A la carte</Text>
                             <Text style={styles.details}>
                               {categoryObj.nameArticle}
                             </Text>
@@ -218,12 +239,41 @@ export default function aLaCarteMenuScreen({ route }) {
                         );
                       })}
 
-                    <Button onPress={handleSubmit} title="Valider" />
+                    <Button
+                      onPress={handleSubmit}
+                      buttonStyle={{
+                        marginTop: 10,
+                        marginBottom: 50,
+                        backgroundColor: "#AADEC0",
+                        width: 200,
+                        color: "red",
+                        alignSelf: "center",
+                      }}
+                      onPress={handleSubmit}
+                      title="Valider"
+                    />
                   </View>
                 )}
               </Formik>
             </View>
           </ScrollView>
+          <Overlay isVisible={visible} style={{ flexDirection: "column" }}>
+            <Text>Votre commande a été enregistrée.</Text>
+            <Text>A très bientôt ! </Text>
+            <Button
+              buttonStyle={{
+                marginTop: 15,
+                backgroundColor: "#AADEC0",
+                width: "80%",
+                alignSelf: "center",
+              }}
+              title="RETOUR"
+              onPress={() => {
+                toggleOverlay();
+                navigation.navigate("Home");
+              }}
+            />
+          </Overlay>
         </View>
       ) : null}
     </>

@@ -6,12 +6,16 @@ import {connect} from 'react-redux';
 import IPadress from "../url";
 
 export function AccountScreen(props) {
+
+  //Déclaration des ETATS
   const [isCommande, setIsCommande] = useState(false);
   const [isEvenement, setisEvenement] = useState(false);
   const [account, setAccount] = useState([])
   const [event, setEvent] = useState([])
   const [order, setOrder] = useState([])
 
+
+  //Recupération de l'évent et commande et infos USER DU BACK 
 useEffect(  () => { var accountFunction = async() =>{
   const data = await fetch(`http://${IPadress}:3000/account`, {
       method: 'POST',
@@ -23,53 +27,39 @@ useEffect(  () => { var accountFunction = async() =>{
     setAccount(body.saveUser)
     setEvent(body.saveEvents)
     setOrder(body.saveOrder)
+    
   }
   accountFunction()       
   
   }, []); 
-
-
-  console.log('++++++++===event',event)
-
-  const list = [
-    {
-      title: "Commande du 16/04/2021 à 21h37",
-      subtitle: "Cmd N° k87b65",
-      icon: "av-timer",
-    },
-    {
-      title: "Commande du 16/04/2021 à 23h59",
-      subtitle: "Cmd N° 16f9H7",
-      icon: "av-timer",
-    },
-    {
-      title: "Commande du 17/04/2021 à 18h26",
-      subtitle: "Cmd N° 8j09kl",
-      icon: "av-timer",
-    },
-  ];
+  console.log('fffffff',order)
+  //FORMAT DATE
+const dateFormat = function(date){
+  var newDate = new Date(date);
+  var format = newDate.getDate()+'/'+(newDate.getMonth()+1)+'/'+newDate.getFullYear();
+  return format;
+}
 
   
 
   return (
     <ScrollView>
       <View style={styles.container}>
+      {/* Home IMAGE */}
         <HomeImage />
 
+{/* Recap des INFOS DU USER */}
     <Text>Token :{props.token}</Text>
-
     <Text h4>Bonjour {account.lastName} !</Text>
-
     <Text style={{ marginTop: 10 }}>Numéro de chambre : {account.roomNumber}</Text>
-
     <Text style={{ marginTop: 10, marginBottom: 40 }}>
-      Centre d'intérets :{account.motivation}
+      Centre d'intérets :{account.motivation==='undefined'?"auncun centre d'intêret":account.motivation}
     </Text>
-
     <Text style={{ marginBottom: 20 }} h4>
       Récapitulatif :
     </Text>
 
+{/*ACCORDION RECAP COMMANDES*/}
     <TouchableOpacity
       style={styles.item}
       onPress={() => {
@@ -80,26 +70,26 @@ useEffect(  () => { var accountFunction = async() =>{
     </TouchableOpacity>
     {isCommande ? (
       <>
-        {list.map((item, i) => (
+        {order.map((item, i) => (
           <ListItem
             style={styles.list}
             key={i}
             bottomDivider
             onPress={() => {
-              props.navigation.navigate("Order");
+              props.onSubmitOrder(item._id);props.navigation.navigate("Order")
             }}
           >
             <Icon name={item.icon} />
             <ListItem.Content>
-              <ListItem.Title>{item.title}</ListItem.Title>
-              <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+              <ListItem.Title>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
+              <ListItem.Subtitle> N° {'CMD-'+item._id.slice(18)}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
           </ListItem>
         ))}
       </>
     ) : null}
-
+{/*ACCORDION RECAP EVENT*/}
     <TouchableOpacity
       style={styles.item}
       onPress={() => {
@@ -117,9 +107,8 @@ useEffect(  () => { var accountFunction = async() =>{
             bottomDivider
             
           >
-            <Icon name={item.icon} />
             <ListItem.Content>
-              <ListItem.Title>{item.event.nameEvents} Le {formatDate(item.event.dateEvents)} </ListItem.Title>
+              <ListItem.Title>{item.event.nameEvents}</ListItem.Title>
 
             </ListItem.Content>
             <ListItem.Chevron />
@@ -132,13 +121,22 @@ useEffect(  () => { var accountFunction = async() =>{
   );
 }
 
+
 function mapStateToProps(state){
   return {token:state.token}
-}  export default connect(
-  mapStateToProps, 
-  null,
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmitOrder: function(idOrder) {
+        console.log('on ORDER',idOrder) 
+      dispatch( {type: 'saveOrderId', idOrder: idOrder }) 
+    }
+  }
+}
+export default connect(mapStateToProps,
+  mapDispatchToProps
+  )(AccountScreen);
 
-)(AccountScreen);
 
 const styles = StyleSheet.create({
   container: {

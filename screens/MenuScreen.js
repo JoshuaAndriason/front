@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextInput, View, Text, StyleSheet } from "react-native";
+import { TextInput, View, Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { RadioButton } from "react-native-paper";
 import HomeImage from "../components/HomeImage";
 import { ScrollView } from "react-native-gesture-handler";
 import IPadress from "../url";
+import { Overlay, Button } from "react-native-elements";
 
-export default function MenuScreen({ route }) {
+export default function MenuScreen({ route, navigation }) {
+  // datas from props
+  const token = route.params.token;
   const foodID = route.params.foodID;
   const price = route.params.price;
+
+  //States
+  const [visible, setVisible] = useState(false);
   const [foodDatas, setFoodDatas] = useState([]);
   const [checked, setChecked] = useState("");
 
@@ -24,6 +30,11 @@ export default function MenuScreen({ route }) {
     getFood();
   }, []);
 
+  // const toggle overlay affiche message de conf et fait la requete en meme temps//
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
   return (
     <>
       {foodDatas.detail ? (
@@ -35,150 +46,180 @@ export default function MenuScreen({ route }) {
                 {foodDatas.description}
               </Text>
             </View>
-        <View>
-          <Formik
-            initialValues={{
-            
-            }}
+            <View>
+              <Formik
+                initialValues={{}}
+                onSubmit={async (values) => {
+                  // store all entries of the values object
+                  const valuesEntry = Object.entries(values);
+                  // initialize an array where the details of the order will be push inside
+                  let details = [];
+                  // push only the object that doesn't contains an "heure" or "quantity" key into details array
+                  for (let index = 0; index < valuesEntry.length; index++) {
+                    if (
+                      valuesEntry[index][0] !== "heure" &&
+                      valuesEntry[index][0] !== "quantity"
+                    ) {
+                      let obj = {};
+                      obj[valuesEntry[index][0]] = valuesEntry[index][1];
+                      details.push(obj);
+                    }
+                  }
 
-            onSubmit = { async (values) => {
-           
-              // store all entries of the values object
-              const valuesEntry = Object.entries(values)
-              // initialize an array where the details of the order will be push inside
-              let details = []
-              // push only the object that doesn't contains an "heure" or "quantity" key into details array
-              for (let index = 0; index < valuesEntry.length; index++) {
-                if(valuesEntry[index][0] !== "heure" && valuesEntry[index][0] !== "quantity"){
-                
-                  let obj = {}
-                  obj[valuesEntry[index][0]] = valuesEntry[index][1]
-                  console.log('obj:', obj)
-                  details.push(obj)
+                  // store the current date (when the commande has been ordered)
+                  const date = new Date().toString();
 
-                }
-                console.log('details:', details)
-              }
-
-            // store the current date (when the commande has been ordered)
-              const date = new Date().toString()
-              
-              // send the order to the back
-              try {
-                console.log('====================================');
-                console.log(foodID);
-                console.log('====================================');
-                const sendOrder = await fetch(`http://${IPadress}:3000/restauration/order`, {
-                  method: "POST",
-                  headers: { 'Content-Type': 'application/json'},
-                  body: JSON.stringify({details, heure: values.heure, quantity: values.quantity, lieu: checked, date, price, foodID})
-                })
-                sendOrder()
-              } catch (error) {
-                console.log('error:', error)
-              }
-              //console.log('details:', details, values.heure, values.quantity, checked, date)
-            
-            }}
-
-
-          >
-            
-            {({ handleChange, handleBlur, handleSubmit, values }) => {
-             
-              
-             return  <View>
-                <Text style={styles.title}>Quelques Précisions</Text>
-                <View style={styles.details}>
-                  <View>
+                  // send the order to the back
+                  const sendOrder = await fetch(
+                    `http://${IPadress}:3000/restauration/order`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        details,
+                        heure: values.heure,
+                        quantity: values.quantity,
+                        lieu: checked,
+                        date,
+                        price,
+                        foodID,
+                        token,
+                      }),
+                    }
+                  )
+                    .then((response) => {
+                      response.json();
+                    })
+                    .then((data) => {
+                      console.log("data: ", data);
+                      setVisible(!visible);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong", err);
+                    });
+                }}
+              >
+                {({ handleChange, handleBlur, handleSubmit, values }) => {
+                  return (
                     <View>
-                      <Text>Quantité :</Text>
-                      <TextInput
-                      onChangeText={handleChange("quantity")}
-                        style={styles.input}
-                        placeholder={"2"}
-                        value={values.quantity}
-                        keyboardType={"numeric"}
-                      />
-                    </View>
+                      <Text style={styles.title}>Quelques Précisions</Text>
+                      <View style={styles.details}>
+                        <View>
+                          <View>
+                            <Text>Quantité :</Text>
+                            <TextInput
+                              onChangeText={handleChange("quantity")}
+                              style={styles.input}
+                              placeholder={"2"}
+                              value={values.quantity}
+                              keyboardType={"numeric"}
+                            />
+                          </View>
 
-                    <View>
-                      <Text>Heure :</Text>
-                      <TextInput
-                        style={styles.input}
-                        onChangeText={handleChange("heure")}
-                        placeholder={"9:30"}
-                        value={values.heure}
-                      />
-                    </View>
-                  </View>
+                          <View>
+                            <Text>Heure :</Text>
+                            <TextInput
+                              style={styles.input}
+                              onChangeText={handleChange("heure")}
+                              placeholder={"9:30"}
+                              value={values.heure}
+                            />
+                          </View>
+                        </View>
 
-                  <View>
-                    <Text>En chambre</Text>
-                    <RadioButton
-                      value="inRoom"
-                      status={
-                        checked === "inRoom" ? "checked" : "unchecked"
-                      }
-                      onPress={() => setChecked("inRoom")}
-                    />
-                    <Text>Sur place</Text>
-                    <RadioButton
-                      value="onSite"
-                      status={
-                        checked === "onSite" ? "checked" : "unchecked"
-                      }
-                      onPress={() => setChecked("onSite")}
-                    />
-                  </View>
-                </View>
+                        <View>
+                          <Text>En chambre</Text>
+                          <RadioButton
+                            value="inRoom"
+                            status={
+                              checked === "inRoom" ? "checked" : "unchecked"
+                            }
+                            onPress={() => setChecked("inRoom")}
+                          />
+                          <Text>Sur place</Text>
+                          <RadioButton
+                            value="onSite"
+                            status={
+                              checked === "onSite" ? "checked" : "unchecked"
+                            }
+                            onPress={() => setChecked("onSite")}
+                          />
+                        </View>
+                      </View>
 
-                {/* Choix */}
-                
-                <Text style={styles.title}>Faites votre choix</Text>
+                      {/* Choix */}
 
-                {foodDatas.detail.map((categoryObj) => {
-                  return Object.keys(categoryObj).map((category, i) => {
-                    return (
-                      <>
-                        <Text key={i} style={styles.category}>
-                          {category}
-                        </Text>
-                        {categoryObj[category].map((entry, i) => {
+                      <Text style={styles.title}>Faites votre choix</Text>
 
+                      {foodDatas.detail.map((categoryObj) => {
+                        return Object.keys(categoryObj).map((category, i) => {
                           return (
-                            <View key={i} style={styles.choices}>
-                              <View style={styles.options}>
-                                <TextInput
-                                  style={styles.input}
-                                  onChangeText={handleChange(entry)}
-                                  placeholder={"1"}
-                                  keyboardType={"numeric"}
-                                  value={values.entry}
-                                />
+                            <>
+                              <Text key={i} style={styles.category}>
+                                {category}
+                              </Text>
+                              {categoryObj[category].map((entry, i) => {
+                                return (
+                                  <View key={i} style={styles.choices}>
+                                    <View style={styles.options}>
+                                      <TextInput
+                                        style={styles.input}
+                                        onChangeText={handleChange(entry)}
+                                        placeholder={"1"}
+                                        keyboardType={"numeric"}
+                                        value={values.entry}
+                                      />
 
-                                <Text style={styles.itemOption}>
-                                  {entry}
-                                </Text>
-                              </View>
-                            </View>
+                                      <Text style={styles.itemOption}>
+                                        {entry}
+                                      </Text>
+                                    </View>
+                                  </View>
+                                );
+                              })}
+                            </>
                           );
-                        })}
-                      </>
-                    );
-                  });
-                })}
+                        });
+                      })}
 
-                <Button onPress={handleSubmit} title="Valider" />
-              </View>
-            }}
-          </Formik>
+                      <Button
+                        buttonStyle={{
+                          marginTop: 10,
+                          marginBottom: 50,
+                          backgroundColor: "#AADEC0",
+                          width: 200,
+                          color: "red",
+                          alignSelf: "center",
+                        }}
+                        onPress={handleSubmit}
+                        title="Valider"
+                      />
+                    </View>
+                  );
+                }}
+              </Formik>
+            </View>
+          </ScrollView>
+          <Overlay isVisible={visible} style={{ flexDirection: "column" }}>
+            <Text>Votre commande a été enregistrée.</Text>
+            <Text>A très bientôt ! </Text>
+            <Button
+              buttonStyle={{
+                marginTop: 15,
+                backgroundColor: "#AADEC0",
+                width: "80%",
+                alignSelf: "center",
+              }}
+              title="RETOUR"
+              onPress={() => {
+                toggleOverlay();
+                navigation.navigate("Home");
+              }}
+            />
+          </Overlay>
         </View>
-      </ScrollView>
-    </View>
-  ) : null}
-</>
-
+      ) : null}
+    </>
   );
 }
 
@@ -187,8 +228,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#fff",
-justifyContent: "center",
-
+    justifyContent: "center",
   },
   description: {
     paddingBottom: 10,

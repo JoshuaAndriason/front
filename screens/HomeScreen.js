@@ -42,8 +42,6 @@ export function HomeScreen(props) {
         eventsFunction();
       }, []);
 
-
-
     const change = (event) => {
         const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
         console.log(slide, 'slide', active, 'active')
