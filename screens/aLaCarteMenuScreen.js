@@ -38,8 +38,9 @@ export default function aLaCarteMenuScreen({ route, navigation }) {
     <>
       {dinerDatas.length > 0 ? (
         <View style={styles.container}>
-          <HomeImage uri={dinerDatas.image} />
-          <ScrollView style={{ padding: 10 }}>
+          <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1615473066/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/Sans_titre-1_pic9rw.jpg" />
+          <ScrollView style={{ padding: 10 }}   scrollIndicatorInsets={{ top: 1, bottom: 1 }}
+  contentInsetAdjustmentBehavior="always">
             <View style={styles.description}>
               <Text style={{ textAlign: "justify" }}>
                 {dinerDatas.description}

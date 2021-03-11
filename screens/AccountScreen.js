@@ -43,10 +43,11 @@ const dateFormat = function(date){
   
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'#fff'}} >
+      <HomeImage />
       <View style={styles.container}>
       {/* Home IMAGE */}
-        <HomeImage />
+        
 
 {/* Recap des INFOS DU USER */}
     <Text>Token :{props.token}</Text>

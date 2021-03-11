@@ -40,7 +40,8 @@ export default function MenuScreen({ route, navigation }) {
       {foodDatas.detail ? (
         <View style={styles.container}>
           <HomeImage uri={foodDatas.image} />
-          <ScrollView style={{ padding: 10 }}>
+          <ScrollView style={{ padding: 10 }} scrollIndicatorInsets={{ top: 1, bottom: 1 }}
+  contentInsetAdjustmentBehavior="always">
             <View style={styles.description}>
               <Text style={{ textAlign: "justify" }}>
                 {foodDatas.description}

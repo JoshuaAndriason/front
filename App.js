@@ -6,6 +6,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from '@expo/vector-icons';
 
+// MASQUER LES WARNINGS MESSAGES
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
+
 // IMPORT SCREEN
 import HeaderScreen from "./screens/HeaderScreen";
 import BienvenueScreen from "./screens/BienvenueScreen";
@@ -41,6 +45,7 @@ import idOrder from "./reducers/idOrder";
 import token from "./reducers/token";
 import letterRoomDirectory from "./reducers/letterRoomDirectory";
 import badgeRoomDirectory from "./reducers/badgeRoomDirectory";
+
 
 
 

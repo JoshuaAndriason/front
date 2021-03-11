@@ -5,8 +5,7 @@ import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //SCROLLER LES INPUTS A L'AFFICHAGE D'UN KEYBOARD//
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-import IPadress from "../url"
+import IPadress from "../url";
 import {connect} from 'react-redux';
 
 
@@ -124,7 +123,7 @@ var backGroundConnexion =''
 
       </View> 
 
-      
+     
       <KeyboardAwareScrollView style={{width:'100%'}} contentContainerStyle={{alignItems:'center'}}>
 
      { /*TERNAIRE QUI GERE L'AFFICHAGE DES INFOS SELON L'ONGLET CLIKER (INFOS INSCRIPTION OU CONNEXION)*/ }
