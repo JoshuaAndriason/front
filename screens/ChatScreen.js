@@ -22,7 +22,7 @@ export default class App extends React.Component {
                 <FontAwesome name="envelope"
                 name='envelope'
                 color='#AADEC0'
-                size='90%' 
+                size='75%' 
                 onPress={this.handleEmail}/>
                 <Text style={{ marginBottom: "8%"}}>
                 Envoyer un message à la réception</Text>
@@ -31,7 +31,7 @@ export default class App extends React.Component {
                 <Icon
                 name='tty'
                 color='#AADEC0'
-                size='100%' 
+                size='90%' 
                 onPress={this.makeCall}/>
                 <Text style={{ marginBottom: "8%"}}>
                 Appeler la réception</Text>
@@ -40,7 +40,7 @@ export default class App extends React.Component {
                 <Icon
                 name='hotel'
                 color='#AADEC0'
-                size='100%' 
+                size='85%' 
                 onPress={() => Linking.openURL('https://www.secure-hotel-booking.com/smart/Agence-WEBCOM/265A-8462/fr/')}/>
                 <Text>Effectuer votre prochaine réservation</Text>
 

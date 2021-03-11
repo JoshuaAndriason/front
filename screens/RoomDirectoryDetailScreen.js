@@ -1,3 +1,4 @@
+{/* Import components */}
 import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text,Card} from 'react-native-elements';
@@ -7,36 +8,39 @@ import IPadress from "../url"
 import {connect} from 'react-redux';
 
 
+// Recovery of the letter OnPress passed to the reducer and fetch to DB
 export function RoomDirectoryDetailScreen(props) {
     const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
-       useEffect(  () => { var room = async() =>{
+        useEffect(  () => { var room = async() =>{
         var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
         var response = await rawResponse.json();
-       setDetailRoomDirectory(response.filterRoomDirectory)
+        setDetailRoomDirectory(response.filterRoomDirectory)
        }
   room()       
 }, []);
-console.log('fggg',detailRoomDirectory)
-  return(
+    console.log('fggg',detailRoomDirectory)
+return(
+
+
+// Setup for RoomDirectoryList Card (title + description) via index
 <View style={styles.container}>
 <HomeImage/>
 <ScrollView style={{marginTop: 15}}>
-  {
+    {
     detailRoomDirectory.map((u, i) => {
       return (
 
         <Card key={i}>
-  <Card.Title >{u.itemName}</Card.Title>
-  <Card.Divider/>
-    <Text  style={{marginBottom: 10}}>
-      {u.description}
-    </Text>
-    <Card.Divider/>
-</Card>
+              <Card.Title >{u.itemName}</Card.Title>
+              <Card.Divider/>
+              <Text  style={{marginBottom: 10}}>
+              {u.description}
+              </Text>
+              <Card.Divider/>
+        </Card>
       );
     })
   }
-
 </ScrollView>
 </View>
 
@@ -47,6 +51,9 @@ function mapStateToProps(state){
 }  export default connect(
   mapStateToProps, 
 )(RoomDirectoryDetailScreen);
+
+
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,
