@@ -89,11 +89,12 @@ export function EventScreen(props) {
 </ScrollView>
 <Button buttonStyle={{ marginTop:10, marginBottom:50, backgroundColor:'#AADEC0', width:200, color:'red'}} title="Valider" onPress={handleSubmit} />
 
-      <Overlay isVisible={visible} >
+      <Overlay isVisible={visible} style={{flexDirection:"column"}}>
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
         <Button
+        buttonStyle={{ marginTop:15,backgroundColor:'#AADEC0', width: "80%", alignSelf: "center"}}
           title="RETOUR"
           onPress={() => {
             toggleOverlay();
