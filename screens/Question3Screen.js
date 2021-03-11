@@ -7,6 +7,7 @@ import IPadress from "../url"
 
 
 export default function Question2Screen(props) {
+    // list CHECKBOX
   var checkBoxList = ["Gourmand de toutes propositions culinaires", "Découvrir la ville", "Tranquilité souhaitée pendant mon séjour"]
   const [checked, setChecked] = useState('');
 

@@ -9,6 +9,8 @@ export function EventScreenDetails(props) {
 
     const [events, setEvents] = useState([])
 
+  // RECUPERATION DE TOUS LES EVENEMENTS DU BACK//
+
     useEffect(() => {
         var eventsFunction = async () => {
             var rawResponse = await fetch(`http://${IPadress}:3000/events`)
@@ -25,7 +27,7 @@ export function EventScreenDetails(props) {
 <HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297198/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/EVENTS_LARGE_qehdzy.jpg'/>
     
 <ScrollView >
-{
+{//AFFICHAGE DES EVENEMENTS DANS DES CARDS//
   events.map((u, i) => {
     return (
         

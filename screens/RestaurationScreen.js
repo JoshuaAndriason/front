@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { Input, Text, Button } from 'react-native-elements';
+import { Text } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
+import { MaterialIcons } from '@expo/vector-icons'; 
+
 import {connect} from 'react-redux';
 import IPadress from "../url"
+
 
 
 
@@ -39,7 +42,8 @@ export function RestaurationScreen(props) {
             onPress={() => {
               setIsBreakfast(!isBreakfast)
             }}>
-            <Text style={styles.text}>Petit-Déjeuner</Text>
+            <Text style={styles.text}> Petit-Déjeuner </Text> 
+            
           </TouchableOpacity>
           {isBreakfast ?
             <>
@@ -49,9 +53,9 @@ export function RestaurationScreen(props) {
                     <TouchableOpacity
                       style={styles.list}
                     >
-                      <Text style={styles.text}>{menu.nameArticle}</Text>
+                      <Text style={styles.text}>{menu.nameArticle}</Text> 
                       <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate("Menu", {foodID : menu._id, price: menu.prix, token: props.token})}>
-                        <Text style={{ color: "white" }}>{menu.prix} €</Text>
+                        <Text style={{ color: "white" }}>{menu.prix} €</Text> 
                       </TouchableOpacity>
                     </TouchableOpacity>
                   </View>
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
   },
   item: {
     borderColor: "#AADEC0",
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 10,
     width: '90%',
   },
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
   list: {
     backgroundColor: "#AADEC0",
     borderColor: "#AADEC0",
-    borderWidth: 0.5,
+    borderWidth: 2,
     padding: 10,
     width: '88%',
     marginBottom: 5,

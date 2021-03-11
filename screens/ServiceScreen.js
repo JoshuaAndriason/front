@@ -9,7 +9,8 @@ import IPadress from "../url"
 
 
 export default function ServiceScreen(props) {
-var images = ['https://res.cloudinary.com/dgv5agwfj/image/upload/v1614700845/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/PICTOS/1_Picto_PtitDej_p0emw3.png']
+
+//LIST DES SERVICES AVEC PHOTO ET DESCRIPTION//
 
 var box = [{content:'Petit-déjeuner à la parisienne, servi de 7h30 à 11h00 en salle voûtée ou en chambre - 15,00€',
 url:'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614700845/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/PICTOS/1_Picto_PtitDej_p0emw3.png'},{

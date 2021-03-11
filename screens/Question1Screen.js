@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import IPadress from "../url"
 
 
-
+  // fonction choix de centre d'intérêt
 function setMotivation(answer) {
   let motivation;
 
@@ -29,6 +29,7 @@ function setMotivation(answer) {
 
 export function Question1Screen(props) {
   console.log("token", props.token);
+  // list CHECKBOX
   var checkBoxList = ["Le travail", "Les balades", "Une date à fêter", "Profiter de l'hotêl"]
   const [checked, setChecked] = useState('');
 

@@ -83,7 +83,7 @@ export default function RecommendationScreen(props) {
                   <View
                     style={{ flex: 1, width: "100%", alignItems: "center" }}
                   >
-                    <TouchableOpacity style={styles.list}>
+                    <TouchableOpacity key = {i} style={styles.list}>
                       <Text style={styles.text}>
                         {recommendations.nameRecommandation}
                       </Text>

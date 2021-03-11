@@ -1,50 +1,66 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {StyleSheet, View, Text,TouchableOpacity} from 'react-native';
 import {Input} from 'react-native-elements';
 import HomeImage from '../components/HomeImage'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+//SCROLLER LES INPUTS A L'AFFICHAGE D'UN KEYBOARD//
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import IPadress from "../url"
 import {connect} from 'react-redux';
 
 
 export function InscriptionScreen(props) {
+
+//DECLARATION DES ETATS DE SIGNUP//
     const [emailSignUp, setEmailSignUp] = useState();
     const [lastNameSignUp, setLastNameSignUp] = useState();
     const [roomNumberSignUp, setRoomNumberSignUp] = useState();
-    const [isInscription,setIsInscription] = useState(true);
+
+
+    //DECLARATION DES ETATS DE SIGNIN//
     const [signInEmail, setSignInEmail] = useState('')
     const [signInName, setSignInName] = useState("")
     const [signInRoom, setSignInRoom] = useState("")
-    const [localToken, setLocalToken] = useState('')
-    const [userExists, setUserExists] = useState(false)
+
+
+    const [isInscription,setIsInscription] = useState(true);
+
+    //DECLARATION DES ETATS DE MESSAGE D'ERREUR//
     const [listErrorsSignin, setErrorsSignin] = useState([])
     const [listErrorsSignup, setErrorsSignup] = useState([])
 
    
-
+//FONCTION SIGNUP//
     var handleSubmitSignup = async () => {
-      console.log("name=====",signInName)
+
+      //ENVOIE DES INFOS AU BACK POUR INSCRIPTION D'UN USER//
       const data = await fetch(`http://${IPadress}:3000/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}&token=`
       })
       const body = await data.json()
+      
 
      if(body.result == true){
+       //ENREGISTREMENT DU TOKEN DANS UN REDUCER//
       props.addToken(body.token)
-      setLocalToken(body.token)
+//LOCAL STORAGE DU TOKEN//
       AsyncStorage.setItem('token', body.token);
+      //NAVIGATION VERS LA QUESTION 1//
       props.navigation.navigate('Question1');
       } else {
+
+      //MESSAGE D'ERREU SIGNUP//
       setErrorsSignup(body.error)
     } 
-console.log(localToken,'signUp local')
   }
 
+//FONCTION SIGNIN//
     var handleSubmitSignin = async () => {
- 
+       //ENVOIE DES INFOS AU BACK POUR VERIFICATION SI USER DEJA EXISTANT//
+
       const data = await fetch(`http://${IPadress}:3000/sign-in`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -55,26 +71,32 @@ console.log(localToken,'signUp local')
 
 
       if(body.result == true){
+         //ENREGISTREMENT DU TOKEN DANS UN REDUCER//
         props.addToken(body.token)
+        //NAVIGATION VERS LA HOME PAGE//
         props.navigation.navigate("BottomNavigator")
-        setLocalToken(body.token)
+        //LOCAL STORAGE DU TOKEN//
         AsyncStorage.setItem('token', body.token);
         
       }  else {
-        setErrorsSignin(body.error)
-        console.log("il y a une erreur") 
-      
+              //MESSAGE D'ERREU SIGNUP//
+
+        setErrorsSignin(body.error)      
       }
-      console.log('signIn local', localToken)
     }
 
+//GESTION DU STYLE DE L'ONGLET INSCRIPTION/CONNEXION//
 
 var backGroundInscription =''
 var backGroundConnexion =''
     if(isInscription){
+
+      //AU CLIC INSCRIPTION CHANGEMENT DEFINIR UN BACKGROUND COLOR VERT ET CONNEXION BLANC//
+
      backGroundInscription = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
      backGroundConnexion ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
     }else{
+      //AU CLIC CONNEXION CHANGEMENT DEFINIR UN BACKGROUND COLOR VERT ET INSCRIPTION BLANC//
       backGroundConnexion = { alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2,backgroundColor:'#AADEC0'}
       backGroundInscription ={ alignItems: "center",padding: 10,width: '50%',fontWeight: 'bold',marginBottom: 20,borderColor: '#AADEC0',borderBottomWidth: 2}
     }
@@ -104,7 +126,9 @@ var backGroundConnexion =''
 
       
       <KeyboardAwareScrollView style={{width:'100%'}} contentContainerStyle={{alignItems:'center'}}>
-        
+
+     { /*TERNAIRE QUI GERE L'AFFICHAGE DES INFOS SELON L'ONGLET CLIKER (INFOS INSCRIPTION OU CONNEXION)*/ }
+
     {isInscription?<><Text style={styles.textLogin}>Inscription</Text>
     
     
@@ -132,7 +156,11 @@ var backGroundConnexion =''
       <Text>Valider</Text>
     </TouchableOpacity>
 
-<Text>{listErrorsSignup}</Text></> : <>
+    { /*AFFICHAGE DES ERREURS SIGNUP*/ }
+
+<Text>{listErrorsSignup}</Text></> 
+
+: <>
 <Text style={styles.textLogin}>Connexion</Text>
 
     
@@ -160,6 +188,7 @@ var backGroundConnexion =''
       onPress={() => {handleSubmitSignin()}} >
       <Text>Valider</Text>
     </TouchableOpacity>
+    { /*AFFICHAGE DES ERREURS SIGNIN*/ }
     <Text style={styles.textError}>{listErrorsSignin}</Text>
 
 </>}

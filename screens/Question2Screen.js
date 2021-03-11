@@ -7,6 +7,7 @@ import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 
 export default function Question2Screen(props) {
+    // list CHECKBOX
   var checkBoxList = ["Cest prévu !", "Peut-être.", "Non, merci."]
   const [checked, setChecked] = useState('');
   

@@ -19,8 +19,11 @@ export function EventScreen(props) {
   const [isComing, setIsComing] = useState(false);
   const [event, setEvent] = useState([]);
 
+//Affichage de l'événement clické sur home page ou photo événement//
   useEffect(() => {
     var event = async () => {
+
+//RECUPERATION DE L'EVENEMENT  DU BACK GRACE A SON ID//
       var rawResponse = await fetch(
         `http://${IPadress}:3000/events/${props.idEvent}`
       );
@@ -32,9 +35,9 @@ export function EventScreen(props) {
 
   console.log("fffffff", event);
 
-  var handleSubmit = async () => {
-    //remplacer par la route qui est censé enregistrer la réponse de l'inscription à l'event//
 
+  //ENVOIE DE LA CONFIRMATION AU BACK//
+  var handleSubmit = async () => {
     const data = fetch(`http://${IPadress}:3000/confirmation`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -44,7 +47,8 @@ export function EventScreen(props) {
     setVisible(!visible);
   };
   console.log(props.token, "token");
-
+  
+ // liste des choix de la check Box//
   var checkBoxList = ["Oui, je viens", "Dommage ! Une prochaine fois"];
   console.log(isComing);
   function setAnswer(answer) {
@@ -53,7 +57,7 @@ export function EventScreen(props) {
     } else if (answer === "Dommage ! Une prochaine fois") setIsComing(false);
   }
 
-  // const toggle overlay affiche message de conf et fait la requete en meme temps//
+  // const toggle overlay affiche message de confirmation et un retour a la HOME PAGE//
   const toggleOverlay = () => {
     setVisible(!visible);
   };
@@ -88,6 +92,7 @@ export function EventScreen(props) {
 
 </ScrollView>
 <Button buttonStyle={{ marginTop:10, marginBottom:50, backgroundColor:'#AADEC0', width:200, color:'red'}} title="Valider" onPress={handleSubmit} />
+{/* POPUP CONFIRMATION PARTICIPATION A UN EVENEMENT*/}
 
       <Overlay isVisible={visible} >
     <Text>Merci pour votre retour.</Text>
