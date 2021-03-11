@@ -3,7 +3,6 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
-import { MaterialIcons } from '@expo/vector-icons'; 
 
 import {connect} from 'react-redux';
 import IPadress from "../url"
@@ -33,7 +32,7 @@ export function RestaurationScreen(props) {
   return (
     <View style={styles.container}>
       <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590448/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7190_hotel_des_deux_iles_bd_gq0vyj.jpg"/>
-      <Text>token :{props.token}</Text>
+      
       <ScrollView style={{ flex: 1, width: "100%" }}>
         {/* Display breakfast items */}
         <View style={styles.block}>

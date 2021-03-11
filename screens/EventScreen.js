@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import {
-  Input,
   Text,
-  ListItem,
-  Icon,
   CheckBox,
   Overlay,
   Button,
@@ -33,8 +30,6 @@ export function EventScreen(props) {
     event();
   }, []);
 
-  console.log("fffffff", event);
-
 
   //ENVOIE DE LA CONFIRMATION AU BACK//
   var handleSubmit = async () => {
@@ -46,11 +41,9 @@ export function EventScreen(props) {
 
     setVisible(!visible);
   };
-  console.log(props.token, "token");
   
  // liste des choix de la check Box//
   var checkBoxList = ["Oui, je viens", "Dommage ! Une prochaine fois"];
-  console.log(isComing);
   function setAnswer(answer) {
     if (answer === "Oui, je viens") {
       setIsComing(true);
@@ -68,8 +61,6 @@ export function EventScreen(props) {
 <View style={styles.container}>
     
     <HomeImage uri={event.image}/>
-    <Text>token :{props.token}</Text>
-    <Text>event :{props.idEvent}</Text>
 <ScrollView style={styles.border}>
 
 <Text style={styles.text}>{event.nameEvents}</Text>

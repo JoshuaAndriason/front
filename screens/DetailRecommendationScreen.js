@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
   ScrollView,
   Image,
 } from "react-native";
-import { Input, Text, Button } from "react-native-elements";
+import { Text} from "react-native-elements";
 import HomeImage from "../components/HomeImage";
 import IPadress from "../url";
 

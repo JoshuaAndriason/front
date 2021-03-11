@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
-import { Input, Text, ListItem, Icon } from "react-native-elements";
+import {  Text, ListItem, Icon } from "react-native-elements";
 import HomeImage from "../components/HomeImage";
 import {connect} from 'react-redux';
 import IPadress from "../url";
@@ -22,7 +22,6 @@ useEffect(  () => { var accountFunction = async() =>{
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `token=${props.token}`
     })
-    console.log(data.json)
     const body = await data.json()
     setAccount(body.saveUser)
     setEvent(body.saveEvents)
@@ -32,7 +31,6 @@ useEffect(  () => { var accountFunction = async() =>{
   accountFunction()       
   
   }, []); 
-  console.log('fffffff',order)
   //FORMAT DATE
 const dateFormat = function(date){
   var newDate = new Date(date);
@@ -40,16 +38,15 @@ const dateFormat = function(date){
   return format;
 }
 
-  
-
   return (
-    <ScrollView>
+
+    
+    <ScrollView style={{backgroundColor:'#fff'}}>
       <View style={styles.container}>
       {/* Home IMAGE */}
         <HomeImage />
 
 {/* Recap des INFOS DU USER */}
-    <Text>Token :{props.token}</Text>
     <Text h4>Bonjour {account.lastName} !</Text>
     <Text style={{ marginTop: 10 }}>Numéro de chambre : {account.roomNumber}</Text>
     <Text style={{ marginTop: 10, marginBottom: 40 }}>
@@ -75,13 +72,14 @@ const dateFormat = function(date){
             style={styles.list}
             key={i}
             bottomDivider
+            containerStyle={{backgroundColor:'#AADEC0'}}
             onPress={() => {
               props.onSubmitOrder(item._id);props.navigation.navigate("Order")
             }}
           >
             <Icon name={item.icon} />
-            <ListItem.Content>
-              <ListItem.Title>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
+            <ListItem.Content >
+              <ListItem.Title s>Commande du {dateFormat(item.dateService)} à {item.heureService}</ListItem.Title>
               <ListItem.Subtitle> N° {'CMD-'+item._id.slice(18)}</ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron />
@@ -92,6 +90,7 @@ const dateFormat = function(date){
 {/*ACCORDION RECAP EVENT*/}
     <TouchableOpacity
       style={styles.item}
+      
       onPress={() => {
         setisEvenement(!isEvenement);
       }}
@@ -103,15 +102,16 @@ const dateFormat = function(date){
         {event.map((item, i) => (
           <ListItem
             style={styles.list}
+            containerStyle={{backgroundColor:'#AADEC0'}}
             key={i}
             bottomDivider
             
           >
-            <ListItem.Content>
+          
               <ListItem.Title>{item.event.nameEvents}</ListItem.Title>
 
-            </ListItem.Content>
-            <ListItem.Chevron />
+     
+
           </ListItem>
         ))}
       </>
@@ -145,8 +145,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
+    height:'100%',
     flexDirection: "column",
     textAlign: "center",
+
   },
   button: {
     alignItems: "center",
@@ -155,14 +157,19 @@ const styles = StyleSheet.create({
     width: "40%",
   },
   list: {
-    width: "100%",
+    width: "88%",
+    backgroundColor: "#AADEC0",
+    borderColor:'white',
+    borderWidth: 1,
+
   },
   item: {
     borderColor: "#AADEC0",
     alignItems: "center",
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 10,
     width: "90%",
+    marginBottom:2
   },
   text: {
     fontSize: 18,

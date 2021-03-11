@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
-import { Input, Text, Button } from "react-native-elements";
+import { Text } from "react-native-elements";
 import HomeImage from "../components/HomeImage";
 import IPadress from "../url";
 
