@@ -97,7 +97,7 @@ export function EventScreen(props) {
           title="RETOUR"
           onPress={() => {
             toggleOverlay();
-            props.navigation.navigate("Home");
+            props.navigation.navigate("BottomNavigator");
           }}
         />
       </Overlay>
