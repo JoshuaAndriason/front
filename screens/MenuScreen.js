@@ -214,7 +214,7 @@ export default function MenuScreen({ route, navigation }) {
               title="RETOUR"
               onPress={() => {
                 toggleOverlay();
-                navigation.navigate("Home");
+                navigation.navigate("BottomNavigator");
               }}
             />
           </Overlay>

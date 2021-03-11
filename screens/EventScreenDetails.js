@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, View, Text, ScrollView} from 'react-native';
-import { ListItem, Avatar,Card,Image,Button } from 'react-native-elements'
+import {Card,Button } from 'react-native-elements'
 import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 import { connect } from 'react-redux';

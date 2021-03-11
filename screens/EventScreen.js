@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import {
-  Input,
   Text,
-  ListItem,
-  Icon,
   CheckBox,
   Overlay,
   Button,
@@ -21,7 +18,7 @@ export function EventScreen(props) {
 
 //Affichage de l'événement clické sur home page ou photo événement//
   useEffect(() => {
-    var event = async () => {
+    var eventFunction = async () => {
 
 //RECUPERATION DE L'EVENEMENT  DU BACK GRACE A SON ID//
       var rawResponse = await fetch(
@@ -30,10 +27,8 @@ export function EventScreen(props) {
       var response = await rawResponse.json();
       setEvent(response.event);
     };
-    event();
+    eventFunction();
   }, []);
-
-  console.log("fffffff", event);
 
 
   //ENVOIE DE LA CONFIRMATION AU BACK//
@@ -46,11 +41,9 @@ export function EventScreen(props) {
 
     setVisible(!visible);
   };
-  console.log(props.token, "token");
   
  // liste des choix de la check Box//
   var checkBoxList = ["Oui, je viens", "Dommage ! Une prochaine fois"];
-  console.log(isComing);
   function setAnswer(answer) {
     if (answer === "Oui, je viens") {
       setIsComing(true);
@@ -68,8 +61,6 @@ export function EventScreen(props) {
 <View style={styles.container}>
     
     <HomeImage uri={event.image}/>
-    <Text>token :{props.token}</Text>
-    <Text>event :{props.idEvent}</Text>
 <ScrollView style={styles.border}>
 
 <Text style={styles.text}>{event.nameEvents}</Text>

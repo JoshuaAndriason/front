@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
-import { Input, Text, Button } from "react-native-elements";
+import { Text } from "react-native-elements";
 import HomeImage from "../components/HomeImage";
 import IPadress from "../url";
 
@@ -134,9 +134,10 @@ const styles = StyleSheet.create({
   },
   item: {
     borderColor: "#AADEC0",
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 10,
     width: "90%",
+    marginBottom:5
   },
   text: {
     color: "black",

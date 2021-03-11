@@ -98,7 +98,6 @@ export function HomeScreen(props) {
           ))}
         </View>
       </View>
-      <Text>Token :{props.token}</Text>
       {/* mise en place des home image qui meneront aux differents services proposés*/}
       <ScrollView
         style={{

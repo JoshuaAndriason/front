@@ -46,14 +46,6 @@ function BienvenueScreen(props) {
       </TouchableOpacity>
       <Text h3 style={{ color: "white" }}></Text>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          props.navigation.navigate("BottomNavigator");
-        }}
-      >
-        <Text>Bienvenue</Text>
-      </TouchableOpacity>
     </ImageBackground>
   );
 }

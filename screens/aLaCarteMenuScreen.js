@@ -271,7 +271,7 @@ export default function aLaCarteMenuScreen({ route, navigation }) {
               title="RETOUR"
               onPress={() => {
                 toggleOverlay();
-                navigation.navigate("Home");
+                navigation.navigate("BottomNavigator");
               }}
             />
           </Overlay>

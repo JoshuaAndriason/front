@@ -47,7 +47,7 @@ const dateFormat = function(date){
 
   return (
    
-<ScrollView>
+<ScrollView style = {{backgroundColor:'#fff'}}>
 
     <View style={styles.container}>
     

@@ -132,13 +132,13 @@ var backGroundConnexion =''
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center' placeholder='Fred@gmail.com'
+   <Input textAlign='center' placeholder='email@email.com'
     containerStyle = {{marginBottom: 5, width: '60%'}}
      onChangeText={(value) => setEmailSignUp(value)}
      value={emailSignUp}
    />
      <Text>Nom</Text>
-   <Input textAlign='center' placeholder='Fred'
+   <Input textAlign='center' placeholder='PRENOM'
     containerStyle = {{marginBottom: 5, width: '60%'}}
      onChangeText={(value) => setLastNameSignUp(value)}
      value={lastNameSignUp}
