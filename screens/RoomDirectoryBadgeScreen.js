@@ -1,3 +1,4 @@
+{/* Import components */}
 import React, {useState,useEffect} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text,Card} from 'react-native-elements';
@@ -6,16 +7,22 @@ import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 import {connect} from 'react-redux';
 export function RoomDirectoryBadgeScreen(props) {
-    const [badgeRoomDirectory,setBadgeRoomDirectory] = useState([])
-       useEffect(  () => { var room = async() =>{
+    
+
+// Recovery of the badge OnPress passed to the reducer and fetch to DB
+  const [badgeRoomDirectory,setBadgeRoomDirectory] = useState([])
+        useEffect(  () => { var room = async() =>{
         var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryBadge/${props.badgeRoomDirectory}`)
         var response = await rawResponse.json();
-       setBadgeRoomDirectory(response.filterRoomDirectory)
+        setBadgeRoomDirectory(response.filterRoomDirectory)
        }
   room()       
 }, []);
 console.log('fggg',badgeRoomDirectory)
   return(
+
+    
+// Setup for RoomDirectoryList Card (title + description) via index
 <View style={styles.container}>
 <HomeImage/>
 <ScrollView style={{marginTop: 15}}>
@@ -24,13 +31,13 @@ console.log('fggg',badgeRoomDirectory)
       return (
 
         <Card key={i}>
-  <Card.Title >{u.itemName}</Card.Title>
-  <Card.Divider/>
-    <Text  style={{marginBottom: 10}}>
-      {u.description}
-    </Text>
-    <Card.Divider/>
-</Card>
+              <Card.Title >{u.itemName}</Card.Title>
+              <Card.Divider/>
+              <Text  style={{marginBottom: 10}}>
+              {u.description}
+              </Text>
+              <Card.Divider/>
+       </Card>
       );
     })
   }
@@ -47,6 +54,7 @@ function mapStateToProps(state){
 )(RoomDirectoryBadgeScreen);
 
 
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,

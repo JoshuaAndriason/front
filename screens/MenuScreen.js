@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextInput, View, Text, StyleSheet } from "react-native";
+import { TextInput, View, Text, StyleSheet } from "react-native";
 import { Formik } from "formik";
 import { RadioButton } from "react-native-paper";
 import HomeImage from "../components/HomeImage";
 import { ScrollView } from "react-native-gesture-handler";
 import IPadress from "../url";
+import { Overlay, Button } from "react-native-elements";
 
-export default function MenuScreen({ route }) {
+export default function MenuScreen({ route, navigation }) {
+  // datas from props
   const token = route.params.token;
   const foodID = route.params.foodID;
   const price = route.params.price;
+
+  //States
+  const [visible, setVisible] = useState(false);
   const [foodDatas, setFoodDatas] = useState([]);
   const [checked, setChecked] = useState("");
 
@@ -24,6 +29,11 @@ export default function MenuScreen({ route }) {
     }
     getFood();
   }, []);
+
+  // const toggle overlay affiche message de conf et fait la requete en meme temps//
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
 
   return (
     <>
@@ -52,42 +62,41 @@ export default function MenuScreen({ route }) {
                     ) {
                       let obj = {};
                       obj[valuesEntry[index][0]] = valuesEntry[index][1];
-                      console.log("obj:", obj);
                       details.push(obj);
                     }
-                    console.log("details:", details);
                   }
 
                   // store the current date (when the commande has been ordered)
                   const date = new Date().toString();
 
                   // send the order to the back
-                  try {
-                    console.log("====================================");
-                    console.log(foodID);
-                    console.log("====================================");
-                    const sendOrder = await fetch(
-                      `http://${IPadress}:3000/restauration/order`,
-                      {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          details,
-                          heure: values.heure,
-                          quantity: values.quantity,
-                          lieu: checked,
-                          date,
-                          price,
-                          foodID,
-                          token,
-                        }),
-                      }
-                    );
-                    sendOrder();
-                  } catch (error) {
-                    console.log("error:", error);
-                  }
-                  //console.log('details:', details, values.heure, values.quantity, checked, date)
+                  const sendOrder = await fetch(
+                    `http://${IPadress}:3000/restauration/order`,
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        details,
+                        heure: values.heure,
+                        quantity: values.quantity,
+                        lieu: checked,
+                        date,
+                        price,
+                        foodID,
+                        token,
+                      }),
+                    }
+                  )
+                    .then((response) => {
+                      response.json();
+                    })
+                    .then((data) => {
+                      console.log("data: ", data);
+                      setVisible(!visible);
+                    })
+                    .catch((err) => {
+                      console.log("Something went wrong", err);
+                    });
                 }}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => {
@@ -173,13 +182,41 @@ export default function MenuScreen({ route }) {
                         });
                       })}
 
-                      <Button onPress={handleSubmit} title="Valider" />
+                      <Button
+                        buttonStyle={{
+                          marginTop: 10,
+                          marginBottom: 50,
+                          backgroundColor: "#AADEC0",
+                          width: 200,
+                          color: "red",
+                          alignSelf: "center",
+                        }}
+                        onPress={handleSubmit}
+                        title="Valider"
+                      />
                     </View>
                   );
                 }}
               </Formik>
             </View>
           </ScrollView>
+          <Overlay isVisible={visible} style={{ flexDirection: "column" }}>
+            <Text>Votre commande a été enregistrée.</Text>
+            <Text>A très bientôt ! </Text>
+            <Button
+              buttonStyle={{
+                marginTop: 15,
+                backgroundColor: "#AADEC0",
+                width: "80%",
+                alignSelf: "center",
+              }}
+              title="RETOUR"
+              onPress={() => {
+                toggleOverlay();
+                navigation.navigate("Home");
+              }}
+            />
+          </Overlay>
         </View>
       ) : null}
     </>

@@ -1,14 +1,17 @@
 import React from "react";
-import { View, StyleSheet, Image} from "react-native";
-import { Button} from "react-native-elements";
+import { View, StyleSheet, Image } from "react-native";
+import { Button } from "react-native-elements";
 import Constant from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from "react-native-vector-icons/FontAwesome";
 
-
+/*reception du props 'showButtons' depuis l'app.js*/
 export default function HeaderScreen({ showButtons = true }) {
+
+  /*import de useNavigation pour naviger entre vers un autre composant sans passer par la Navigation Container*/
   const navigation = useNavigation();
   return (
+    /*Mise en place du header avec une condition showButtons qui affichera les bouttons si la condition est true */
     <View
       style={{
         marginTop: Constant.statusBarHeight,

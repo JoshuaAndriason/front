@@ -1,3 +1,4 @@
+{/* Import components */}
 import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Input, Text, ListItem, Accessory, Avatar, Badge, Icon, withBadge} from 'react-native-elements';
@@ -6,7 +7,7 @@ import HomeImage from '../components/HomeImage';
 import {connect} from 'react-redux';
 import IPadress from "../url"
 
-
+// Map properties for list.map > Annuaire
 function RoomDirectoryScreen(props) {
   const list = [
     {
@@ -89,7 +90,7 @@ function RoomDirectoryScreen(props) {
     },
   ]
 
-    
+// Map properties for badge.map > Badges
   const badge = [
     {
       badge: 'ACCUEIL',
@@ -108,6 +109,8 @@ function RoomDirectoryScreen(props) {
     }
   ]
   return(
+
+
 <View style={styles.container}>
 
 <HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297478/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/ROOM_DIRECTORY_sfzti8.jpg'/>
@@ -115,8 +118,9 @@ function RoomDirectoryScreen(props) {
 <Text style={{marginBottom:20}} h4>Notre hôtel de A à Z</Text>
 
 
+{/* Badge Map with navigation props to RoomDirectoryBadgeScreen*/}
 <View style={styles.badge}>
-{
+    {
           badge.map((item, i) => (
       <TouchableOpacity
         style={styles.button} key={i}
@@ -128,6 +132,7 @@ function RoomDirectoryScreen(props) {
 </View>
 
 
+{/* List Map with navigation props to RoomDirectoryDetailScreen*/}
   <ScrollView style={{width: '100%'}}>
           {
           list.map((item, i) => (
@@ -143,12 +148,14 @@ function RoomDirectoryScreen(props) {
   </ScrollView>
 </View>
   )}
+
+
+  {/* Sending properties to reducers*/}
   function mapDispatchToProps(dispatch) {
     return {
       onSubmitLetter: function(letter) { 
         dispatch( {type: 'saveLetter', letterRoomDirectory: letter }) 
       },onSubmitBadge: function(badge) { 
-        console.log(badge, "fred")
         dispatch( {type: 'saveBadge', badgeRoomDirectory: badge }) 
       }
     }
@@ -161,7 +168,7 @@ function RoomDirectoryScreen(props) {
 
 
 
-
+// Style elements
 const styles = StyleSheet.create({
   container: {
     flex: 1,

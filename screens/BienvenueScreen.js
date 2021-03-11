@@ -9,9 +9,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 
 function BienvenueScreen(props) {
+  // Déclaration des états
   const [isExist, setIsExist] = useState(false);
   const [localToken, setLocalToken] = useState("");
 
+  /* Récupération du token depuis l'asyncStorage*/
   useEffect(() => {
     AsyncStorage.getItem("token", (err, value) => {
       if (value) {
@@ -22,16 +24,16 @@ function BienvenueScreen(props) {
     });
   }, []);
 
-  console.log("token Bienvenue local", localToken);
-  console.log("im token Bienvenue", isExist);
   return (
+    /*import de l'image du background*/
     <ImageBackground
+      style={styles.container}
       source={{
         uri:
           "https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg",
       }}
-      style={styles.container}
     >
+      {/* Bouton redirection vers inscription ou BottomNavigator si isExist == true */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -42,9 +44,7 @@ function BienvenueScreen(props) {
       >
         <Text>BIENVENUE</Text>
       </TouchableOpacity>
-      <Text h3 style={{ color: "white" }}>
-        hy :{localToken}
-      </Text>
+      <Text h3 style={{ color: "white" }}></Text>
 
       <TouchableOpacity
         style={styles.button}
@@ -57,7 +57,7 @@ function BienvenueScreen(props) {
     </ImageBackground>
   );
 }
-
+//enregistrement du token dans le reducer
 function mapDispatchToProps(dispatch) {
   return {
     addToken: function (token) {

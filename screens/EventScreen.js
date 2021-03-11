@@ -94,15 +94,16 @@ export function EventScreen(props) {
 <Button buttonStyle={{ marginTop:10, marginBottom:50, backgroundColor:'#AADEC0', width:200, color:'red'}} title="Valider" onPress={handleSubmit} />
 {/* POPUP CONFIRMATION PARTICIPATION A UN EVENEMENT*/}
 
-      <Overlay isVisible={visible} >
+      <Overlay isVisible={visible} style={{flexDirection:"column"}}>
     <Text>Merci pour votre retour.</Text>
         <Text>Nous avons pris en compte votre réponse.</Text>
         <Text>A très bientôt ! </Text>
         <Button
+        buttonStyle={{ marginTop:15,backgroundColor:'#AADEC0', width: "80%", alignSelf: "center"}}
           title="RETOUR"
           onPress={() => {
             toggleOverlay();
-            props.navigation.navigate("Home");
+            props.navigation.navigate("BottomNavigator");
           }}
         />
       </Overlay>

@@ -5,12 +5,12 @@ import HomeImage from "../components/HomeImage";
 import IPadress from "../url";
 
 export default function RecommendationScreen(props) {
+  //Déclaration des ETATS
   const [isRestaurantVisible, setIsRestaurantVisible] = useState(false);
   const [isFlaneriesVisible, setIsFlaneriesVisible] = useState(false);
-
   const [Restaurants, setRestaurants] = useState([]);
   const [Flaneries, setFlaneries] = useState([]);
-
+  // Récupération des recommendation de la BDD depuis le back
   useEffect(() => {
     async function getAllRecommendation() {
       const response = await fetch(`http://${IPadress}:3000/recommendation`);
@@ -33,9 +33,11 @@ export default function RecommendationScreen(props) {
 
   return (
     <View style={styles.container}>
-      <HomeImage uri='https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297110/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/RECOMMANDATIONS_LARGE_hewvj1.jpg'/>
+      {/* HomeIMAGE avec un props pour changer l'image par défault*/}
+      <HomeImage uri="https://res.cloudinary.com/dgv5agwfj/image/upload/v1615297110/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/RECOMMANDATIONS_LARGE_hewvj1.jpg" />
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.block}>
+          {/* Mise en place des recommandations de restaurants avec la condition de montrer les détails au click sur Restaurants*/}
           <TouchableOpacity
             style={styles.item}
             onPress={() => {
@@ -47,18 +49,21 @@ export default function RecommendationScreen(props) {
           {isRestaurantVisible ? (
             <>
               {Restaurants.map((recommendations, i) => {
-           
                 return (
                   <View
                     style={{ flex: 1, width: "100%", alignItems: "center" }}
                   >
-                    <TouchableOpacity key = {i} style={styles.list}>
+                    <TouchableOpacity key={i} style={styles.list}>
                       <Text style={styles.text}>
                         {recommendations.nameRecommandation}
                       </Text>
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => props.navigation.navigate("DetailRecommendation", {detailsRecommendations : recommendations})}
+                        onPress={() =>
+                          props.navigation.navigate("DetailRecommendation", {
+                            detailsRecommendations: recommendations,
+                          })
+                        }
                       >
                         <Text style={{ color: "white" }}>Voir</Text>
                       </TouchableOpacity>
@@ -70,6 +75,7 @@ export default function RecommendationScreen(props) {
           ) : null}
         </View>
         <View style={styles.block}>
+          {/* Mise en place des recommandations de Flaneries avec la condition de montrer les détails au click sur Flaneries*/}
           <TouchableOpacity
             style={styles.item}
             onPress={() => setIsFlaneriesVisible(!isFlaneriesVisible)}
@@ -89,7 +95,11 @@ export default function RecommendationScreen(props) {
                       </Text>
                       <TouchableOpacity
                         style={styles.button}
-                        onPress={() => props.navigation.navigate("DetailRecommendation", {detailsRecommendations : recommendations})}
+                        onPress={() =>
+                          props.navigation.navigate("DetailRecommendation", {
+                            detailsRecommendations: recommendations,
+                          })
+                        }
                       >
                         <Text style={{ color: "white" }}>Voir</Text>
                       </TouchableOpacity>
@@ -133,7 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "left",
   },
-  textTitle:{
+  textTitle: {
     color: "black",
     fontSize: 18,
     textAlign: "left",

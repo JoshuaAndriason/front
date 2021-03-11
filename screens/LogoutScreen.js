@@ -1,11 +1,13 @@
-import React, {useEffect } from "react";
-import { StyleSheet, ImageBackground, Text} from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, ImageBackground, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
 export default function LogoutScreen(props) {
+  // destruction du token de l'AsyncStorage pour se log-out
   useEffect(() => {
     AsyncStorage.clear();
+    
+    //navigation vers Inscription sans passer par log-out
     props.navigation.replace("Inscription");
   }, []);
 
