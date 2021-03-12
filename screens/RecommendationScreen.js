@@ -13,7 +13,7 @@ export default function RecommendationScreen(props) {
   // Récupération des recommendation de la BDD depuis le back
   useEffect(() => {
     async function getAllRecommendation() {
-      const response = await fetch(`http://${IPadress}:3000/recommendation`);
+      const response = await fetch(`http://${IPadress}/recommendation`);
       const data = await response.json();
       const recommendations = data.result;
       setRestaurants(

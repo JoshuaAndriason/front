@@ -1,3 +1,3 @@
-const IPadress = "172.17.1.186"
+const IPadress = "agile-savannah-87699.herokuapp.com"
 
 export default IPadress;

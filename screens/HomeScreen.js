@@ -30,7 +30,7 @@ export function HomeScreen(props) {
   // récupération des images de la homepage dans la BDD en passant par le back
   useEffect(() => {
     async function getHomeImage() {
-      const response = await fetch(`http://${IPadress}:3000/image`);
+      const response = await fetch(`http://${IPadress}/image`);
       const data = await response.json();
       const hotels = await data.result;
       const ImageHomepage = hotels[0].image;
@@ -43,7 +43,7 @@ export function HomeScreen(props) {
     }
     // récupération des events dans la BDD en passant par le back
     var eventsFunction = async () => {
-      var rawResponse = await fetch(`http://${IPadress}:3000/events`);
+      var rawResponse = await fetch(`http://${IPadress}/events`);
       var response = await rawResponse.json();
       setEvents(response.events);
     };

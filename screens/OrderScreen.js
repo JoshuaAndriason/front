@@ -14,7 +14,7 @@ export function OrderScreen(props) {
 
   //Recupération de l'évent et commande et infos USER DU BACK 
 useEffect(  () => { var accountFunction = async() =>{
-  const responseFood = await fetch(`http://${IPadress}:3000/account/${props.idOrder}`)
+  const responseFood = await fetch(`http://${IPadress}/account/${props.idOrder}`)
   const bodyFood = await responseFood.json()
     setOrderDetails(bodyFood.saveOrder.order[0].details)
     setOrder(bodyFood.saveOrder)

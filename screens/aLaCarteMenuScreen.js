@@ -20,7 +20,7 @@ export default function aLaCarteMenuScreen({ route, navigation }) {
   useEffect(() => {
     async function getFood() {
       const response = await fetch(
-        `http://${IPadress}:3000/restauration/food/${foodType}`
+        `http://${IPadress}/restauration/food/${foodType}`
       );
       const data = await response.json();
       const foods = await data.result;
@@ -71,7 +71,7 @@ export default function aLaCarteMenuScreen({ route, navigation }) {
                   // send the order to the back
 
                   const sendOrder = await fetch(
-                    `http://${IPadress}:3000/restauration/order`,
+                    `http://${IPadress}/restauration/order`,
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },

@@ -53,7 +53,7 @@ export function Question1Screen(props) {
 
 
 // Sending collected information to the database
-    await fetch(`http://${IPadress}:3000/questionnary/motivation/`, {
+    await fetch(`http://${IPadress}/questionnary/motivation/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `motivation=${motivation}&token=${props.token}`

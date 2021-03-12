@@ -12,7 +12,7 @@ export function RoomDirectoryBadgeScreen(props) {
 // Recovery of the badge OnPress passed to the reducer and fetch to DB
   const [badgeRoomDirectory,setBadgeRoomDirectory] = useState([])
         useEffect(  () => { var room = async() =>{
-        var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryBadge/${props.badgeRoomDirectory}`)
+        var rawResponse = await fetch(`http://${IPadress}/roomDirectoryBadge/${props.badgeRoomDirectory}`)
         var response = await rawResponse.json();
         setBadgeRoomDirectory(response.filterRoomDirectory)
        }

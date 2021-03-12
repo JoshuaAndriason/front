@@ -28,7 +28,7 @@ export default function Question2Screen(props) {
     }
 
 // Sending collected information to the database
-    await fetch(`http://${IPadress}:3000/questionnary/interest`, {
+    await fetch(`http://${IPadress}/questionnary/interest`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: `interest=${interest}&token=${props.token}`

@@ -34,7 +34,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignup = async () => {
 
       //ENVOIE DES INFOS AU BACK POUR INSCRIPTION D'UN USER//
-      const data = await fetch(`http://${IPadress}:3000/sign-up`, {
+      const data = await fetch(`http://${IPadress}/sign-up`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `lastnameFromFront=${lastNameSignUp}&emailFromFront=${emailSignUp}&roomNumberFromFront=${roomNumberSignUp}&token=`
@@ -60,7 +60,7 @@ export function InscriptionScreen(props) {
     var handleSubmitSignin = async () => {
        //ENVOIE DES INFOS AU BACK POUR VERIFICATION SI USER DEJA EXISTANT//
 
-      const data = await fetch(`http://${IPadress}:3000/sign-in`, {
+      const data = await fetch(`http://${IPadress}/sign-in`, {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: `emailFromFront=${signInEmail}&lastnameFromFront=${signInName}&roomNumberFromFront=${signInRoom}`
@@ -138,7 +138,7 @@ var backGroundConnexion =''
      value={emailSignUp}
    />
      <Text>Nom</Text>
-   <Input textAlign='center' placeholder='PRENOM'
+   <Input textAlign='center' placeholder='Prénom'
     containerStyle = {{marginBottom: 5, width: '60%'}}
      onChangeText={(value) => setLastNameSignUp(value)}
      value={lastNameSignUp}
@@ -165,13 +165,13 @@ var backGroundConnexion =''
     
     
     <Text style={{marginTop:20}} >Adresse e-mail</Text>
-   <Input textAlign='center' placeholder='Fred@gmail.com'
+   <Input textAlign='center' placeholder='email@email.com'
     containerStyle = {{marginBottom: 5, width: '60%'}}
      onChangeText={(value) => setSignInEmail(value)}
      value={signInEmail}
    />
      <Text>Nom</Text>
-   <Input textAlign='center' placeholder='Fred' 
+   <Input textAlign='center' placeholder='Prénom' 
     containerStyle = {{marginBottom: 5, width: '60%'}}
      onChangeText={(value) => setSignInName(value)}
      value={signInName}

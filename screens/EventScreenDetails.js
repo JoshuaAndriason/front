@@ -13,7 +13,7 @@ export function EventScreenDetails(props) {
 
     useEffect(() => {
         var eventsFunction = async () => {
-            var rawResponse = await fetch(`http://${IPadress}:3000/events`)
+            var rawResponse = await fetch(`http://${IPadress}/events`)
             var response = await rawResponse.json();
             setEvents(response.events)
         }

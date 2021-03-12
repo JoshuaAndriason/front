@@ -17,7 +17,7 @@ export function AccountScreen(props) {
 
   //Recupération de l'évent et commande et infos USER DU BACK 
 useEffect(  () => { var accountFunction = async() =>{
-  const data = await fetch(`http://${IPadress}:3000/account`, {
+  const data = await fetch(`http://${IPadress}/account`, {
       method: 'POST',
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: `token=${props.token}`

@@ -6,13 +6,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeImage from '../components/HomeImage'
 import IPadress from "../url"
 import {connect} from 'react-redux';
-
+ 
 
 // Recovery of the letter OnPress passed to the reducer and fetch to DB
 export function RoomDirectoryDetailScreen(props) {
     const [detailRoomDirectory,setDetailRoomDirectory] = useState([])
         useEffect(  () => { var room = async() =>{
-        var rawResponse = await fetch(`http://${IPadress}:3000/roomDirectoryDetail/${props.letterRoomDirectory}`)
+        var rawResponse = await fetch(`http://${IPadress}/roomDirectoryDetail/${props.letterRoomDirectory}`)
         var response = await rawResponse.json();
         setDetailRoomDirectory(response.filterRoomDirectory)
        }

@@ -22,7 +22,7 @@ export function EventScreen(props) {
 
 //RECUPERATION DE L'EVENEMENT  DU BACK GRACE A SON ID//
       var rawResponse = await fetch(
-        `http://${IPadress}:3000/events/${props.idEvent}`
+        `http://${IPadress}/events/${props.idEvent}`
       );
       var response = await rawResponse.json();
       setEvent(response.event);
@@ -33,7 +33,7 @@ export function EventScreen(props) {
 
   //ENVOIE DE LA CONFIRMATION AU BACK//
   var handleSubmit = async () => {
-    const data = fetch(`http://${IPadress}:3000/confirmation`, {
+    const data = fetch(`http://${IPadress}/confirmation`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `isComing=${isComing}&token=${props.token}&eventId=${props.idEvent}`,

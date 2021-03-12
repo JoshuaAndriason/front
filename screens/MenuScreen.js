@@ -21,7 +21,7 @@ export default function MenuScreen({ route, navigation }) {
   useEffect(() => {
     async function getFood() {
       const response = await fetch(
-        `http://${IPadress}:3000/restauration/breakfast/${foodID}`
+        `http://${IPadress}/restauration/breakfast/${foodID}`
       );
       const data = await response.json();
       const food = await data.result;
@@ -72,7 +72,7 @@ export default function MenuScreen({ route, navigation }) {
 
                   // send the order to the back
                   const sendOrder = await fetch(
-                    `http://${IPadress}:3000/restauration/order`,
+                    `http://${IPadress}/restauration/order`,
                     {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
